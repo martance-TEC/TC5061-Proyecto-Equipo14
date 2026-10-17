@@ -32,7 +32,7 @@ La descarga tarda según la red. Conserva las fuentes locales con sus hashes. Un
 En otra consola ubicada en la misma raíz, iniciar un servidor limitado a la laptop:
 
 ```powershell
-$artifactPath = (Join-Path $PWD 'mlartifacts')
+$artifactPath = ([System.Uri](Join-Path $PWD 'mlartifacts')).AbsoluteUri
 .\.venv\Scripts\mlflow.exe server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root $artifactPath
 ```
 
@@ -41,6 +41,7 @@ En la consola del proyecto:
 ```powershell
 $env:PATH = "$PWD\.venv\Scripts;$env:PATH"
 $env:MLFLOW_TRACKING_URI = 'http://127.0.0.1:5000'
+$env:PYTHONIOENCODING = 'utf-8'
 mlflow run . --env-manager local --experiment-name mibici-equipo14 -P question=all -P integrante=martha
 ```
 
