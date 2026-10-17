@@ -56,6 +56,8 @@ def ingest(verify=False):
     assert stations.station_id.is_unique
     out=S.root/"data/processed";out.mkdir(parents=True,exist_ok=True)
     trips.to_parquet(out/"trips.parquet",index=False);stations.to_parquet(out/"stations.parquet",index=False)
+    for month,part in trips.groupby(trips.started_at.dt.to_period("M")):
+        part.to_parquet(out/f"trips_{month}.parquet",index=False)
     manifest={"sources":records,"data_version":canonical_version(records),"input_rows":input_rows,"usable_trips":len(trips),"duplicates_removed":duplicate,"conflicting_ids":conflict,"invalid_rows":invalid,"stations":len(stations),"positive_capacity_stations":int((stations.capacity>0).sum()),"capacity_snapshot":"2026-09 retrospective scenario; not historical 2025 inventory","timezone":"America/Mexico_City (naive local source timestamps)"}
     dest=S.root/"references/data_manifest.json"
     if verify and dest.exists():

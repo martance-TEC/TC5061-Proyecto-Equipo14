@@ -18,6 +18,7 @@ Ejecutar desde la raíz del clon, en PowerShell:
 py -3.11 --version
 py -3.11 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install pip==25.0.1
+.\.venv\Scripts\python.exe -m pip install setuptools==78.1.0 wheel==0.45.1
 .\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
 .\.venv\Scripts\python.exe -m pip install --no-deps --no-build-isolation -e .
 $env:PATH = "$PWD\.venv\Scripts;$env:PATH"
@@ -33,7 +34,7 @@ En otra consola ubicada en la misma raíz, iniciar un servidor limitado a la lap
 
 ```powershell
 $artifactPath = ([System.Uri](Join-Path $PWD 'mlartifacts')).AbsoluteUri
-.\.venv\Scripts\mlflow.exe server --host 127.0.0.1 --port 5000 --backend-store-uri sqlite:///mlflow.db --default-artifact-root $artifactPath
+.\.venv\Scripts\mlflow.exe server --host 127.0.0.1 --port 5000 --workers 1 --backend-store-uri sqlite:///mlflow.db --default-artifact-root $artifactPath
 ```
 
 En la consola del proyecto:

@@ -11,8 +11,10 @@ def main(question="all",integrante="martha",max_iter=0):
     tracker=ExperimentTracker(integrante,manifest)
     trips=pd.read_parquet(S.root/"data/processed/trips.parquet");stations=pd.read_parquet(S.root/"data/processed/stations.parquet")
     print("Aggregating closed hourly events",flush=True);hourly=hourly_counts(trips,stations);frame=None;results={}
-    parent_id=os.environ.get("MLFLOW_RUN_ID")
+    # Consume the Projects run identifier once so child runs cannot resume it.
+    parent_id=os.environ.pop("MLFLOW_RUN_ID",None)
     with (mlflow.start_run(run_id=parent_id) if parent_id else mlflow.start_run(run_name=f"eq14_all_{integrante}")) as parent:
+        mlflow.set_tag("mlflow.runName",f"eq14_{question}_orquestador_{integrante}")
         if question in ["all","P1","P2"]:frame=temporal_features(hourly)
         if question in ["all","P1"]:
             print("Running P1",flush=True);results["P1"]=RegressionExperiment().run(frame,tracker,max_iter or S.max_iter)
