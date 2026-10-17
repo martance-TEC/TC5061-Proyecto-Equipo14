@@ -1,0 +1,11 @@
+{
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "original_commit": "b93d49f749e4242a65838b7c9ccc7caac1f5a04c",
+  "clean_commit": "393a22abcac18008db68455abb9069f05ccf2278",
+  "metrics_compared": 91,
+  "different_metrics": [],
+  "original_parent_run": "aa79cc7b64954ffca65fa4ec386dc63a",
+  "clean_parent_run": "962f87fe786d467b988e8e267432870e",
+  "clean_git_dirty": false,
+  "scope": "Local clean clone with new virtualenv and sources linked to unchanged verified originals; not an independent teammate execution"
+}
