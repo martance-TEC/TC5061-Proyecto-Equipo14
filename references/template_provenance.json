@@ -1,0 +1,13 @@
+{
+  "generator": "cookiecutter-data-science",
+  "version": "2.3.0",
+  "template": "https://github.com/drivendataorg/cookiecutter-data-science",
+  "template_commit": "0f6b163cdbe3918a2c65ab57ad9fefda93976d9e",
+  "generated_with_ccds": true,
+  "adaptations": [
+    "Existing public repository name retained",
+    "Python 3.11.9 exact environment",
+    "Original scaffold extended with tracking and experiments",
+    "Setuptools build backend replaces flit"
+  ]
+}
