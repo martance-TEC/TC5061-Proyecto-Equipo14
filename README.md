@@ -75,3 +75,6 @@ MiBici. (s. f.). Datos abiertos. https://mibici.net/es/datos-abiertos/
 Python Software Foundation. (2024). Python 3.11.9. https://www.python.org/downloads/release/python-3119/
 Real Python. (s. f.). Object oriented programming in Python. https://realpython.com/python3-object-oriented-programming/
 Las lecturas institucionales y el podcast se encuentran en la consigna, pero no se citan como consultados íntegramente sin acceso verificable.
+
+## Comprobación del rol Persona 2 Milton
+La revisión de ingesta y P1 se repitió en la carpeta Persona2_Milton, en un clon separado y un entorno reconstruido desde el lock. La ejecución técnica fue solicitada por Martha y se conserva su cuenta y autoría reales. Ver references/revision_ingesta_p1_persona2.md, references/lecturas_persona2.md, reports/data_summary.json y los resúmenes Persona2_Milton. Las ocho pruebas pasaron; la ejecución completa produjo nueve hijos finalizados y 103 valores numéricos coincidentes con la reproducción anterior dentro de 1e-12. Esto no acredita participación independiente de Milton. Las invitaciones a MiltonVeraTorre y VictorVillaHe están pendientes de aceptación al verificar. Las capturas de esta comprobación se conservan en el informe Word local y no se agregan a este PR.
