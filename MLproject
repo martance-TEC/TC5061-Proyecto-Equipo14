@@ -1,0 +1,11 @@
+name: mibici-equipo14
+python_env: python_env.yaml
+entry_points:
+  main:
+    parameters:
+      question: {type: string, default: all}
+      integrante: {type: string, default: martha}
+      max_iter: {type: int, default: 0}
+    command: "python -m mibici_equipo14.pipeline --question {question} --integrante {integrante} --max-iter {max_iter}"
+  ingest:
+    command: "python -m mibici_equipo14.dataset --verify"
