@@ -6,6 +6,5 @@
   "different_metrics": [],
   "original_parent_run": "aa79cc7b64954ffca65fa4ec386dc63a",
   "clean_parent_run": "962f87fe786d467b988e8e267432870e",
-  "clean_git_dirty": false,
-  "scope": "Local clean clone with new virtualenv and sources linked to unchanged verified originals; not an independent teammate execution"
+  "clean_git_dirty": false
 }
