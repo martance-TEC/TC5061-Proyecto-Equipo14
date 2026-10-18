@@ -1,0 +1,24 @@
+{
+  "git_commit": "0e2e31579ea2d3611c2a55c8ac79c611ee421ccb",
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "source_files": 13,
+  "source_bytes": 393104868,
+  "monthly_files": 12,
+  "input_rows": 4532032,
+  "usable_trips": 4532032,
+  "duplicates_removed": 0,
+  "conflicting_ids": 0,
+  "invalid_rows": 0,
+  "stations": 484,
+  "positive_capacity_stations": 480,
+  "P1_evaluation_rows": {
+    "train": 2101344,
+    "val": 543144,
+    "test": 543144
+  },
+  "capacity_excluded_catalogue_stations": 4,
+  "capacity_snapshot": "2026-09 retrospective scenario; not historical 2025 inventory",
+  "train": "2025-01-01 / 2025-09-01 exclusive",
+  "validation": "2025-09-01 / 2025-11-01 exclusive",
+  "test": "2025-11-01 / 2026-01-01 exclusive"
+}
