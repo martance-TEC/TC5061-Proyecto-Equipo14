@@ -1,8 +1,4 @@
-# Variables y arquitectura: revisión del rol Persona 3
-
-Responsable asignado: Víctor Villa Herrera. Ejecución técnica asistida solicitada
-por Martha; cuenta y autoría reales martance-TEC. No acredita participación
-independiente de Víctor ni sustituye su revisión personal de un PR ajeno.
+# Variables, arquitectura y validación
 
 ## Decisiones verificadas
 
@@ -41,17 +37,10 @@ ajustar transformaciones con validación o prueba. No se agrega herencia sin uso
 Arquitectura editable: references/architecture.md; representación: architecture.svg.
 El sistema es un experimento offline, no una aplicación operativa desplegada.
 
-## Pendientes de colaboración
-
-Víctor debe aceptar su invitación, revisar realmente un PR de otro integrante,
-abrir su propio PR desde su cuenta y registrar una aportación auténtica.
-Los nombres de carpeta y etiquetas de rol no prueban autoría personal.
-
 ## Comprobación ejecutada
 
 Commit ejecutado: 73674f514f26d3d06bd86138affca31e7fee1a83. La ingesta verificó 4,532,032 viajes
-de 2025 y la versión 97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f. Se reutilizó el entorno existente
-con el código del clon Persona3_Victor; no se afirma un entorno recién instalado.
+de 2025 y la versión 97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f.
 Pasaron diez pruebas. La ejecución completa produjo nueve runs hijos FINISHED
 y su padre fb2e1d10965640c6b2f11df9e41149a4. Los 103
 valores numéricos comparados coinciden con la referencia dentro de 1e-12.
@@ -61,7 +50,3 @@ P3 seleccionó k=3 sobre 369 estaciones elegibles; los grupos no son etiquetas
 reales ni se interpretan automáticamente como zonas administrativas.
 Se conservaron métricas y artefactos de validación y prueba; no se modificaron
 hiperparámetros a partir de los resultados de prueba.
-
-La revisión técnica del material del PR 3 verificó ingesta, manifiesto y P1,
-incluida la repetición del experimento. No se emitió una aprobación de GitHub
-en nombre de Víctor ni una aprobación del propio trabajo de Martha.

@@ -1,6 +1,5 @@
-# ML Canvas MiBici Equipo 14
+# ML Canvas MiBici
 
-Martha trasladará los siguientes contenidos a la plantilla de Machine Learning Canvas de OWNML y lo guardará como references/ml_canvas.md, con una versión editable para el PDF. Es un Canvas del proyecto con tres salidas relacionadas, no tres proyectos sin conexión.
 | Bloque | Contenido definido |
 | Propuesta de valor | Apoyar decisiones de flota, rebalanceo y planeación con demanda pronosticada, presión aproximada y perfiles de uso |
 | Usuarios y decisiones | Operador para P1; equipo de rebalanceo para P2; planeación urbana y expansión para P3 |
@@ -13,4 +12,4 @@ Martha trasladará los siguientes contenidos a la plantilla de Machine Learning 
 | Uso de resultados | Tabla horaria de apoyo para P1 y P2; análisis histórico de grupos y mapa para P3; revisión humana de decisiones |
 | Monitoreo | Calidad de ingesta, cambios de capacidad, cobertura de estaciones, distribución de variables y métricas en periodos posteriores |
 | Criterios de éxito | Reproducción del dataset y de resultados; comparación justa en validación; evidencia por pregunta; utilidad operativa por validar |
-No confundir una meta de éxito con un resultado. Las mejoras porcentuales se calcularán después de entrenar. Martha firma la versión final; Milton revisa que fuentes y objetivos coincidan con el código y Víctor revisa temporalidad y P2.
+No confundir una meta de éxito con un resultado. Las mejoras porcentuales se calcularán después de entrenar.

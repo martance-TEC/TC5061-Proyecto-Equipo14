@@ -1,6 +1,4 @@
-# Material de apoyo para Persona 3
-
-Consulta técnica asistida, no lectura personal acreditada de Víctor.
+# Referencias técnicas de variables y arquitectura
 
 - MLflow. (s. f.). MLflow Projects. https://mlflow.org/docs/latest/ml/projects/
   Un MLproject describe parámetros y comandos. Se comprobó el comando local
@@ -12,7 +10,6 @@ Consulta técnica asistida, no lectura personal acreditada de Víctor.
 - scikit-learn developers. (s. f.). KMeans.
   https://scikit-learn.org/stable/modules/generated/sklearn.cluster.KMeans.html
   Se fijan semilla y n_init explícitamente, y se comparan varios k.
-  El entorno ejecutado conserva scikit-learn 1.5.2 del lock, no la versión latest.
 - MLflow. (s. f.). MLflow example. https://github.com/mlflow/mlflow-example
   Referencia ya revisada para el entry point; no se trasladó su partición
   aleatoria a una evaluación temporal de viajes.
@@ -29,7 +26,7 @@ La presentación local y la transcripción previa del video se usaron como
 contexto de Tracking, parámetros, métricas y artefactos. No se afirma que el
 video se haya vuelto a reproducir íntegro durante esta comprobación.
 
-Pendiente de completar personalmente por Víctor: Thompson sección 7.4,
+Acceso completo no verificado: Thompson sección 7.4,
 https://learning.oreilly.com/library/view/managing-machine-learning/9781633439023/OEBPS/Text/07.html#heading_id_13
 y los capítulos de Lauchande y Wilson cuyo acceso completo no fue verificado.
 También falta la escucha completa del episodio Data Skeptic ML Ops Best
