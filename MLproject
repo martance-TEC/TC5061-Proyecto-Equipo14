@@ -4,7 +4,7 @@ entry_points:
   main:
     parameters:
       question: {type: string, default: all}
-      integrante: {type: string, default: martha}
+      integrante: {type: string, default: local}
       max_iter: {type: int, default: 0}
     command: "python -m mibici_equipo14.pipeline --question {question} --integrante {integrante} --max-iter {max_iter}"
   ingest:

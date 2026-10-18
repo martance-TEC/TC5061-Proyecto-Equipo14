@@ -32,7 +32,5 @@ Usar estaciones con al menos 28 días con actividad en entrenamiento y suficient
 Reportar silhouette, Davies–Bouldin y Calinski–Harabasz cuando haya entre 2 y n-1 grupos representados. Calcular estabilidad con Adjusted Rand Index sobre estaciones comunes al comparar las asignaciones del modelo fijo en dos ventanas. No llamar accuracy a estas medidas ni tratar el número arbitrario del cluster como una etiqueta semántica. Nombrar los grupos únicamente después de inspeccionar sus perfiles reales.
 El artefacto final incluirá perfiles agregados y localización de estaciones coloreadas por grupo. La interpretación geográfica se realiza después del ajuste para evitar que el agrupamiento se limite a proximidad física.
 
-
-
 ## Ajustes de esta ejecución
 P2 limita el ajuste a una muestra uniforme reproducible de hasta 100000 filas de entrenamiento, semilla 42; validación y prueba se evalúan completas. P1 excluye las primeras 168 horas sin historia suficiente: por tanto el respaldo del baseline no interviene en las filas evaluadas. Esta cobertura se declara explícitamente.

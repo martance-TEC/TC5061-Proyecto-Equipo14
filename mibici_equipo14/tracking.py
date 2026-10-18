@@ -13,8 +13,8 @@ class ExperimentTracker:
         mlflow.set_tracking_uri(os.environ.get("MLFLOW_TRACKING_URI","http://127.0.0.1:5000"))
         mlflow.set_experiment(S.experiment)
     def start(self,question,model,params):
-        run=mlflow.start_run(run_name=f"eq14_{question}_{model}_{self.integrante}",nested=True)
-        mlflow.set_tags({"equipo":"14","pregunta":question,"integrante":self.integrante,"git_commit":self.sha,"git_dirty":str(self.dirty).lower(),"data_version":self.manifest["data_version"],"capacity_interpretation":"retrospective capacity pressure proxy"})
+        run=mlflow.start_run(run_name=f"eq14_{question}_{model}",nested=True)
+        mlflow.set_tags({"equipo":"14","pregunta":question,"git_commit":self.sha,"git_dirty":str(self.dirty).lower(),"data_version":self.manifest["data_version"],"capacity_interpretation":"retrospective capacity pressure proxy"})
         mlflow.log_params({"seed":S.seed,"start":S.start,"train_end":S.train_end,"val_end":S.val_end,"end":S.end,"data_version":self.manifest["data_version"],"model":model,**params})
         mlflow.log_dict(self.manifest,"provenance/data_manifest.json")
         return run

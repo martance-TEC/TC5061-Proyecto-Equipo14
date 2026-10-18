@@ -6,7 +6,7 @@ from .config import SETTINGS as S
 from .features import hourly_counts,temporal_features,capacity_labels
 from .tracking import ExperimentTracker
 from .modeling.train import RegressionExperiment,ClassificationExperiment,ClusteringExperiment
-def main(question="all",integrante="martha",max_iter=0):
+def main(question="all",integrante="local",max_iter=0):
     manifest=json.loads((S.root/"references/data_manifest.json").read_text())
     tracker=ExperimentTracker(integrante,manifest)
     trips=pd.read_parquet(S.root/"data/processed/trips.parquet");stations=pd.read_parquet(S.root/"data/processed/stations.parquet")
@@ -29,9 +29,9 @@ def main(question="all",integrante="martha",max_iter=0):
             results["P2"]=ClassificationExperiment().run(frame,tracker);results["P2"]["initial_inventory_sensitivity"]=sensitivity;results["P2"]["direction_counts"]=frame.risk_direction.value_counts().to_dict()
         if question in ["all","P3"]:
             print("Running P3",flush=True);results["P3"]=ClusteringExperiment().run(hourly,stations,tracker)
-        result={"integrante":integrante,"git_commit":tracker.sha,"git_dirty":tracker.dirty,"data_version":manifest["data_version"],"parent_run_id":parent.info.run_id,"results":results}
+        result={"git_commit":tracker.sha,"git_dirty":tracker.dirty,"data_version":manifest["data_version"],"parent_run_id":parent.info.run_id,"results":results}
         mlflow.log_dict(result,"summary/results.json")
         path=S.root/"reports"/f"reproduccion_{integrante}.json";path.write_text(json.dumps(result,indent=2),encoding="utf-8")
         print(json.dumps(result,indent=2),flush=True)
 if __name__=="__main__":
-    p=argparse.ArgumentParser();p.add_argument("--question",choices=["all","P1","P2","P3"],default="all");p.add_argument("--integrante",choices=["martha","milton","victor"],default="martha");p.add_argument("--max-iter",type=int,default=0);main(**vars(p.parse_args()))
+    p=argparse.ArgumentParser();p.add_argument("--question",choices=["all","P1","P2","P3"],default="all");p.add_argument("--integrante",default="local");p.add_argument("--max-iter",type=int,default=0);main(**vars(p.parse_args()))
