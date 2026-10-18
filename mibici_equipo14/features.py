@@ -3,6 +3,9 @@ import numpy as np
 import pandas as pd
 from .config import SETTINGS as S
 def hourly_counts(trips,stations,station_ids=None):
+    """Organiza los viajes por estación y hora, contando las salidas y llegadas. 
+    Esta información sirve como base para preparar los datos de P1, P2 y P3."""
+
     ids=(sorted(set(trips.origin_id)&set(trips.destination_id)&set(stations.station_id))
          if station_ids is None else sorted(station_ids))
     index=pd.MultiIndex.from_product([ids,pd.date_range(S.start,S.end,freq="h",inclusive="left")],names=["station_id","time"])
@@ -15,6 +18,8 @@ def hourly_counts(trips,stations,station_ids=None):
 
 
 def p1_hourly_counts(trips, stations):
+    """Prepara la información por hora para P1. Utiliza las estaciones que tienen salidas durante el periodo de entrenamiento
+y que también existen en el catálogo de estaciones."""
     observed = trips[(trips.started_at >= S.start) & (trips.started_at < S.train_end)]
     cohort = set(observed.origin_id) & set(stations.station_id)
     if not cohort:
@@ -22,6 +27,8 @@ def p1_hourly_counts(trips, stations):
     return hourly_counts(trips, stations, station_ids=cohort)
 
 def temporal_features(hourly):
+    """Crea variables históricas de llegadas y salidas. Incluye información de horas y días anteriores, así como la hora,
+el día de la semana y el mes. Se utiliza principalmente en P1 y P2 """
     x=hourly.sort_values(["station_id","time"]).copy()
     for col in ["departures","arrivals"]:
         g=x.groupby("station_id")[col]
@@ -30,11 +37,14 @@ def temporal_features(hourly):
     x["hour"]=x.time.dt.hour;x["weekday"]=x.time.dt.dayofweek;x["month"]=x.time.dt.month
     return x
 def pressure_label(deltas,capacity,initial_fraction=0.5):
-    """Prefix balance for minute events in [cut,cut+3h); no inventory clipping."""
+    """ Identifica si los movimientos de bicicletas generan presión sobre la capacidad de una estación.
+    Se utiliza para construir la variable de riesgo de P2"""    
     if not np.isfinite(capacity) or capacity<=0:raise ValueError("Positive observed station capacity required")
     balances=np.r_[initial_fraction*capacity,initial_fraction*capacity+np.cumsum(deltas)]
     return int(balances.min()<=S.low_fraction*capacity or balances.max()>=S.high_fraction*capacity)
 def capacity_labels(trips,hourly,stations,initial_fraction=0.5,return_direction=False):
+    """Construye la variable de riesgo utilizada en P2. Analiza las llegadas y salidas durante las siguientes tres horas y las compara
+    con la capacidad de la estación. El resultado es una aproximación, ya que no se conoce el inventario real de bicicletas."""
     events=pd.concat([trips[["origin_id","started_at"]].rename(columns={"origin_id":"station_id","started_at":"time"}).assign(delta=-1),trips[["destination_id","ended_at"]].rename(columns={"destination_id":"station_id","ended_at":"time"}).assign(delta=1)])
     events["time"]=events.time.dt.floor("min")
     events=events.groupby(["station_id","time"]).delta.sum()
@@ -59,9 +69,12 @@ def capacity_labels(trips,hourly,stations,initial_fraction=0.5,return_direction=
         result.extend(labels[:len(group)])
     return (np.array(result),np.array(directions)) if return_direction else np.array(result)
 def split_mask(times,split,horizon=1):
+    """Separa los datos en entrenamiento, validación y prueba respetando el tiempo. También evita utilizar información futura fuera del periodo correspondiente."""
     bounds={"train":(S.start,S.train_end),"val":(S.train_end,S.val_end),"test":(S.val_end,S.end)}
     lo,hi=map(pd.Timestamp,bounds[split]);return (times>=lo)&(times+pd.Timedelta(hours=horizon)<=hi)
 def station_profiles(hourly,start,end,ids=None):
+    """Crea un perfil de uso para cada estación. Resume sus patrones de llegadas y salidas según la hora y el tipo de día.
+    Estos perfiles se utilizan en P3 para encontrar estaciones con comportamientos similares."""
     h=hourly[(hourly.time>=start)&(hourly.time<end)].copy()
     if ids is not None:h=h[h.station_id.isin(ids)]
     h["hour"]=h.time.dt.hour;h["weekend"]=(h.time.dt.dayofweek>=5).astype(int)
