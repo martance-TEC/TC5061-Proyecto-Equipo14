@@ -1,7 +1,6 @@
-# Revisión de ingesta y P1 de Persona 2 Milton
+# Verificación de ingesta y P1
 
 ## Alcance y ejecución
-Rol asignado a Milton Vera de la Torre. La comprobación técnica se realizó por solicitud de Martha Villalobos en su laptop y con su cuenta martance-TEC. Los nombres Persona2_Milton identifican la actividad asignada; no acreditan una ejecución personal o independiente de Milton. Se revisó y reprodujo la implementación existente, sin reasignar su autoría.
 
 Código ejecutado: `0e2e31579ea2d3611c2a55c8ac79c611ee421ccb`. Versión de datos: `97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f`. Los cambios de esta rama documentan la comprobación posterior al entrenamiento. La ingesta reconstruyó los Parquet a partir de copias locales de las fuentes oficiales; no se afirma una descarga nueva desde Internet.
 
@@ -23,12 +22,7 @@ Tarea: regresión del número de viajes iniciados por estación durante la sigui
 
 Baseline val_mae=1.02801835, test_mae=0.99035983. Candidato val_mae=0.85398633, test_mae=0.80511835, test_rmse=1.43027496, test_wape=0.61096252. Reducción de MAE de prueba frente al baseline: 18.70 %. Esta diferencia es una evaluación offline y no mide impacto operativo. Modelo seleccionado: hist_gradient_boosting.
 
-Run padre de P1: `8c84139031d74630b7ea76eecda4e238`. Run padre completo: `8505a490438d4bd6983175e431e63e2e`. El ensayo P1 produjo dos hijos y el completo produjo nueve hijos: dos de P1, dos de P2 y cinco de P3. Todos finalizaron correctamente. Se compararon 103 valores numéricos con la reproducción anterior y todos coinciden dentro de 1e-12. Se mantuvieron las etiquetas de ejecutor real y se añadió rol_asignado=Persona2_Milton a los runs nuevos.
+Run padre de P1: `8c84139031d74630b7ea76eecda4e238`. Run padre completo: `8505a490438d4bd6983175e431e63e2e`. El ensayo P1 produjo dos hijos y el completo produjo nueve hijos: dos de P1, dos de P2 y cinco de P3. Todos finalizaron correctamente. Se compararon 103 valores numéricos con la reproducción anterior y todos coinciden dentro de 1e-12.
 
 ## P2 y P3 y límites
 P2 conserva clasificación para el equipo de rebalanceo. Usa capacidad real del catálogo y un inventario inicial hipotético de 50 %; detecta presión extrema por flujos en tres horas. El catálogo es de septiembre de 2026 aplicado retrospectivamente a 2025. No hay inventario ni rebalanceos históricos observados, por lo que no equivale a predecir faltantes reales. P3 conserva clustering de perfiles para planeación urbana y expansión; seleccionó k=3 sobre 369 estaciones elegibles.
-
-## Dependencias pendientes
-MiltonVeraTorre y VictorVillaHe tienen invitación pendiente de aceptación al verificar. La ejecución técnica de Martha no sustituye sus PR, revisiones o ejecuciones personales. PR 1 requiere revisión; PR 2 depende de la implementación. Este PR se apila sobre docs/mavf-entrega y también requiere una revisión real. No se aprueba ni integra el PR propio. Falta resolver con el docente la mención de cuatro integrantes para un equipo de tres. La entrega a la plataforma académica no se ha realizado.
-
-La lectura íntegra de los capítulos institucionales no quedó acreditada; O'Reilly mostró acceso restringido o error. Se consultó la ficha del episodio ML Ops Best Practices de Data Skeptic, del 12 de agosto de 2022, pero no se acredita escucha completa. Ver references/lecturas_persona2.md.

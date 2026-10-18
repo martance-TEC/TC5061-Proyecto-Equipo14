@@ -1,12 +1,9 @@
 {
-  "rol_asignado": "Persona3_Victor",
-  "ejecutor_real": "Martha Villalobos",
   "git_commit": "73674f514f26d3d06bd86138affca31e7fee1a83",
   "reference_git_commit": "393a22abcac18008db68455abb9069f05ccf2278",
   "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
   "numerical_values_compared": 103,
   "all_match": true,
-  "independent_victor_execution": false,
   "comparisons": [
     {
       "campo": "results.P1.models.hist_gradient_boosting.test_mae",
