@@ -12,28 +12,57 @@ from sklearn.metrics import mean_absolute_error,mean_squared_error,average_preci
 from ..config import SETTINGS as S
 from ..features import split_mask,station_profiles
 FEATURES=[f"{c}_{suffix}" for c in ["departures","arrivals"] for suffix in ["lag1","lag24","lag168","mean24","mean168"]]+["hour","weekday","month"]
+
+
+def historical_mean_predictions(training, evaluation):
+    keys = ['station_id', 'weekday', 'hour']
+    means = training.groupby(keys).departures.mean()
+    index = pd.MultiIndex.from_frame(evaluation[keys])
+    return means.reindex(index).fillna(float(training.departures.mean())).to_numpy()
+
+
+def select_regression_model(results):
+    best = min(values['val_mae'] for values in results.values())
+    return next(name for name, values in results.items()
+                if values['val_mae'] <= best + .01)
+
+
 class RegressionExperiment:
     def run(self,frame,tracker,max_iter):
         x=frame.dropna(subset=FEATURES).copy();m={s:split_mask(x.time,s,1) for s in ["train","val","test"]}
         train=x[m["train"]];model=HistGradientBoostingRegressor(loss="poisson",max_iter=max_iter,learning_rate=.1,max_leaf_nodes=31,random_state=S.seed)
         model.fit(train[FEATURES],train.departures)
-        results={};preds={}
-        for name in ["seasonal_naive","hist_gradient_boosting"]:
+        results={}
+        definitions={
+            'seasonal_naive':'Observed departures at the same hour 168 hours earlier',
+            'station_weekday_hour_mean':'Mean departures by station,weekday,hour fitted on training only; global training mean fallback',
+            'hist_gradient_boosting':'Poisson HistGradientBoosting fitted on training features',
+        }
+        for name in definitions:
             metrics={}
-            with tracker.start("P1",name,{"horizon_hours":1,"max_iter":max_iter if name!="seasonal_naive" else 0,"learning_rate":.1,"max_leaf_nodes":31,"training_rows":len(train)}):
+            with tracker.start("P1",name,{"horizon_hours":1,"max_iter":max_iter if name=="hist_gradient_boosting" else 0,"learning_rate":.1,"max_leaf_nodes":31,"training_rows":len(train),"cohort":"training departures intersect catalogue"}):
                 for split in ["val","test"]:
-                    f=x[m[split]];y=f.departures.to_numpy();p=f.departures_lag168.to_numpy() if name=="seasonal_naive" else model.predict(f[FEATURES]);preds[name,split]=p
+                    f=x[m[split]];y=f.departures.to_numpy()
+                    if name=='seasonal_naive':
+                        p=f.departures_lag168.to_numpy()
+                    elif name=='station_weekday_hour_mean':
+                        p=historical_mean_predictions(train,f)
+                    else:
+                        p=model.predict(f[FEATURES])
                     metrics[f"{split}_mae"]=mean_absolute_error(y,p);metrics[f"{split}_rmse"]=mean_squared_error(y,p)**.5
                     if y.sum():metrics[f"{split}_wape"]=abs(y-p).sum()/y.sum()
                     errors=f[["station_id","hour"]].copy();errors["absolute_error"]=abs(y-p)
                     tracker.artifact({"by_station":errors.groupby("station_id").absolute_error.mean().to_dict(),"by_hour":{str(k):v for k,v in errors.groupby("hour").absolute_error.mean().items()}},f"evaluation/{split}_mae_groups.json")
                 tracker.metrics(metrics)
                 tracker.artifact({"feature_columns":FEATURES,"evaluation_rows":{s:int(m[s].sum()) for s in m}},"evaluation/definition.json")
-                if name!="seasonal_naive":mlflow.sklearn.log_model(model,name="model",input_example=train[FEATURES].head(3))
-                tracker.artifact({"definition":"prediction equals observed departures at t minus 168 hours; warm-up rows excluded"},"baseline.json")
+                if name=="hist_gradient_boosting":mlflow.sklearn.log_model(model,name="model",input_example=train[FEATURES].head(3))
+                if name=='station_weekday_hour_mean':
+                    means=train.groupby(['station_id','weekday','hour']).departures.mean().rename('mean_departures')
+                    tracker.artifact({'means':means.reset_index().to_dict('records'),'fallback':float(train.departures.mean())},'model/historical_means.json')
+                tracker.artifact({"definition":definitions[name]},"model_definition.json")
                 results[name]=metrics
-        winner="hist_gradient_boosting" if results["hist_gradient_boosting"]["val_mae"]<results["seasonal_naive"]["val_mae"]-.01 else "seasonal_naive"
-        return {"models":results,"selected":winner,"selection":"validation MAE; tie tolerance 0.01 favors baseline"}
+        winner=select_regression_model(results)
+        return {"models":results,"selected":winner,"selection":"validation MAE; tolerance 0.01; tie priority seasonal_naive,station_weekday_hour_mean,hist_gradient_boosting"}
 class ClassificationExperiment:
     def run(self,frame,tracker):
         features=FEATURES+["capacity"]
