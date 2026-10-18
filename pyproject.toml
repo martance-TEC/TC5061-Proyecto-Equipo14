@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools==78.1.0", "wheel==0.45.1"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "mibici-equipo14"
+version = "0.1.0"
+requires-python = ">=3.11,<3.12"
+[tool.setuptools.packages.find]
+include = ["mibici_equipo14*"]
+[tool.pytest.ini_options]
+pythonpath = ["."]
