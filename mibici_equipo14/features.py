@@ -2,8 +2,9 @@
 import numpy as np
 import pandas as pd
 from .config import SETTINGS as S
-def hourly_counts(trips,stations):
-    ids=sorted(set(trips.origin_id)&set(trips.destination_id)&set(stations.station_id))
+def hourly_counts(trips,stations,station_ids=None):
+    ids=(sorted(set(trips.origin_id)&set(trips.destination_id)&set(stations.station_id))
+         if station_ids is None else sorted(station_ids))
     index=pd.MultiIndex.from_product([ids,pd.date_range(S.start,S.end,freq="h",inclusive="left")],names=["station_id","time"])
     counts=[]
     for station_col,time_col,name in [("origin_id","started_at","departures"),("destination_id","ended_at","arrivals")]:
@@ -11,6 +12,15 @@ def hourly_counts(trips,stations):
         count=tmp.groupby([station_col,"time"]).size();count.index.names=["station_id","time"]
         counts.append(count.reindex(index,fill_value=0).rename(name))
     return pd.concat(counts,axis=1).reset_index()
+
+
+def p1_hourly_counts(trips, stations):
+    observed = trips[(trips.started_at >= S.start) & (trips.started_at < S.train_end)]
+    cohort = set(observed.origin_id) & set(stations.station_id)
+    if not cohort:
+        raise ValueError('P1 requires stations with departures in training and a catalogue entry')
+    return hourly_counts(trips, stations, station_ids=cohort)
+
 def temporal_features(hourly):
     x=hourly.sort_values(["station_id","time"]).copy()
     for col in ["departures","arrivals"]:
