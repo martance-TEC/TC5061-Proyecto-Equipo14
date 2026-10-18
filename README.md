@@ -102,6 +102,8 @@ P2: se ajusta con hasta 100,000 ejemplos de entrenamiento, semilla 42; validaci�
 
 ## Evidencias
 
+La [propuesta en PDF](reports/TC5061_Propuesta_Proyecto_Equipo14.pdf) reúne la formulación, ML Canvas, metodología, resultados, arquitectura, referencias y capturas de la interfaz.
+
 [Guía de evidencia](references/evidencias.md): lista de runs, detalle con parámetros/métricas/etiquetas, artefacto abierto dentro de MLflow y comparación de modelos. Las capturas deben corresponder a runs identificables y a las métricas informadas. El mapa independiente muestra el resultado, pero la captura de su registro debe mostrar la pestaña Artifacts.
 
 ## Flujo de Git
