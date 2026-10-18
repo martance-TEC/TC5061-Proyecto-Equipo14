@@ -1,6 +1,6 @@
-# MiBici Equipo 14
+# MiBici
 
-Proyecto de Operaciones de aprendizaje automático. Martha Alicia Villalobos Facundo, Milton Vera de la Torre y Víctor Villa Herrera. Repositorio: https://github.com/martance-TEC/TC5061-Proyecto-Equipo14
+Proyecto de Operaciones de aprendizaje automático sobre demanda, presión sobre la capacidad y perfiles de uso de estaciones.
 
 ## Problema y usuarios
 P1: regresión del número de viajes iniciados por estación durante la siguiente hora, para el operador del sistema. P2: clasificación de presión aproximada sobre la capacidad en las siguientes tres horas, para rebalanceo. P3: clustering de perfiles históricos por estación y su localización, para planeación urbana y expansión. Las decisiones completas, baselines y métricas están en references/problem_definition.md y el ML Canvas en references/ml_canvas.md.
@@ -43,19 +43,16 @@ En la consola del proyecto:
 $env:PATH = "$PWD\.venv\Scripts;$env:PATH"
 $env:MLFLOW_TRACKING_URI = 'http://127.0.0.1:5000'
 $env:PYTHONIOENCODING = 'utf-8'
-mlflow run . --env-manager local --experiment-name mibici-equipo14 -P question=all -P integrante=martha
+mlflow run . --env-manager local --experiment-name mibici-equipo14 -P question=all
 ```
 
-MLproject permite question=all, P1, P2 o P3; integrante identifica a quien realmente ejecuta. max_iter=0 usa la configuración central 100 para P1; por ejemplo `-P question=P1 -P max_iter=150` registra la variación sin editar celdas. python_env.yaml y requirements.lock.txt documentan un entorno reconstruible; esta ejecución local usa el entorno previamente instalado y verificado. No requiere Conda. El orquestador se reincorpora al run padre de Projects y crea runs descriptivos para cada modelo.
+MLproject permite question=all, P1, P2 o P3. max_iter=0 usa la configuración central 100 para P1; por ejemplo `-P question=P1 -P max_iter=150` registra la variación sin editar celdas. python_env.yaml y requirements.lock.txt documentan un entorno reconstruible; esta ejecución local usa el entorno previamente instalado y verificado. No requiere Conda. El orquestador se reincorpora al run padre de Projects y crea runs descriptivos para cada modelo.
 
 ## Modelos y métricas
 P1 seasonal naive contra HistGradientBoosting Poisson; selección val_mae, test MAE RMSE WAPE. P2 prior contra RandomForest de 200 árboles y profundidad 12; ajuste con máximo 100000 ejemplos de train, semilla 42, para la laptop; validación y prueba completas. Umbral por val F2, se registran AP, recall, precision, balanced accuracy, prevalencia y matrices. P3 KMeans k2 baseline y candidatos k3-k6 con StandardScaler ajustado en train; selección val silhouette y mínimo cinco estaciones por grupo, métricas internas y ARI temporal.
 
 ## Resultados y reproducción
-Los resultados reales se guardan en reports/reproduccion_martha.json; se identifican con commit, data_version y run padre. No confundir estas métricas offline con impacto operacional. Para reproducir clona el mismo commit, instala el lock y usa las mismas fuentes SHA256; repite el comando. Milton y Víctor deben ejecutar personalmente en sus equipos y aportar sus resúmenes auténticos. Un clon limpio ejecutado por Martha acredita repetibilidad local, no colaboración independiente.
-
-## Git y colaboración
-Ramas feat/mavf-config-project y docs/mavf-entrega, commits con autoría real. Todo cambio posterior al arranque debe entrar mediante PR revisado. No aprobar el propio PR. Estado de colaboración en references/collaboration.md. Los nombres asignados a roles no prueban trabajo realizado. Permanecen pendientes los handles y revisiones auténticas de los demás integrantes, así como aclaración docente sobre cuatro usuarios para este equipo de tres.
+Los resultados se guardan en reports/reproduccion_referencia.json y se identifican con commit, data_version y run padre. Para reproducirlos, utiliza el commit de referencia, las dependencias fijadas y las fuentes verificadas mediante SHA256. Las métricas offline no equivalen a impacto operacional.
 
 ## Limitaciones y mejora
 Capacidades de 2026 aplicadas retrospectivamente; sin inventario ni rebalanceo observado, demanda no atendida, meteorología ni calendario de altas/bajas históricas de estaciones. P3 excluye estaciones con menos de 28 días activos de entrenamiento. Primera semana excluida por rezagos. Validar telemetría histórica antes de uso operativo, evaluar cobertura por fecha de apertura y monitorizar cambios de distribución. No se acreditó lectura institucional restringida ni escucha de un episodio concreto del podcast.
