@@ -51,7 +51,7 @@ def ingest(verify=False):
         path=raw/source["name"]
         if not path.exists():
             if verify: raise FileNotFoundError(path)
-            req=urllib.request.Request(source["url"],headers={"User-Agent":"Mozilla/5.0"})
+            req=urllib.request.Request(source["url"],headers={"User-Agent":"TC5061-Equipo14/1.0"})
             with urllib.request.urlopen(req,timeout=120) as response,path.open("wb") as out:
                 import shutil;shutil.copyfileobj(response,out)
         rec={**source,"sha256":sha256(path),"bytes":path.stat().st_size}
