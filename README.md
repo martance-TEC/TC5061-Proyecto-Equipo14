@@ -7,7 +7,7 @@ La implementación se encuentra en el PR 1, pendiente de revisión humana: https
 
 Dos ejecuciones locales completas de Martha procesaron 4,532,032 viajes y produjeron las mismas 91 métricas con tolerancia 1e-12. La ejecución desde clon limpio usa el commit 393a22abcac18008db68455abb9069f05ccf2278 y la versión de datos 97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f. Ver reports/reproduction_audit.json y reports/reproduccion_martha.json en la rama documental. P1 seleccionó HistGradientBoosting con test_mae 0.8051 frente a 0.9904 del baseline. P2 seleccionó RandomForest con test_f2 0.5627 y test_average_precision 0.3924, bajo la etiqueta proxy definida. P3 seleccionó k=3 sobre 369 estaciones elegibles.
 
-La invitación que Martha envió a VictorVillaHe está pendiente de aceptación al verificar. Todavía falta el usuario de GitHub de Milton. No se acreditan PR, revisiones ni ejecuciones independientes de ellos. La reproducción de Martha no sustituye su participación real. No se ha enviado la entrega a la plataforma académica.
+La invitación que Martha envió a VictorVillaHe está pendiente de aceptación al verificar. MiltonVeraTorre ya figura como colaborador al verificar el 17 de octubre de 2026. No se acreditan PR, revisiones ni ejecuciones independientes de ellos. La reproducción de Martha no sustituye su participación real. No se ha enviado la entrega a la plataforma académica.
 
 ## Problema y usuarios
 P1: regresión del número de viajes iniciados por estación durante la siguiente hora, para el operador del sistema. P2: clasificación de presión aproximada sobre la capacidad en las siguientes tres horas, para rebalanceo. P3: clustering de perfiles históricos por estación y su localización, para planeación urbana y expansión. Las decisiones completas, baselines y métricas están en references/problem_definition.md y el ML Canvas en references/ml_canvas.md.
@@ -62,7 +62,7 @@ P1 seasonal naive contra HistGradientBoosting Poisson; selección val_mae, test 
 Los resultados reales se guardan en reports/reproduccion_martha.json; se identifican con commit, data_version y run padre. No confundir estas métricas offline con impacto operacional. Para reproducir clona el mismo commit, instala el lock y usa las mismas fuentes SHA256; repite el comando. Milton y Víctor deben ejecutar personalmente en sus equipos y aportar sus resúmenes auténticos. Un clon limpio ejecutado por Martha acredita repetibilidad local, no colaboración independiente.
 
 ## Git y colaboración
-Ramas feat/mavf-config-project y docs/mavf-entrega, commits con autoría real. Todo cambio posterior al arranque debe entrar mediante PR revisado. No aprobar el propio PR. Estado de colaboración en references/collaboration.md. Los nombres asignados a roles no prueban trabajo realizado. Permanecen pendientes los handles y revisiones auténticas de los demás integrantes, así como aclaración docente sobre cuatro usuarios para este equipo de tres.
+Ramas feat/mavf-config-project y docs/mavf-entrega, commits con autoría real. Todo cambio posterior al arranque debe entrar mediante PR revisado. No aprobar el propio PR. Estado de colaboración en references/collaboration.md. Los nombres asignados a roles no prueban trabajo realizado. Permanecen pendientes las revisiones y aportaciones auténticas de los demás integrantes, así como aclaración docente sobre cuatro usuarios para este equipo de tres.
 
 ## Limitaciones y mejora
 Capacidades de 2026 aplicadas retrospectivamente; sin inventario ni rebalanceo observado, demanda no atendida, meteorología ni calendario de altas/bajas históricas de estaciones. P3 excluye estaciones con menos de 28 días activos de entrenamiento. Primera semana excluida por rezagos. Validar telemetría histórica antes de uso operativo, evaluar cobertura por fecha de apertura y monitorizar cambios de distribución. No se acreditó lectura institucional restringida ni escucha de un episodio concreto del podcast.
@@ -78,3 +78,15 @@ Las lecturas institucionales y el podcast se encuentran en la consigna, pero no 
 
 ## Comprobación del rol Persona 2 Milton
 La revisión de ingesta y P1 se repitió en la carpeta Persona2_Milton, en un clon separado y un entorno reconstruido desde el lock. La ejecución técnica fue solicitada por Martha y se conserva su cuenta y autoría reales. Ver references/revision_ingesta_p1_persona2.md, references/lecturas_persona2.md, reports/data_summary.json y los resúmenes Persona2_Milton. Las ocho pruebas pasaron; la ejecución completa produjo nueve hijos finalizados y 103 valores numéricos coincidentes con la reproducción anterior dentro de 1e-12. Esto no acredita participación independiente de Milton. Las invitaciones a MiltonVeraTorre y VictorVillaHe están pendientes de aceptación al verificar. Las capturas de esta comprobación se conservan en el informe Word local y no se agregan a este PR.
+
+## Comprobación del rol Persona 3 Víctor
+El clon Persona3_Victor reutilizó el entorno existente verificado y ejecutó su
+propio código desde la raíz del clon. Se documentaron las funciones de features.py
+y se agregaron dos pruebas de aislamiento temporal y geográfico de P3; pasaron
+diez pruebas. La ejecución completa terminó con nueve hijos y su run padre.
+Ver references/features_persona3.md, references/lecturas_persona3.md y los dos
+resúmenes reports/Persona3_Victor_*.json. La autoría y la ejecución reales son
+de Martha, solicitadas para comprobar el rol asignado a Víctor. No acreditan
+participación independiente de Víctor. Las capturas se conservan en Word local.
+MiltonVeraTorre ya es colaborador; la invitación a VictorVillaHe sigue pendiente.
+La integración sigue requiriendo revisión auténtica de otro integrante.

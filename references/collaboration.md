@@ -15,3 +15,13 @@ La consigna menciona cuatro integrantes y la usuaria identifica tres. Se necesit
 Martha autorizó GitHub CLI y se publicaron main y feat/mavf-config-project. PR 1: https://github.com/martance-TEC/TC5061-Proyecto-Equipo14/pull/1; sigue abierto y exige revisión. Main requiere una aprobación, aplica a administradores y prohíbe force push y eliminación. La invitación que Martha ya había enviado a VictorVillaHe está pendiente de aceptación y no vencida al verificar. No se dispone del usuario GitHub de Milton. No se enviaron invitaciones duplicadas ni se simularon aprobaciones.
 
 La reproducción local completa de Martha desde otro clon y entorno virtual terminó correctamente. Las 91 métricas numéricas coinciden con la primera ejecución completa con tolerancia 1e-12. Ver reports/reproduction_audit.json. Esto no acredita las ejecuciones independientes de Milton o Víctor.
+
+
+## Actualización del rol Persona 3 el 17 de octubre de 2026
+MiltonVeraTorre ya figura como colaborador y la invitación a VictorVillaHe sigue
+pendiente. Se conoce el nombre de usuario de ambos. Esta actualización sustituye
+las dependencias de identificación indicadas en los estados anteriores.
+La copia Persona3_Victor, su documentación, pruebas y experimentos fueron
+ejecutados por solicitud de Martha con su cuenta real; no se registran como
+contribución personal de Víctor. Continúan pendientes sus PR y revisiones reales,
+la aprobación ajena de los PR de Martha y la integración ordenada de las ramas.

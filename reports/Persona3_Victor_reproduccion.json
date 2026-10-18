@@ -1,0 +1,157 @@
+{
+  "integrante": "martha",
+  "git_commit": "73674f514f26d3d06bd86138affca31e7fee1a83",
+  "git_dirty": false,
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "parent_run_id": "fb2e1d10965640c6b2f11df9e41149a4",
+  "results": {
+    "P1": {
+      "models": {
+        "seasonal_naive": {
+          "val_mae": 1.0280183524074646,
+          "val_rmse": 2.042189199586688,
+          "val_wape": 0.7007089136892249,
+          "test_mae": 0.9903598309104031,
+          "test_rmse": 1.9094815080060024,
+          "test_wape": 0.7515326623336706
+        },
+        "hist_gradient_boosting": {
+          "val_mae": 0.8539863250450903,
+          "val_rmse": 1.5606041865064324,
+          "val_wape": 0.5820867192948894,
+          "test_mae": 0.8051183497682376,
+          "test_rmse": 1.4302749578200247,
+          "test_wape": 0.6109625188844673
+        }
+      },
+      "selected": "hist_gradient_boosting",
+      "selection": "validation MAE; tie tolerance 0.01 favors baseline"
+    },
+    "P2": {
+      "models": {
+        "dummy_prior": {
+          "val_f2": 0.0,
+          "val_recall": 0.0,
+          "val_precision": 0.0,
+          "val_balanced_accuracy": 0.5,
+          "val_prevalence": 0.08930276805763991,
+          "val_average_precision": 0.08930276805763991,
+          "test_f2": 0.0,
+          "test_recall": 0.0,
+          "test_precision": 0.0,
+          "test_balanced_accuracy": 0.5,
+          "test_prevalence": 0.07039059590488235,
+          "test_average_precision": 0.07039059590488235
+        },
+        "random_forest": {
+          "val_f2": 0.6022864759868984,
+          "val_recall": 0.8283372558734877,
+          "val_precision": 0.28795653702892987,
+          "val_balanced_accuracy": 0.8137422810774586,
+          "val_prevalence": 0.08930276805763991,
+          "val_average_precision": 0.429014333013344,
+          "test_f2": 0.5627309295426003,
+          "test_recall": 0.8097695128339445,
+          "test_precision": 0.2534491945731033,
+          "test_balanced_accuracy": 0.8145792957270381,
+          "test_prevalence": 0.07039059590488235,
+          "test_average_precision": 0.39242827444183837
+        }
+      },
+      "selected": "random_forest",
+      "selection": "maximum validation F2; ties favor baseline",
+      "initial_inventory_sensitivity": {
+        "0.25": {
+          "prevalence": 0.20722316582357936,
+          "agreement_with_main": 0.8166549742150673
+        },
+        "0.5": {
+          "prevalence": 0.086519526394171,
+          "agreement_with_main": 1.0
+        },
+        "0.75": {
+          "prevalence": 0.2054052972959667,
+          "agreement_with_main": 0.817101133552413
+        }
+      },
+      "direction_counts": {
+        "none": 2968775,
+        "bicycles": 141237,
+        "docks": 139502,
+        "both": 446
+      }
+    },
+    "P3": {
+      "models": {
+        "2": {
+          "train_silhouette": 0.09888882154111826,
+          "train_davies_bouldin": 2.876040251603286,
+          "train_calinski_harabasz": 38.465774676647875,
+          "val_silhouette": 0.0629212509617903,
+          "val_davies_bouldin": 3.685355638250257,
+          "val_calinski_harabasz": 9.066508399016728,
+          "test_silhouette": 0.05651320802343908,
+          "test_davies_bouldin": 3.6523843890276324,
+          "test_calinski_harabasz": 8.412982397423788,
+          "val_temporal_ari": 0.7943922442730618,
+          "test_temporal_ari": 0.8138916485375348
+        },
+        "3": {
+          "train_silhouette": 0.10492560589280882,
+          "train_davies_bouldin": 2.327067419047506,
+          "train_calinski_harabasz": 35.92489715788077,
+          "val_silhouette": 0.07349857030389122,
+          "val_davies_bouldin": 2.9694189509203173,
+          "val_calinski_harabasz": 7.406983230095477,
+          "test_silhouette": 0.05638395280900729,
+          "test_davies_bouldin": 2.9940515727803785,
+          "test_calinski_harabasz": 6.983344677017595,
+          "val_temporal_ari": 0.8047693401698348,
+          "test_temporal_ari": 0.8060658473046796
+        },
+        "4": {
+          "train_silhouette": 0.0899365652170173,
+          "train_davies_bouldin": 2.388284774517993,
+          "train_calinski_harabasz": 31.21823905438564,
+          "val_silhouette": 0.05799140210972496,
+          "val_davies_bouldin": 2.86626042006485,
+          "val_calinski_harabasz": 6.958681456748273,
+          "test_silhouette": 0.00200679345505013,
+          "test_davies_bouldin": 2.841880324552246,
+          "test_calinski_harabasz": 6.26756813575945,
+          "val_temporal_ari": 0.6555274457752672,
+          "test_temporal_ari": 0.5752635520084487
+        },
+        "5": {
+          "train_silhouette": 0.06579313353761616,
+          "train_davies_bouldin": 2.4608372778444476,
+          "train_calinski_harabasz": 27.210423865642593,
+          "val_silhouette": 0.03163896581099457,
+          "val_davies_bouldin": 3.0666900543236926,
+          "val_calinski_harabasz": 6.13593561715674,
+          "test_silhouette": -0.03633759297703887,
+          "test_davies_bouldin": 2.9828653651274535,
+          "test_calinski_harabasz": 5.17978085010887,
+          "val_temporal_ari": 0.5804044632982156,
+          "test_temporal_ari": 0.5421647530124104
+        },
+        "6": {
+          "train_silhouette": 0.06796595729838976,
+          "train_davies_bouldin": 2.6592551293283666,
+          "train_calinski_harabasz": 24.411462220154203,
+          "val_silhouette": 0.007500893101169937,
+          "val_davies_bouldin": 3.1333641503686143,
+          "val_calinski_harabasz": 5.284924153060251,
+          "test_silhouette": -0.020503595688834905,
+          "test_davies_bouldin": 3.1574889893287086,
+          "test_calinski_harabasz": 5.088556850999015,
+          "val_temporal_ari": 0.5212517266907054,
+          "test_temporal_ari": 0.4565368376673718
+        }
+      },
+      "selected_k": 3,
+      "selection": "validation silhouette, min 5 stations per validation group; tolerance 0.01 favors smaller k",
+      "eligible_stations": 369
+    }
+  }
+}
