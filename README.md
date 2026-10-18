@@ -93,12 +93,12 @@ Cada run registra fechas, semilla, modelo e hiperparámetros, versión de datos,
 | Pregunta | Comparación y selección | Resultado de prueba |
 |---|---|---|
 | P1 | Semanal, promedio estación/día/hora y HistGradientBoosting Poisson. Selección por MAE de validación; tolerancia 0.01 a favor del más sencillo | Promedio seleccionado: MAE 0.877629, RMSE 1.594179, WAPE 66.28 % |
-| P2 | Dummy prior y Random Forest, 200 árboles, profundidad 12. Umbral por F2 de validación | Random Forest: F2 0.562731, recall 0.809770, precisión 0.253449, AP 0.392428 |
+| P2 | Dummy prior y Random Forest, 200 árboles, profundidad 12. Umbral por F2 de validación | Random Forest: F2 0.562956, recall 0.810477, precisión 0.253400, AP 0.392378 |
 | P3 | StandardScaler y KMeans k=2…6; ajuste en train, selección por silhouette de validación y tamaño mínimo de grupo | k=3, 369 estaciones; silhouette 0.056384 y ARI temporal 0.806066 |
 
 P1: el promedio obtiene `val_mae=0.863884` y el candidato `val_mae=0.858212`. La diferencia 0.005673 es menor que la tolerancia fijada; por eso se elige el promedio. El candidato alcanza `test_mae=0.807710`, pero la prueba no cambia la regla de selección. Los valores completos de la cohorte corregida están en [reproduccion_milton.json](reports/reproduccion_milton.json).
 
-P2: se ajusta con hasta 100,000 ejemplos de entrenamiento, semilla 42; validación y prueba se evalúan completas. El recall elevado se acompaña de baja precisión, por lo que muchas alertas requerirían revisión. P3 presenta separación débil pese a la estabilidad temporal; no se asignan automáticamente nombres de zonas a los grupos. Los resultados detallados P2/P3 están en [reproduccion_variables.json](reports/reproduccion_variables.json). Los reportes anteriores de P1 conservan sus commits de origen y no sustituyen la evaluación de la cohorte corregida.
+P2: se ajusta con hasta 100,000 ejemplos de entrenamiento, semilla 42; validación y prueba se evalúan completas. El recall elevado se acompaña de baja precisión, por lo que muchas alertas requerirían revisión. P3 presenta separación débil pese a la estabilidad temporal; no se asignan automáticamente nombres de zonas a los grupos. Los resultados integrados de las tres preguntas están en [reproduccion_local.json](reports/reproduccion_local.json), vinculados al commit `658e428` con código limpio. La [validación integrada](reports/validacion_integrada.json) registra 18 pruebas aprobadas, los once runs terminados y la comparación con la referencia anterior. P2 conserva el modelo seleccionado, con pequeñas diferencias numéricas registradas; no se declara coincidencia exacta. Los reportes anteriores de P1 conservan sus commits de origen y no sustituyen la evaluación de la cohorte corregida.
 
 ## Evidencias
 
