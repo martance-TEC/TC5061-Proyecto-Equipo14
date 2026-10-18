@@ -27,8 +27,12 @@ y que también existen en el catálogo de estaciones."""
     return hourly_counts(trips, stations, station_ids=cohort)
 
 def temporal_features(hourly):
-    """Crea variables históricas de llegadas y salidas. Incluye información de horas y días anteriores, así como la hora,
-el día de la semana y el mes. Se utiliza principalmente en P1 y P2 """
+    """Añade historia previa por estación y calendario conocido al predecir.
+
+    Los rezagos de 1, 24 y 168 horas y medias de 24 y 168 horas se calculan
+    después de desplazar una hora. Nunca incluyen la hora objetivo. Las filas
+    iniciales incompletas se conservan con NaN para excluirlas al entrenar P1/P2.
+    Requiere una malla horaria regular como la producida por hourly_counts."""
     x=hourly.sort_values(["station_id","time"]).copy()
     for col in ["departures","arrivals"]:
         g=x.groupby("station_id")[col]
@@ -43,8 +47,17 @@ def pressure_label(deltas,capacity,initial_fraction=0.5):
     balances=np.r_[initial_fraction*capacity,initial_fraction*capacity+np.cumsum(deltas)]
     return int(balances.min()<=S.low_fraction*capacity or balances.max()>=S.high_fraction*capacity)
 def capacity_labels(trips,hourly,stations,initial_fraction=0.5,return_direction=False):
-    """Construye la variable de riesgo utilizada en P2. Analiza las llegadas y salidas durante las siguientes tres horas y las compara
-    con la capacidad de la estación. El resultado es una aproximación, ya que no se conoce el inventario real de bicicletas."""
+    """Construye el objetivo proxy de P2 con capacidad observada del catálogo.
+
+    Para cada hora reinicia un inventario hipotético initial_fraction * C y
+    evalúa extremos de balance minuto a minuto durante las siguientes 3 horas.
+    No recorta balances: una presión extrema intermedia también produce riesgo.
+    Capacidad ausente/no positiva produce NaN y se excluye al entrenar. Si se
+    solicita, devuelve la dirección bicycles, docks, both o none. Requiere la
+    malla completa agrupada por estación y ordenada en el tiempo de hourly_counts.
+    Este objetivo usa eventos futuros solo como etiqueta, nunca como predictor.
+    No equivale a inventario real, demanda no atendida ni rebalanceo observado;
+    el catálogo de 2026 se aplica retrospectivamente a los viajes de 2025."""
     events=pd.concat([trips[["origin_id","started_at"]].rename(columns={"origin_id":"station_id","started_at":"time"}).assign(delta=-1),trips[["destination_id","ended_at"]].rename(columns={"destination_id":"station_id","ended_at":"time"}).assign(delta=1)])
     events["time"]=events.time.dt.floor("min")
     events=events.groupby(["station_id","time"]).delta.sum()
@@ -69,12 +82,22 @@ def capacity_labels(trips,hourly,stations,initial_fraction=0.5,return_direction=
         result.extend(labels[:len(group)])
     return (np.array(result),np.array(directions)) if return_direction else np.array(result)
 def split_mask(times,split,horizon=1):
-    """Separa los datos en entrenamiento, validación y prueba respetando el tiempo. También evita utilizar información futura fuera del periodo correspondiente."""
+    """Selecciona filas cuyo horizonte completo queda dentro del periodo.
+
+    La hora inicial es inclusiva y el final del objetivo puede coincidir con
+    el límite exclusivo del periodo. Purga objetivos que lo sobrepasarían:
+    1 hora para P1 y 3 para P2. Las fechas proceden de Settings centralizado."""
     bounds={"train":(S.start,S.train_end),"val":(S.train_end,S.val_end),"test":(S.val_end,S.end)}
     lo,hi=map(pd.Timestamp,bounds[split]);return (times>=lo)&(times+pd.Timedelta(hours=horizon)<=hi)
 def station_profiles(hourly,start,end,ids=None):
-    """Crea un perfil de uso para cada estación. Resume sus patrones de llegadas y salidas según la hora y el tipo de día.
-    Estos perfiles se utilizan en P3 para encontrar estaciones con comportamientos similares."""
+    """Resume patrones históricos de uso para P3 dentro de [start, end).
+
+    Genera 96 proporciones de actividad (salidas/ingresos por 24 horas y
+    laborable/fin de semana), volumen diario logarítmico, fracción de salidas
+    de fin de semana y balance neto: 99 variables. ids limita estaciones.
+    No utiliza coordenadas; se añaden después para mostrar los grupos en mapa.
+    Calcular cada periodo por separado evita mezclar validación/prueba en train.
+    El escalado y KMeans se ajustan fuera de esta función, solo con train."""
     h=hourly[(hourly.time>=start)&(hourly.time<end)].copy()
     if ids is not None:h=h[h.station_id.isin(ids)]
     h["hour"]=h.time.dt.hour;h["weekend"]=(h.time.dt.dayofweek>=5).astype(int)

@@ -17,7 +17,7 @@ flowchart TD
  G --> K
  H --> K
  K --> L[Resultados y evidencias de la propuesta]
- M[Git y PR con revisión humana pendiente] --> I
+ M[Git y PR con revisión] --> I
 ```
 
 Python permite funciones comprobables y clases por responsabilidad. Pandas y PyArrow procesan datos tabulares sin incorporar viajes al historial. Scikit-learn compone transformaciones ajustadas solo en entrenamiento y modelos. MLflow Projects define un punto de entrada parametrizado; Tracking conserva procedencia, métricas y artefactos. SQLite y archivos locales permiten trabajar en la laptop sin infraestructura de nube. GitHub conserva historial y revisiones. CCDS separa datos, código, exploración y resultados.

@@ -1,9 +1,8 @@
 {
-  "integrante": "martha",
-  "git_commit": "393a22abcac18008db68455abb9069f05ccf2278",
+  "git_commit": "0e2e31579ea2d3611c2a55c8ac79c611ee421ccb",
   "git_dirty": false,
   "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
-  "parent_run_id": "962f87fe786d467b988e8e267432870e",
+  "parent_run_id": "8505a490438d4bd6983175e431e63e2e",
   "results": {
     "P1": {
       "models": {
@@ -16,12 +15,12 @@
           "test_wape": 0.7515326623336706
         },
         "hist_gradient_boosting": {
-          "val_mae": 0.85398632504509,
-          "val_rmse": 1.5606041865064308,
-          "val_wape": 0.5820867192948892,
-          "test_mae": 0.8051183497682372,
-          "test_rmse": 1.4302749578200242,
-          "test_wape": 0.610962518884467
+          "val_mae": 0.8539863250450903,
+          "val_rmse": 1.5606041865064324,
+          "val_wape": 0.5820867192948894,
+          "test_mae": 0.8051183497682376,
+          "test_rmse": 1.4302749578200247,
+          "test_wape": 0.6109625188844673
         }
       },
       "selected": "hist_gradient_boosting",
