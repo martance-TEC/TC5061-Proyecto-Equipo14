@@ -1,0 +1,187 @@
+{
+  "git_commit": "658e428a83101363e66dd4727675b51daac8b662",
+  "git_dirty": false,
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "parent_run_id": "10a63b549af148d3862f707678cf2105",
+  "results": {
+    "P1": {
+      "models": {
+        "seasonal_naive": {
+          "val_mae": 1.0333126008855718,
+          "val_rmse": 2.0475732736117185,
+          "val_wape": 0.700627940923599,
+          "test_mae": 0.9945447746827195,
+          "test_rmse": 1.914152737901208,
+          "test_wape": 0.7510942731523874
+        },
+        "station_weekday_hour_mean": {
+          "val_mae": 0.8638844670093936,
+          "val_rmse": 1.6046673010888644,
+          "val_wape": 0.585748779989666,
+          "test_mae": 0.8776294806564072,
+          "test_rmse": 1.5941786916188,
+          "test_wape": 0.662798190338916
+        },
+        "hist_gradient_boosting": {
+          "val_mae": 0.8582117751423844,
+          "val_rmse": 1.564268934155397,
+          "val_wape": 0.581902464345329,
+          "test_mae": 0.8077103193756313,
+          "test_rmse": 1.431414376840173,
+          "test_wape": 0.6099942513323865
+        }
+      },
+      "selected": "station_weekday_hour_mean",
+      "selection": "validation MAE; tolerance 0.01; tie priority seasonal_naive,station_weekday_hour_mean,hist_gradient_boosting",
+      "cohort_stations": 369,
+      "coverage": {
+        "train": {
+          "source_trips": 3019431,
+          "unseen_or_outside_cohort_trips": 0,
+          "outside_station_ids": []
+        },
+        "val": {
+          "source_trips": 796853,
+          "unseen_or_outside_cohort_trips": 122,
+          "outside_station_ids": [
+            "401"
+          ]
+        },
+        "test": {
+          "source_trips": 715748,
+          "unseen_or_outside_cohort_trips": 433,
+          "outside_station_ids": [
+            "401",
+            "402"
+          ]
+        }
+      }
+    },
+    "P2": {
+      "models": {
+        "dummy_prior": {
+          "val_f2": 0.0,
+          "val_recall": 0.0,
+          "val_precision": 0.0,
+          "val_balanced_accuracy": 0.5,
+          "val_prevalence": 0.08930276805763991,
+          "val_average_precision": 0.08930276805763991,
+          "test_f2": 0.0,
+          "test_recall": 0.0,
+          "test_precision": 0.0,
+          "test_balanced_accuracy": 0.5,
+          "test_prevalence": 0.07039059590488235,
+          "test_average_precision": 0.07039059590488235
+        },
+        "random_forest": {
+          "val_f2": 0.6022391307610343,
+          "val_recall": 0.8284611255625748,
+          "val_precision": 0.2878425971752993,
+          "val_balanced_accuracy": 0.813733360556024,
+          "val_prevalence": 0.08930276805763991,
+          "val_average_precision": 0.42900810354896324,
+          "test_f2": 0.5629559553914166,
+          "test_recall": 0.8104766893661602,
+          "test_precision": 0.253400483151128,
+          "test_balanced_accuracy": 0.8148307464426225,
+          "test_prevalence": 0.07039059590488235,
+          "test_average_precision": 0.3923777028149895
+        }
+      },
+      "selected": "random_forest",
+      "selection": "maximum validation F2; ties favor baseline",
+      "initial_inventory_sensitivity": {
+        "0.25": {
+          "prevalence": 0.20722316582357936,
+          "agreement_with_main": 0.8166549742150673
+        },
+        "0.5": {
+          "prevalence": 0.086519526394171,
+          "agreement_with_main": 1.0
+        },
+        "0.75": {
+          "prevalence": 0.2054052972959667,
+          "agreement_with_main": 0.817101133552413
+        }
+      },
+      "direction_counts": {
+        "none": 2968775,
+        "bicycles": 141237,
+        "docks": 139502,
+        "both": 446
+      }
+    },
+    "P3": {
+      "models": {
+        "2": {
+          "train_silhouette": 0.09888882154111826,
+          "train_davies_bouldin": 2.876040251603286,
+          "train_calinski_harabasz": 38.465774676647875,
+          "val_silhouette": 0.06292125096179028,
+          "val_davies_bouldin": 3.685355638250257,
+          "val_calinski_harabasz": 9.066508399016728,
+          "test_silhouette": 0.05651320802343908,
+          "test_davies_bouldin": 3.6523843890276324,
+          "test_calinski_harabasz": 8.412982397423788,
+          "val_temporal_ari": 0.7943922442730618,
+          "test_temporal_ari": 0.8138916485375348
+        },
+        "3": {
+          "train_silhouette": 0.10492560589280882,
+          "train_davies_bouldin": 2.327067419047506,
+          "train_calinski_harabasz": 35.92489715788077,
+          "val_silhouette": 0.07349857030389122,
+          "val_davies_bouldin": 2.9694189509203173,
+          "val_calinski_harabasz": 7.406983230095477,
+          "test_silhouette": 0.05638395280900729,
+          "test_davies_bouldin": 2.9940515727803785,
+          "test_calinski_harabasz": 6.983344677017595,
+          "val_temporal_ari": 0.8047693401698348,
+          "test_temporal_ari": 0.8060658473046796
+        },
+        "4": {
+          "train_silhouette": 0.08993656521701733,
+          "train_davies_bouldin": 2.3882847745179925,
+          "train_calinski_harabasz": 31.21823905438564,
+          "val_silhouette": 0.05799140210972496,
+          "val_davies_bouldin": 2.86626042006485,
+          "val_calinski_harabasz": 6.958681456748273,
+          "test_silhouette": 0.002006793455050133,
+          "test_davies_bouldin": 2.841880324552246,
+          "test_calinski_harabasz": 6.26756813575945,
+          "val_temporal_ari": 0.6555274457752672,
+          "test_temporal_ari": 0.5752635520084487
+        },
+        "5": {
+          "train_silhouette": 0.06579313353761616,
+          "train_davies_bouldin": 2.4608372778444476,
+          "train_calinski_harabasz": 27.210423865642593,
+          "val_silhouette": 0.03163896581099456,
+          "val_davies_bouldin": 3.0666900543236926,
+          "val_calinski_harabasz": 6.13593561715674,
+          "test_silhouette": -0.03633759297703887,
+          "test_davies_bouldin": 2.9828653651274535,
+          "test_calinski_harabasz": 5.17978085010887,
+          "val_temporal_ari": 0.5804044632982156,
+          "test_temporal_ari": 0.5421647530124104
+        },
+        "6": {
+          "train_silhouette": 0.06796595729838976,
+          "train_davies_bouldin": 2.659255129328366,
+          "train_calinski_harabasz": 24.411462220154203,
+          "val_silhouette": 0.00750089310116993,
+          "val_davies_bouldin": 3.1333641503686143,
+          "val_calinski_harabasz": 5.284924153060251,
+          "test_silhouette": -0.020503595688834895,
+          "test_davies_bouldin": 3.1574889893287086,
+          "test_calinski_harabasz": 5.088556850999015,
+          "val_temporal_ari": 0.5212517266907054,
+          "test_temporal_ari": 0.4565368376673718
+        }
+      },
+      "selected_k": 3,
+      "selection": "validation silhouette, min 5 stations per validation group; tolerance 0.01 favors smaller k",
+      "eligible_stations": 369
+    }
+  }
+}

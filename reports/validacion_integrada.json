@@ -1,0 +1,136 @@
+{
+  "code_commit": "658e428a83101363e66dd4727675b51daac8b662",
+  "code_dirty_at_execution": false,
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "parent_run_id": "10a63b549af148d3862f707678cf2105",
+  "command": "mlflow run . --env-manager local --experiment-name mibici-equipo14 -P question=all",
+  "tests_passed": 18,
+  "dependency_check": "passed",
+  "runs": [
+    {
+      "run_id": "10a63b549af148d3862f707678cf2105",
+      "name": "eq14_all_orquestador",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "ec81406088d04e1087c53136057d3de7",
+      "name": "eq14_P1_seasonal_naive",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "0afec0599fb947dcb30ba06004ee85a6",
+      "name": "eq14_P1_station_weekday_hour_mean",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "526cec260c3a4dbdaa9e5260b23f67e8",
+      "name": "eq14_P1_hist_gradient_boosting",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "f49c0b91410a48009cd6a4c7d43849a3",
+      "name": "eq14_P2_dummy_prior",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "a212dbfe379b420b83fbb03c300832fd",
+      "name": "eq14_P2_random_forest",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "02d759e8c4574e49949013061ae09cec",
+      "name": "eq14_P3_kmeans_k2",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "58806127d1e04485854509e78f55afbd",
+      "name": "eq14_P3_kmeans_k3",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "2bb0ac7f0c364011920166c3faaf7649",
+      "name": "eq14_P3_kmeans_k4",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "ae229c3cb11e47409dd66ace509ec252",
+      "name": "eq14_P3_kmeans_k5",
+      "status": "FINISHED"
+    },
+    {
+      "run_id": "576d19b4937e4eec8ec288f618111277",
+      "name": "eq14_P3_kmeans_k6",
+      "status": "FINISHED"
+    }
+  ],
+  "all_runs_finished": true,
+  "lock_sha256": "2839a3b7088af1e3a7185a4a334bad7b48ca156445f5c232698fa2e519c17288",
+  "P2_comparison_to_previous": {
+    "previous_code_commit": "73674f514f26d3d06bd86138affca31e7fee1a83",
+    "selected_model_unchanged": true,
+    "exact_match": false,
+    "differences": [
+      {
+        "metric": "val_f2",
+        "previous": 0.6022864759868984,
+        "integrated": 0.6022391307610343,
+        "absolute_difference": 4.734522586413714e-05
+      },
+      {
+        "metric": "val_recall",
+        "previous": 0.8283372558734877,
+        "integrated": 0.8284611255625748,
+        "absolute_difference": 0.00012386968908706386
+      },
+      {
+        "metric": "val_precision",
+        "previous": 0.28795653702892987,
+        "integrated": 0.2878425971752993,
+        "absolute_difference": 0.00011393985363056247
+      },
+      {
+        "metric": "val_balanced_accuracy",
+        "previous": 0.8137422810774586,
+        "integrated": 0.813733360556024,
+        "absolute_difference": 8.92052143464106e-06
+      },
+      {
+        "metric": "val_average_precision",
+        "previous": 0.429014333013344,
+        "integrated": 0.42900810354896324,
+        "absolute_difference": 6.229464380780314e-06
+      },
+      {
+        "metric": "test_f2",
+        "previous": 0.5627309295426003,
+        "integrated": 0.5629559553914166,
+        "absolute_difference": 0.00022502584881634036
+      },
+      {
+        "metric": "test_recall",
+        "previous": 0.8097695128339445,
+        "integrated": 0.8104766893661602,
+        "absolute_difference": 0.0007071765322157475
+      },
+      {
+        "metric": "test_precision",
+        "previous": 0.2534491945731033,
+        "integrated": 0.253400483151128,
+        "absolute_difference": 4.871142197526712e-05
+      },
+      {
+        "metric": "test_balanced_accuracy",
+        "previous": 0.8145792957270381,
+        "integrated": 0.8148307464426225,
+        "absolute_difference": 0.00025145071558441145
+      },
+      {
+        "metric": "test_average_precision",
+        "previous": 0.39242827444183837,
+        "integrated": 0.3923777028149895,
+        "absolute_difference": 5.057162684884986e-05
+      }
+    ],
+    "interpretation": "The integrated execution is the source of the current reported metrics. Earlier reports retain their original results and provenance; numerical identity across executions is not asserted."
+  }
+}

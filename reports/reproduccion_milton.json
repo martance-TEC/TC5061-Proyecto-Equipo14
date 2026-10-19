@@ -1,0 +1,62 @@
+{
+  "integrante": "milton",
+  "git_commit": "a07bbff45bcdf1cb47ad3f885e7cb6cc7e6fd978",
+  "git_dirty": false,
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "parent_run_id": "93165b104c4348d9bc4ef91856762abb",
+  "results": {
+    "P1": {
+      "models": {
+        "seasonal_naive": {
+          "val_mae": 1.0333126008855718,
+          "val_rmse": 2.0475732736117185,
+          "val_wape": 0.700627940923599,
+          "test_mae": 0.9945447746827195,
+          "test_rmse": 1.914152737901208,
+          "test_wape": 0.7510942731523874
+        },
+        "station_weekday_hour_mean": {
+          "val_mae": 0.8638844670093936,
+          "val_rmse": 1.6046673010888644,
+          "val_wape": 0.585748779989666,
+          "test_mae": 0.8776294806564072,
+          "test_rmse": 1.5941786916188,
+          "test_wape": 0.662798190338916
+        },
+        "hist_gradient_boosting": {
+          "val_mae": 0.8582117751423844,
+          "val_rmse": 1.5642689341553973,
+          "val_wape": 0.581902464345329,
+          "test_mae": 0.8077103193756313,
+          "test_rmse": 1.4314143768401733,
+          "test_wape": 0.6099942513323865
+        }
+      },
+      "selected": "station_weekday_hour_mean",
+      "selection": "validation MAE; tolerance 0.01; tie priority seasonal_naive,station_weekday_hour_mean,hist_gradient_boosting",
+      "cohort_stations": 369,
+      "coverage": {
+        "train": {
+          "source_trips": 3019431,
+          "unseen_or_outside_cohort_trips": 0,
+          "outside_station_ids": []
+        },
+        "val": {
+          "source_trips": 796853,
+          "unseen_or_outside_cohort_trips": 122,
+          "outside_station_ids": [
+            "401"
+          ]
+        },
+        "test": {
+          "source_trips": 715748,
+          "unseen_or_outside_cohort_trips": 433,
+          "outside_station_ids": [
+            "401",
+            "402"
+          ]
+        }
+      }
+    }
+  }
+}

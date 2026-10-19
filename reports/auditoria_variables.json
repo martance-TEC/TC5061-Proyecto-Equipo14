@@ -1,0 +1,627 @@
+{
+  "git_commit": "73674f514f26d3d06bd86138affca31e7fee1a83",
+  "reference_git_commit": "393a22abcac18008db68455abb9069f05ccf2278",
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "numerical_values_compared": 103,
+  "all_match": true,
+  "comparisons": [
+    {
+      "campo": "results.P1.models.hist_gradient_boosting.test_mae",
+      "referencia": 0.8051183497682372,
+      "reproduccion": 0.8051183497682376,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.hist_gradient_boosting.test_rmse",
+      "referencia": 1.4302749578200242,
+      "reproduccion": 1.4302749578200247,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.hist_gradient_boosting.test_wape",
+      "referencia": 0.610962518884467,
+      "reproduccion": 0.6109625188844673,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.hist_gradient_boosting.val_mae",
+      "referencia": 0.85398632504509,
+      "reproduccion": 0.8539863250450903,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.hist_gradient_boosting.val_rmse",
+      "referencia": 1.5606041865064308,
+      "reproduccion": 1.5606041865064324,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.hist_gradient_boosting.val_wape",
+      "referencia": 0.5820867192948892,
+      "reproduccion": 0.5820867192948894,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.seasonal_naive.test_mae",
+      "referencia": 0.9903598309104031,
+      "reproduccion": 0.9903598309104031,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.seasonal_naive.test_rmse",
+      "referencia": 1.9094815080060024,
+      "reproduccion": 1.9094815080060024,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.seasonal_naive.test_wape",
+      "referencia": 0.7515326623336706,
+      "reproduccion": 0.7515326623336706,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.seasonal_naive.val_mae",
+      "referencia": 1.0280183524074646,
+      "reproduccion": 1.0280183524074646,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.seasonal_naive.val_rmse",
+      "referencia": 2.042189199586688,
+      "reproduccion": 2.042189199586688,
+      "coincide": true
+    },
+    {
+      "campo": "results.P1.models.seasonal_naive.val_wape",
+      "referencia": 0.7007089136892249,
+      "reproduccion": 0.7007089136892249,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.direction_counts.bicycles",
+      "referencia": 141237,
+      "reproduccion": 141237,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.direction_counts.both",
+      "referencia": 446,
+      "reproduccion": 446,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.direction_counts.docks",
+      "referencia": 139502,
+      "reproduccion": 139502,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.direction_counts.none",
+      "referencia": 2968775,
+      "reproduccion": 2968775,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.initial_inventory_sensitivity.0.25.agreement_with_main",
+      "referencia": 0.8166549742150673,
+      "reproduccion": 0.8166549742150673,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.initial_inventory_sensitivity.0.25.prevalence",
+      "referencia": 0.20722316582357936,
+      "reproduccion": 0.20722316582357936,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.initial_inventory_sensitivity.0.5.agreement_with_main",
+      "referencia": 1.0,
+      "reproduccion": 1.0,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.initial_inventory_sensitivity.0.5.prevalence",
+      "referencia": 0.086519526394171,
+      "reproduccion": 0.086519526394171,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.initial_inventory_sensitivity.0.75.agreement_with_main",
+      "referencia": 0.817101133552413,
+      "reproduccion": 0.817101133552413,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.initial_inventory_sensitivity.0.75.prevalence",
+      "referencia": 0.2054052972959667,
+      "reproduccion": 0.2054052972959667,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.test_average_precision",
+      "referencia": 0.07039059590488235,
+      "reproduccion": 0.07039059590488235,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.test_balanced_accuracy",
+      "referencia": 0.5,
+      "reproduccion": 0.5,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.test_f2",
+      "referencia": 0.0,
+      "reproduccion": 0.0,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.test_precision",
+      "referencia": 0.0,
+      "reproduccion": 0.0,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.test_prevalence",
+      "referencia": 0.07039059590488235,
+      "reproduccion": 0.07039059590488235,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.test_recall",
+      "referencia": 0.0,
+      "reproduccion": 0.0,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.val_average_precision",
+      "referencia": 0.08930276805763991,
+      "reproduccion": 0.08930276805763991,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.val_balanced_accuracy",
+      "referencia": 0.5,
+      "reproduccion": 0.5,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.val_f2",
+      "referencia": 0.0,
+      "reproduccion": 0.0,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.val_precision",
+      "referencia": 0.0,
+      "reproduccion": 0.0,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.val_prevalence",
+      "referencia": 0.08930276805763991,
+      "reproduccion": 0.08930276805763991,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.dummy_prior.val_recall",
+      "referencia": 0.0,
+      "reproduccion": 0.0,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.test_average_precision",
+      "referencia": 0.39242827444183837,
+      "reproduccion": 0.39242827444183837,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.test_balanced_accuracy",
+      "referencia": 0.8145792957270381,
+      "reproduccion": 0.8145792957270381,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.test_f2",
+      "referencia": 0.5627309295426003,
+      "reproduccion": 0.5627309295426003,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.test_precision",
+      "referencia": 0.2534491945731033,
+      "reproduccion": 0.2534491945731033,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.test_prevalence",
+      "referencia": 0.07039059590488235,
+      "reproduccion": 0.07039059590488235,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.test_recall",
+      "referencia": 0.8097695128339445,
+      "reproduccion": 0.8097695128339445,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.val_average_precision",
+      "referencia": 0.429014333013344,
+      "reproduccion": 0.429014333013344,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.val_balanced_accuracy",
+      "referencia": 0.8137422810774586,
+      "reproduccion": 0.8137422810774586,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.val_f2",
+      "referencia": 0.6022864759868984,
+      "reproduccion": 0.6022864759868984,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.val_precision",
+      "referencia": 0.28795653702892987,
+      "reproduccion": 0.28795653702892987,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.val_prevalence",
+      "referencia": 0.08930276805763991,
+      "reproduccion": 0.08930276805763991,
+      "coincide": true
+    },
+    {
+      "campo": "results.P2.models.random_forest.val_recall",
+      "referencia": 0.8283372558734877,
+      "reproduccion": 0.8283372558734877,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.eligible_stations",
+      "referencia": 369,
+      "reproduccion": 369,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.test_calinski_harabasz",
+      "referencia": 8.412982397423788,
+      "reproduccion": 8.412982397423788,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.test_davies_bouldin",
+      "referencia": 3.6523843890276324,
+      "reproduccion": 3.6523843890276324,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.test_silhouette",
+      "referencia": 0.05651320802343908,
+      "reproduccion": 0.05651320802343908,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.test_temporal_ari",
+      "referencia": 0.8138916485375348,
+      "reproduccion": 0.8138916485375348,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.train_calinski_harabasz",
+      "referencia": 38.465774676647875,
+      "reproduccion": 38.465774676647875,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.train_davies_bouldin",
+      "referencia": 2.876040251603286,
+      "reproduccion": 2.876040251603286,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.train_silhouette",
+      "referencia": 0.09888882154111826,
+      "reproduccion": 0.09888882154111826,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.val_calinski_harabasz",
+      "referencia": 9.066508399016728,
+      "reproduccion": 9.066508399016728,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.val_davies_bouldin",
+      "referencia": 3.685355638250257,
+      "reproduccion": 3.685355638250257,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.val_silhouette",
+      "referencia": 0.0629212509617903,
+      "reproduccion": 0.0629212509617903,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.2.val_temporal_ari",
+      "referencia": 0.7943922442730618,
+      "reproduccion": 0.7943922442730618,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.test_calinski_harabasz",
+      "referencia": 6.983344677017595,
+      "reproduccion": 6.983344677017595,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.test_davies_bouldin",
+      "referencia": 2.9940515727803785,
+      "reproduccion": 2.9940515727803785,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.test_silhouette",
+      "referencia": 0.05638395280900729,
+      "reproduccion": 0.05638395280900729,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.test_temporal_ari",
+      "referencia": 0.8060658473046796,
+      "reproduccion": 0.8060658473046796,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.train_calinski_harabasz",
+      "referencia": 35.92489715788077,
+      "reproduccion": 35.92489715788077,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.train_davies_bouldin",
+      "referencia": 2.327067419047506,
+      "reproduccion": 2.327067419047506,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.train_silhouette",
+      "referencia": 0.10492560589280882,
+      "reproduccion": 0.10492560589280882,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.val_calinski_harabasz",
+      "referencia": 7.406983230095477,
+      "reproduccion": 7.406983230095477,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.val_davies_bouldin",
+      "referencia": 2.9694189509203173,
+      "reproduccion": 2.9694189509203173,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.val_silhouette",
+      "referencia": 0.07349857030389122,
+      "reproduccion": 0.07349857030389122,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.3.val_temporal_ari",
+      "referencia": 0.8047693401698348,
+      "reproduccion": 0.8047693401698348,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.test_calinski_harabasz",
+      "referencia": 6.26756813575945,
+      "reproduccion": 6.26756813575945,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.test_davies_bouldin",
+      "referencia": 2.841880324552246,
+      "reproduccion": 2.841880324552246,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.test_silhouette",
+      "referencia": 0.00200679345505013,
+      "reproduccion": 0.00200679345505013,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.test_temporal_ari",
+      "referencia": 0.5752635520084487,
+      "reproduccion": 0.5752635520084487,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.train_calinski_harabasz",
+      "referencia": 31.21823905438564,
+      "reproduccion": 31.21823905438564,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.train_davies_bouldin",
+      "referencia": 2.388284774517993,
+      "reproduccion": 2.388284774517993,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.train_silhouette",
+      "referencia": 0.0899365652170173,
+      "reproduccion": 0.0899365652170173,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.val_calinski_harabasz",
+      "referencia": 6.958681456748273,
+      "reproduccion": 6.958681456748273,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.val_davies_bouldin",
+      "referencia": 2.86626042006485,
+      "reproduccion": 2.86626042006485,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.val_silhouette",
+      "referencia": 0.05799140210972496,
+      "reproduccion": 0.05799140210972496,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.4.val_temporal_ari",
+      "referencia": 0.6555274457752672,
+      "reproduccion": 0.6555274457752672,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.test_calinski_harabasz",
+      "referencia": 5.17978085010887,
+      "reproduccion": 5.17978085010887,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.test_davies_bouldin",
+      "referencia": 2.9828653651274535,
+      "reproduccion": 2.9828653651274535,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.test_silhouette",
+      "referencia": -0.03633759297703887,
+      "reproduccion": -0.03633759297703887,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.test_temporal_ari",
+      "referencia": 0.5421647530124104,
+      "reproduccion": 0.5421647530124104,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.train_calinski_harabasz",
+      "referencia": 27.210423865642593,
+      "reproduccion": 27.210423865642593,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.train_davies_bouldin",
+      "referencia": 2.4608372778444476,
+      "reproduccion": 2.4608372778444476,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.train_silhouette",
+      "referencia": 0.06579313353761616,
+      "reproduccion": 0.06579313353761616,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.val_calinski_harabasz",
+      "referencia": 6.13593561715674,
+      "reproduccion": 6.13593561715674,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.val_davies_bouldin",
+      "referencia": 3.0666900543236926,
+      "reproduccion": 3.0666900543236926,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.val_silhouette",
+      "referencia": 0.03163896581099457,
+      "reproduccion": 0.03163896581099457,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.5.val_temporal_ari",
+      "referencia": 0.5804044632982156,
+      "reproduccion": 0.5804044632982156,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.test_calinski_harabasz",
+      "referencia": 5.088556850999015,
+      "reproduccion": 5.088556850999015,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.test_davies_bouldin",
+      "referencia": 3.1574889893287086,
+      "reproduccion": 3.1574889893287086,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.test_silhouette",
+      "referencia": -0.020503595688834905,
+      "reproduccion": -0.020503595688834905,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.test_temporal_ari",
+      "referencia": 0.4565368376673718,
+      "reproduccion": 0.4565368376673718,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.train_calinski_harabasz",
+      "referencia": 24.411462220154203,
+      "reproduccion": 24.411462220154203,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.train_davies_bouldin",
+      "referencia": 2.6592551293283666,
+      "reproduccion": 2.6592551293283666,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.train_silhouette",
+      "referencia": 0.06796595729838976,
+      "reproduccion": 0.06796595729838976,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.val_calinski_harabasz",
+      "referencia": 5.284924153060251,
+      "reproduccion": 5.284924153060251,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.val_davies_bouldin",
+      "referencia": 3.1333641503686143,
+      "reproduccion": 3.1333641503686143,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.val_silhouette",
+      "referencia": 0.007500893101169937,
+      "reproduccion": 0.007500893101169937,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.models.6.val_temporal_ari",
+      "referencia": 0.5212517266907054,
+      "reproduccion": 0.5212517266907054,
+      "coincide": true
+    },
+    {
+      "campo": "results.P3.selected_k",
+      "referencia": 3,
+      "reproduccion": 3,
+      "coincide": true
+    }
+  ]
+}

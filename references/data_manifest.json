@@ -1,0 +1,202 @@
+{
+  "sources": [
+    {
+      "name": "datos_abiertos_2025_01.csv",
+      "url": "https://mibici.net/site/assets/files/97653/datos_abiertos_2025_01.csv",
+      "sha256": "90ee75701a69374926af0400d204f3280baed0e3c1a1f97d9e6c0b283757125a",
+      "bytes": 32959338,
+      "encoding": "cp1252",
+      "input_rows": 380184
+    },
+    {
+      "name": "datos_abiertos_2025_02.csv",
+      "url": "https://mibici.net/site/assets/files/99879/datos_abiertos_2025_02.csv",
+      "sha256": "f52f13f59eb2f1517e05c72f0a3d3d70c5b0fa6b86626c7325e8ca3b15ff74f8",
+      "bytes": 32304810,
+      "encoding": "cp1252",
+      "input_rows": 372529
+    },
+    {
+      "name": "datos_abiertos_2025_03.csv",
+      "url": "https://mibici.net/site/assets/files/101986/datos_abiertos_2025_03.csv",
+      "sha256": "e5aa1b5d197f294022d3f0ff1b55bf553fcbdb697b50d43deaddf8dca36fed64",
+      "bytes": 35131572,
+      "encoding": "utf-8-sig",
+      "input_rows": 405110
+    },
+    {
+      "name": "datos_abiertos_2025_04.csv",
+      "url": "https://mibici.net/site/assets/files/103813/datos_abiertos_2025_04.csv",
+      "sha256": "630e637d6611aadc67aad321edcd541361220473bddf8e34ecba46c0e29d7341",
+      "bytes": 31755599,
+      "encoding": "utf-8-sig",
+      "input_rows": 366193
+    },
+    {
+      "name": "datos_abiertos_2025_05.csv",
+      "url": "https://mibici.net/site/assets/files/105513/datos_abiertos_2025_05.csv",
+      "sha256": "e0a744412a1e840c1d24c24269565a123b35739c0bac494b9c0f53ba0a2c43c2",
+      "bytes": 34332994,
+      "encoding": "utf-8-sig",
+      "input_rows": 395891
+    },
+    {
+      "name": "datos_abiertos_2025_06.csv",
+      "url": "https://mibici.net/site/assets/files/107088/datos_abiertos_2025_06.csv",
+      "sha256": "063e3523db00c90899f08fb134c4c382667eb0e4d8b6358890d426409c6f4c9e",
+      "bytes": 30924814,
+      "encoding": "utf-8-sig",
+      "input_rows": 356611
+    },
+    {
+      "name": "datos_abiertos_2025_07.csv",
+      "url": "https://mibici.net/site/assets/files/108898/datos_abiertos_2025_07.csv",
+      "sha256": "a71a9e2a629ff91b021f57e302958e64fa545678d6373aaf0fed62dfc7bebd29",
+      "bytes": 31932339,
+      "encoding": "cp1252",
+      "input_rows": 368186
+    },
+    {
+      "name": "datos_abiertos_2025_08.csv",
+      "url": "https://mibici.net/site/assets/files/111021/datos_abiertos_2025_08.csv",
+      "sha256": "382e62f3eb878e13faf4c93d031c8efcf765c392b3402d27b264613f9ff4a56d",
+      "bytes": 32506714,
+      "encoding": "utf-8-sig",
+      "input_rows": 374727
+    },
+    {
+      "name": "datos_abiertos_2025_09.csv",
+      "url": "https://mibici.net/site/assets/files/113216/datos_abiertos_2025_09.csv",
+      "sha256": "218bed1587a70ec5fc5e8589a04783532301f19c55acd3633fa219c96860e720",
+      "bytes": 32686988,
+      "encoding": "utf-8-sig",
+      "input_rows": 376789
+    },
+    {
+      "name": "datos_abiertos_2025_10.csv",
+      "url": "https://mibici.net/site/assets/files/115104/datos_abiertos_2025_10.csv",
+      "sha256": "505d9b8b59f65fa223f7889189b74b9fe167c9dda11c7e7053536a360c611370",
+      "bytes": 36442309,
+      "encoding": "utf-8-sig",
+      "input_rows": 420064
+    },
+    {
+      "name": "datos_abiertos_2025_11.csv",
+      "url": "https://mibici.net/site/assets/files/116773/datos_abiertos_2025_11.csv",
+      "sha256": "f5c4f1b0c0842339dfdfaac756607314bdf5b64d17cde58d754f5a5a2e1a5fbe",
+      "bytes": 32997087,
+      "encoding": "utf-8-sig",
+      "input_rows": 380328
+    },
+    {
+      "name": "datos_abiertos_2025_12.csv",
+      "url": "https://mibici.net/site/assets/files/118153/datos_abiertos_2025_12.csv",
+      "sha256": "b9fbb7386666ac3d452e3d3ef40ab443c39eef349cd9c97207230371e1d2d001",
+      "bytes": 29089463,
+      "encoding": "utf-8-sig",
+      "input_rows": 335420
+    },
+    {
+      "name": "estaciones.csv",
+      "url": "https://mibici.net/site/assets/files/1118/nomenclatura_2026_09.csv",
+      "sha256": "206e45fe633922b634d858142fa21e6fd9f4c421b6435c02980ef290cc2df90d",
+      "bytes": 40841
+    }
+  ],
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "input_rows": 4532032,
+  "usable_trips": 4532032,
+  "duplicates_removed": 0,
+  "conflicting_ids": 0,
+  "invalid_rows": 0,
+  "stations": 484,
+  "positive_capacity_stations": 480,
+  "capacity_snapshot": "2026-09 retrospective scenario; not historical 2025 inventory",
+  "timezone": "America/Mexico_City (naive local source timestamps)",
+  "processed_files": [
+    {
+      "path": "data/processed/trips.parquet",
+      "rows": 4532032,
+      "bytes": 90479429,
+      "sha256": "878061e2e41932660f97924ef06bcaf014b0e726bef8042a95bc8806a5bda171"
+    },
+    {
+      "path": "data/processed/stations.parquet",
+      "rows": 484,
+      "bytes": 26774,
+      "sha256": "9d4bce51e9afdb6caf3e748130938cfc3ee2a4a3e65677163b7f4433d56dbd9a"
+    },
+    {
+      "path": "data/processed/trips_2025-01.parquet",
+      "rows": 380184,
+      "bytes": 8048482,
+      "sha256": "2b12fb7dd8fbbc703124e1f3e3ac8a890a2210ac31d39f18028ebab4c37aef0f"
+    },
+    {
+      "path": "data/processed/trips_2025-02.parquet",
+      "rows": 372529,
+      "bytes": 7881615,
+      "sha256": "c370708eac3f858b694fa7d55719e6b757045a55b283e41aa3fdf88e828b8674"
+    },
+    {
+      "path": "data/processed/trips_2025-03.parquet",
+      "rows": 405110,
+      "bytes": 8504717,
+      "sha256": "23666477a83707f6397015f1727f0ce78b42fc5733b71fcc69088ff25560a8d9"
+    },
+    {
+      "path": "data/processed/trips_2025-04.parquet",
+      "rows": 366193,
+      "bytes": 7790349,
+      "sha256": "6b3aa3eba2e1e201a551f725ee82fe8896ae4d130541950aa569f237863713fb"
+    },
+    {
+      "path": "data/processed/trips_2025-05.parquet",
+      "rows": 395891,
+      "bytes": 8354468,
+      "sha256": "6e3568783dffc7136e849697cfd3806948768dc6b8cf3ad906648f404c74018c"
+    },
+    {
+      "path": "data/processed/trips_2025-06.parquet",
+      "rows": 356611,
+      "bytes": 7624456,
+      "sha256": "c45a3d0d5d210a3ff8c2b3e589135058c6b49ad9255aea04b79177895207403f"
+    },
+    {
+      "path": "data/processed/trips_2025-07.parquet",
+      "rows": 368186,
+      "bytes": 7844887,
+      "sha256": "ebe3c7a64050fbace7318b859f9ca57c243e8dc637055f246b5f685ba2b381a6"
+    },
+    {
+      "path": "data/processed/trips_2025-08.parquet",
+      "rows": 374727,
+      "bytes": 7960407,
+      "sha256": "aa4410b68dfd1536ff6e2d2aeb9c91273937d2d7e05249c1279d35ede5df1a55"
+    },
+    {
+      "path": "data/processed/trips_2025-09.parquet",
+      "rows": 376789,
+      "bytes": 7990103,
+      "sha256": "4c8f6467d043240a532ce6f5b6cbdb20011c13bd3b4c4bacef6d7ac965a65415"
+    },
+    {
+      "path": "data/processed/trips_2025-10.parquet",
+      "rows": 420064,
+      "bytes": 8787070,
+      "sha256": "7cbd51c2b5b43a4fb34d75e017e577bc0dce2c9362f79f836d8d332acb290775"
+    },
+    {
+      "path": "data/processed/trips_2025-11.parquet",
+      "rows": 380328,
+      "bytes": 8057660,
+      "sha256": "dae593b47a2c03a46ad8170a9613b6520e16a94cbf7fae9f0a2651de4c695b33"
+    },
+    {
+      "path": "data/processed/trips_2025-12.parquet",
+      "rows": 335420,
+      "bytes": 7255390,
+      "sha256": "4f2cd911437ea2adbbc018a121ecd44d39f8b24d13386ceca5043d072c736c07"
+    }
+  ]
+}

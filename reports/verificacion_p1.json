@@ -1,0 +1,30 @@
+{
+  "git_commit": "0e2e31579ea2d3611c2a55c8ac79c611ee421ccb",
+  "git_dirty": false,
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "parent_run_id": "8c84139031d74630b7ea76eecda4e238",
+  "results": {
+    "P1": {
+      "models": {
+        "seasonal_naive": {
+          "val_mae": 1.0280183524074646,
+          "val_rmse": 2.042189199586688,
+          "val_wape": 0.7007089136892249,
+          "test_mae": 0.9903598309104031,
+          "test_rmse": 1.9094815080060024,
+          "test_wape": 0.7515326623336706
+        },
+        "hist_gradient_boosting": {
+          "val_mae": 0.8539863250450903,
+          "val_rmse": 1.5606041865064324,
+          "val_wape": 0.5820867192948894,
+          "test_mae": 0.8051183497682376,
+          "test_rmse": 1.4302749578200247,
+          "test_wape": 0.6109625188844673
+        }
+      },
+      "selected": "hist_gradient_boosting",
+      "selection": "validation MAE; tie tolerance 0.01 favors baseline"
+    }
+  }
+}

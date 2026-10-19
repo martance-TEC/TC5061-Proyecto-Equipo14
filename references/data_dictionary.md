@@ -1,0 +1,19 @@
+# Diccionario y tratamiento de fuentes
+
+Fuentes: https://mibici.net/es/datos-abiertos/ y URLs exactas en sources.json. Doce archivos mensuales de 2025 y nomenclatura septiembre de 2026. La sección pública permite descargar CSV; no se verificó una licencia abierta específica, por lo que no se declara CC0 ni se redistribuyen los datos.
+
+Viaje_Id pasa a trip_id string; Inicio_del_viaje pasa a started_at; Fin_del_viaje pasa a ended_at; Origen_Id pasa a origin_id; Destino_Id pasa a destination_id. Usuario_Id, Genero y Año_de_nacimiento se excluyen. Tiempos locales de Guadalajara, America/Mexico_City, sin inferir otra zona.
+
+Los CSV de viajes se decodifican de forma estricta con UTF-8-sig o cp1252, y canonical_column normaliza cada encabezado (minúsculas, sin acentos, sin BOM y con separadores unificados) antes de asignarlo a su nombre canónico. El catálogo se lee con pd.read_csv y su codificación UTF-8 predeterminada, renombra de forma exacta id a station_id y dpcapacity a capacity, y mantiene los demás campos públicos. Los identificadores de viaje y de estación se leen como texto, de modo que los ceros iniciales se conservan.
+
+Catálogo: id pasa a station_id string; name es nombre de estación; latitude y longitude son coordenadas públicas; dpcapacity pasa a capacity. Solo capacidad positiva observada es admisible para P2. Su vigencia 2026-09 no demuestra infraestructura histórica de 2025.
+
+Entrenamiento [2025-01-01,2025-09-01); validación [2025-09-01,2025-11-01); prueba [2025-11-01,2026-01-01). Cada etiqueta debe terminar dentro de su ventana: una hora para P1 y tres para P2. Las variables de cada corte solo usan eventos de horas cerradas. Los ceros se crean dentro del calendario cubierto por los doce archivos; no acreditan operación de una estación antes de su apertura.
+
+Normalización con decodificación estricta UTF-8-sig o cp1252 según archivo; fechas explícitas, tipos estables, validación de que fin sea mayor o igual que inicio (fin >= inicio), que es lo que admite la implementación. Identificadores duplicados idénticos se eliminan globalmente; si un ID tiene eventos contradictorios se detiene la ingesta. data_manifest.json registra tamaños reales, conteos y SHA256 de cada fuente. data_version es SHA256 del JSON canónico de las fuentes, sin rutas absolutas ni fecha de ejecución. Las copias originales se conservan localmente y no se publican; los hashes detectan cambios pero no recuperan archivos reemplazados.
+
+Archivos procesados: la ingesta escribe 14 archivos Parquet. Los de viajes contienen exactamente trip_id, started_at, ended_at, origin_id y destination_id, y el catálogo procesado conserva sus campos operativos públicos. El manifiesto de procesados registra huella, tamaño y filas de cada uno. Con `--verify` (`dataset.ingest(verify=True)`), la ingesta contrasta data_version con data_manifest.json antes de reemplazar los Parquet existentes, y ante una fuente alterada conserva los Parquet anteriores.
+
+Cohorte P1: estaciones con salidas en la partición de entrenamiento y entrada en el catálogo de septiembre de 2026, 369 en la ejecución de Milton. La cohorte se determina solo con entrenamiento y se congela para validación y prueba. Cada estación tiene un calendario horario completo de 2025, y un cero significa cero viajes registrados en los archivos. Confirmar la operación de una estación en una hora requiere fechas históricas de alta y cierre. Tras excluir las primeras 168 horas quedan 2,090,016 filas estación hora en entrenamiento, 540,216 en validación y 540,216 en prueba.
+
+Cobertura frente al catálogo de 2026: la fuente tiene 3,019,431 viajes de entrenamiento (0 fuera de la cohorte), 796,853 de validación (122 fuera, de la estación 401) y 715,748 de prueba (433 fuera, de las estaciones 401 y 402). Incorporar estaciones nuevas requiere un estudio separado.

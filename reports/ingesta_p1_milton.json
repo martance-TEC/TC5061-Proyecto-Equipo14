@@ -1,0 +1,80 @@
+{
+  "integrante": "milton",
+  "execution_environment": "Local workspace authorized by Milton",
+  "git_commit": "a07bbff45bcdf1cb47ad3f885e7cb6cc7e6fd978",
+  "git_dirty": false,
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "source_files": 13,
+  "source_bytes": 393104868,
+  "input_rows": 4532032,
+  "usable_trips": 4532032,
+  "duplicates_removed": 0,
+  "invalid_rows": 0,
+  "conflicting_ids": 0,
+  "stations": 484,
+  "positive_capacity_stations": 480,
+  "processed_files": 14,
+  "cohort_stations": 369,
+  "evaluation_rows": {
+    "train": 2090016,
+    "val": 540216,
+    "test": 540216
+  },
+  "coverage": {
+    "train": {
+      "source_trips": 3019431,
+      "unseen_or_outside_cohort_trips": 0,
+      "outside_station_ids": []
+    },
+    "val": {
+      "source_trips": 796853,
+      "unseen_or_outside_cohort_trips": 122,
+      "outside_station_ids": [
+        "401"
+      ]
+    },
+    "test": {
+      "source_trips": 715748,
+      "unseen_or_outside_cohort_trips": 433,
+      "outside_station_ids": [
+        "401",
+        "402"
+      ]
+    }
+  },
+  "partition": {
+    "train": "2025-01-01 / 2025-09-01 exclusive",
+    "val": "2025-09-01 / 2025-11-01 exclusive",
+    "test": "2025-11-01 / 2026-01-01 exclusive"
+  },
+  "python": "3.11.15",
+  "packages": {
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "scikit-learn": "1.5.2",
+    "mlflow": "3.4.0",
+    "pyarrow": "18.1.0",
+    "pytest": "8.3.4"
+  },
+  "tests": {
+    "passed": 16,
+    "duration_seconds": 1.09,
+    "log": "work/mibici_pruebas_completas.log"
+  },
+  "mlflow": {
+    "parent_run_id": "93165b104c4348d9bc4ef91856762abb",
+    "finished_parent_runs": 1,
+    "finished_child_runs": 3,
+    "numeric_model_metrics": 18
+  },
+  "raw_data_policy": "Local only; raw fields excluded from source/package; operational processed fields only",
+  "code_review": {
+    "reviewer_model": "gpt-6.1-sol",
+    "effort": "high",
+    "critical": 0,
+    "important": 0,
+    "focused_tests_passed": 8
+  },
+  "selected": "station_weekday_hour_mean",
+  "validation_mae_gap_mean_vs_boosting": 0.005672691867009139
+}

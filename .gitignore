@@ -17,3 +17,9 @@ mlartifacts/
 *.parquet
 *.onnx
 .ipynb_checkpoints/
+
+.env.*
+!.env.example
+*.sqlite
+*.sqlite3
+*.log

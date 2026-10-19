@@ -9,5 +9,6 @@
     "Python 3.11.9 exact environment",
     "Original scaffold extended with tracking and experiments",
     "Setuptools build backend replaces flit"
-  ]
+  ],
+  "include_code_scaffold": "Yes"
 }
