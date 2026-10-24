@@ -45,6 +45,8 @@ def write_processed(frame, path):
 
 def ingest(verify=False):
     sources=json.loads((S.root/"references/sources.json").read_text())
+    dest=S.root/"references/data_manifest.json"
+    expected=json.loads(dest.read_text()) if dest.exists() else None
     raw=S.root/"data/raw";raw.mkdir(parents=True,exist_ok=True)
     records=[];frames=[];seen={};duplicate=0;conflict=0;invalid=0;input_rows=0
     for source in sources:
@@ -55,6 +57,10 @@ def ingest(verify=False):
             with urllib.request.urlopen(req,timeout=120) as response,path.open("wb") as out:
                 import shutil;shutil.copyfileobj(response,out)
         rec={**source,"sha256":sha256(path),"bytes":path.stat().st_size}
+        if expected:
+            reference=next((r for r in expected['sources'] if r['name']==source['name']),None)
+            if reference is None or reference['sha256'] != rec['sha256']:
+                raise ValueError(f"Source hash mismatch: {source['name']}; processed files preserved")
         if source["name"]=="estaciones.csv": records.append(rec);continue
         for encoding in ["utf-8-sig","cp1252"]:
             try:
@@ -86,9 +92,8 @@ def ingest(verify=False):
     assert stations.station_id.is_unique
     data_version=canonical_version(records)
     dest=S.root/"references/data_manifest.json"
-    if verify and dest.exists():
-        old=json.loads(dest.read_text())
-        if old["data_version"] != data_version:
+    if expected:
+        if expected["data_version"] != data_version:
             raise ValueError("Source data version mismatch; processed files were preserved")
     out=S.root/"data/processed";out.mkdir(parents=True,exist_ok=True)
     processed=[write_processed(trips,out/"trips.parquet"),
@@ -96,7 +101,10 @@ def ingest(verify=False):
     for month,part in trips.groupby(trips.started_at.dt.to_period("M")):
         processed.append(write_processed(part,out/f"trips_{month}.parquet"))
     manifest={"sources":records,"data_version":data_version,"input_rows":input_rows,"usable_trips":len(trips),"duplicates_removed":duplicate,"conflicting_ids":conflict,"invalid_rows":invalid,"stations":len(stations),"positive_capacity_stations":int((stations.capacity>0).sum()),"capacity_snapshot":"2026-09 retrospective scenario; not historical 2025 inventory","timezone":"America/Mexico_City (naive local source timestamps)","processed_files":processed}
-    dest.write_text(json.dumps(manifest,indent=2),encoding="utf-8")
+    # El manifiesto histórico no se reescribe al reconstruir el mismo dataset.
+    local=out/'ingestion_manifest.json'
+    local.write_text(json.dumps(manifest,indent=2),encoding="utf-8")
+    if expected is None:dest.write_text(json.dumps(manifest,indent=2),encoding="utf-8")
     print(json.dumps(manifest,indent=2));return manifest
 if __name__=="__main__":
     parser=argparse.ArgumentParser();parser.add_argument("--verify",action="store_true");ingest(parser.parse_args().verify)

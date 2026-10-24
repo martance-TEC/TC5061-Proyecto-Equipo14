@@ -1,5 +1,113 @@
 # MiBici
 
+## Segunda entrega de MLflow
+
+El [protocolo](references/segunda_entrega.md) amplía el proyecto con entrenamiento parametrizado, tres candidatos por pregunta, búsquedas anidadas y Model Registry. La base de la primera computadora no se conservó: los baselines se reconstruyen con los mismos datos y definiciones y quedan identificados como reproducciones. No se reutilizan los run_id históricos.
+
+### Preparación en macOS
+
+Se utiliza Python 3.11.9 y MLflow 3.4.0. Desde la raíz del clon:
+
+```bash
+python3.11 --version
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install pip==25.0.1 setuptools==78.1.0 wheel==0.45.1
+python -m pip install -r requirements.lock.txt
+python -m pip install --no-deps --no-build-isolation -e .
+python -m pip check
+python -m pytest -q
+```
+
+El intérprete debe indicar 3.11.9. Si falta, instalar esa versión por una vía autorizada. No hace falta Docker ni Conda. `--env-manager local` usa este entorno verificado; no instala las dependencias por sí solo.
+
+### Preparación en Windows
+
+Desde PowerShell, con Python 3.11.9 de 64 bits instalado:
+
+```powershell
+py -3.11 --version
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install pip==25.0.1 setuptools==78.1.0 wheel==0.45.1
+.\.venv\Scripts\python.exe -m pip install -r requirements.lock.txt
+.\.venv\Scripts\python.exe -m pip install --no-deps --no-build-isolation -e .
+$env:PATH = "$PWD\.venv\Scripts;$env:PATH"
+python -m pip check
+python -m pytest -q
+```
+
+No se necesita cambiar la política de ejecución de PowerShell: los comandos usan los ejecutables del entorno o agregan su carpeta a PATH.
+
+### Servidor con SQLite
+
+En una terminal con el entorno activo, desde la raíz. El puerto 5014 evita el servicio de macOS que puede ocupar el 5000:
+
+```text
+mlflow server --host 127.0.0.1 --port 5014 --workers 1 --backend-store-uri sqlite:///mlflow.db --serve-artifacts --artifacts-destination ./mlartifacts
+```
+
+Mantener esa terminal abierta. En otra terminal del proyecto, activar el mismo entorno y configurar:
+
+```bash
+export MLFLOW_TRACKING_URI=http://127.0.0.1:5014
+export MLFLOW_REGISTRY_URI=http://127.0.0.1:5014
+```
+
+Equivalente en PowerShell:
+
+```powershell
+$env:MLFLOW_TRACKING_URI = 'http://127.0.0.1:5014'
+$env:MLFLOW_REGISTRY_URI = $env:MLFLOW_TRACKING_URI
+```
+
+Abrir http://127.0.0.1:5014. La base y `mlartifacts/` se conservan localmente y están excluidas de Git. No cambiar la ubicación del almacén sin verificar sus referencias. Un clon no contiene el historial de otra computadora.
+
+### Ejecutar la campaña completa
+
+```text
+mlflow run . -e ingest --env-manager local --experiment-name mibici-equipo14
+mlflow run . -e verify --env-manager local --experiment-name mibici-equipo14
+mlflow run . -e campaign --env-manager local --experiment-name mibici-equipo14
+mlflow run . -e promote --env-manager local --experiment-name mibici-equipo14
+mlflow run . -e verify_registry --env-manager local --experiment-name mibici-equipo14
+```
+
+El código de entrenamiento debe estar comprometido y limpio antes de entrenar. Los resúmenes se generan en `reports/segunda_entrega/`; se publican después en un commit documental. La fuente debe coincidir exactamente con el SHA256 versionado: una descarga diferente detiene la ingesta antes de sobrescribir procesados.
+
+`search -P question=p1` ejecuta solo esa búsqueda. `train` ejecuta una configuración. Ejemplo:
+
+```text
+mlflow run . -e train --env-manager local --experiment-name mibici-equipo14 -P question=p1 -P model=hgb -P max_iter=150 -P learning_rate=0.1 -P max_leaf_nodes=15
+```
+
+Los valores opcionales 0 o modelo vacío delegan a `config.py`; no son hiperparámetros reales. El parser rechaza parámetros que no correspondan al modelo. Los entry points `main` y sus parámetros anteriores se conservan como compatibilidad de la primera entrega.
+
+### Modelos elegidos y reproducción independiente
+
+La configuración seleccionada queda en `reports/segunda_entrega/selection.json`. `reproduce` la utiliza sin decidir de nuevo y comprueba diferencias de métricas contra la campaña, con tolerancia absoluta 1e-8. El lock, los datos y el orden de las filas se mantienen. Si no coincide, se investiga; no se declara coincidencia por aproximación visual.
+
+```text
+mlflow run . -e reproduce --env-manager local --experiment-name mibici-equipo14 -P question=p1
+mlflow run . -e reproduce --env-manager local --experiment-name mibici-equipo14 -P question=p2
+mlflow run . -e reproduce --env-manager local --experiment-name mibici-equipo14 -P question=p3
+```
+
+Cada compañero usa su servidor local; no se confunden esos run_id con los oficiales. Para registrar la reproducción propia: `-e promote -P question=p2 -P local=1`, y para cargarla: `-e verify_registry -P question=p2 -P local=1` con las demás opciones habituales. Solo se usa `local=1` después de reproducir esa pregunta.
+
+### Ciclo de vida
+
+Se usan los aliases vigentes en lugar de etapas clásicas obsoletas. Los nombres son `mibici-equipo14-p1-demanda`, `mibici-equipo14-p2-riesgo` y `mibici-equipo14-p3-grupos`. Se verifica por versión numérica antes de asignar `champion`, y luego por nombre, por ejemplo `mlflow.pyfunc.load_model('models:/mibici-equipo14-p1-demanda@champion')`. Se requiere una entrada con la firma del modelo elegido. El código de verificación descarga su ejemplo, conserva los tipos y llama predict.
+
+El alias designa el modelo elegido para el consumo previsto en este proyecto académico. No equivale a un servicio real desplegado en MiBici. La versión registra origen, commit, data_version, descripción y validación. P2 conserva dentro del paquete el umbral elegido; P3 incluye el scaler; el promedio de P1 incluye su respaldo global.
+
+### Colaboración independiente
+
+[Guía de Milton](references/GUIA_MILTON.md) y [guía de Víctor](references/GUIA_VICTOR.md): pueden ejecutarse desde la misma versión estable sin depender entre sí. Cada integrante debe hacer sus commits, abrir su PR y revisar otro PR en esta entrega. Las revisiones anteriores no sustituyen las actuales. Todo se integra mediante PR revisado y con la protección de main activa.
+
+---
+
+## Primera entrega y antecedentes
+
 Proyecto de Operaciones de aprendizaje automático para estudiar demanda de viajes, presión sobre la capacidad y patrones de uso de estaciones. [Repositorio](https://github.com/martance-TEC/TC5061-Proyecto-Equipo14).
 
 ## Problema y usuarios
