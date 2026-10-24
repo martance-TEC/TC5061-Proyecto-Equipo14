@@ -4,6 +4,8 @@
 
 El [protocolo](references/segunda_entrega.md) amplía el proyecto con entrenamiento parametrizado, tres candidatos por pregunta, búsquedas anidadas y Model Registry. La base de la primera computadora no se conservó: los baselines se reconstruyen con los mismos datos y definiciones y quedan identificados como reproducciones. No se reutilizan los run_id históricos.
 
+El [reporte editable](reports/TC5061_Reporte_MLFlow_Equipo14.docx) reúne las comparaciones, la selección, el linaje y las capturas de la interfaz. La [verificación desde un clon limpio](reports/segunda_entrega/clean_clone_verification.json) registró diferencias de 0.0 en todas las métricas comparadas de los tres modelos elegidos. Las [comprobaciones](reports/segunda_entrega/validation.json) incluyen 23 pruebas aprobadas y la auditoría de quince corridas y tres modelos cargados por alias.
+
 ### Preparación en macOS
 
 Se utiliza Python 3.11.9 y MLflow 3.4.0. Desde la raíz del clon:

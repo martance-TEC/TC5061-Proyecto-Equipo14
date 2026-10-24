@@ -1,0 +1,57 @@
+[
+  {
+    "path": "reports/figures/segunda_entrega/01_busqueda_anidada.jpg",
+    "title": "10 Búsqueda anidada",
+    "caption": "El experimento muestra la campaña y la búsqueda de P1 desplegadas, con sus cinco configuraciones hijas."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/02_comparacion_p1.jpg",
+    "title": "11 Comparación de P1",
+    "caption": "Cinco configuraciones sobre la misma partición. Las tablas del reporte presentan las métricas completas y la selección por validación."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/03_comparacion_p2.jpg",
+    "title": "12 Comparación de P2",
+    "caption": "Baseline, bosque anterior y tres candidatos. La comparación usa la misma definición de riesgo aproximado."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/04_comparacion_p3.jpg",
+    "title": "13 Comparación de P3",
+    "caption": "Comparación de KMeans con k de 2 a 6 y métricas de separación y estabilidad."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/05_artefacto_matriz_p2.jpg",
+    "title": "14 Artefacto de desempeño",
+    "caption": "Matriz de confusión de prueba de P2, registrada en plots/ junto con las gráficas de validación y precisión recall."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/11_manifiesto_configuracion.jpg",
+    "title": "15 Manifiesto y configuración",
+    "caption": "La corrida conserva data_manifest.json, los metadatos de features y archivos de configuración con dependencias fijas."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/06_registry_tres_modelos.jpg",
+    "title": "16 Tres modelos con alias champion",
+    "caption": "El Registry contiene un nombre por pregunta, versión 1 y alias champion."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/07_registry_p1_linaje.jpg",
+    "title": "17 Linaje del modelo de demanda",
+    "caption": "Versión elegida de P1, corrida de origen, descripción, alias y versión de datos."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/08_registry_p2_linaje.jpg",
+    "title": "18 Linaje del modelo de riesgo",
+    "caption": "Versión elegida de P2 con la aproximación de capacidad documentada y la corrida de origen."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/09_registry_p3_linaje.jpg",
+    "title": "19 Linaje del modelo de grupos",
+    "caption": "Versión elegida de P3 con scaler incluido, corrida de origen y alias."
+  },
+  {
+    "path": "reports/figures/segunda_entrega/10_registry_etiquetas.jpg",
+    "title": "20 Etiquetas de linaje",
+    "caption": "El commit del entrenamiento y el esquema de aliases quedan vinculados a la versión registrada. Los identificadores completos de los tres modelos también están en la sección 7."
+  }
+]
