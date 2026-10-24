@@ -1,0 +1,233 @@
+{
+  "questions": {
+    "p1": {
+      "models": 5,
+      "candidates": 3
+    },
+    "p2": {
+      "models": 5,
+      "candidates": 3
+    },
+    "p3": {
+      "models": 5,
+      "candidates": 3
+    }
+  },
+  "model_checks": [
+    {
+      "question": "p1",
+      "run_id": "0e6d29a862f0404aae329bedf6368536",
+      "status": "FINISHED",
+      "parent_run_id": "2c02b441ae93464392d4d5b831a346e9",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p1",
+      "run_id": "48bc3dd1f2414f4ba31f9f2020226764",
+      "status": "FINISHED",
+      "parent_run_id": "2c02b441ae93464392d4d5b831a346e9",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p1",
+      "run_id": "d1da05febe4740f191cb4fe6250fd973",
+      "status": "FINISHED",
+      "parent_run_id": "2c02b441ae93464392d4d5b831a346e9",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p1",
+      "run_id": "7098cc0f86374995b3781ef53aeba324",
+      "status": "FINISHED",
+      "parent_run_id": "2c02b441ae93464392d4d5b831a346e9",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p1",
+      "run_id": "ceb08eaf59ff4b1884930bcb901e1e6d",
+      "status": "FINISHED",
+      "parent_run_id": "2c02b441ae93464392d4d5b831a346e9",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p2",
+      "run_id": "544450cf7eac4a32ad5ba2f0a117639d",
+      "status": "FINISHED",
+      "parent_run_id": "5c5093acbb3f4a17ae98fe8e621fa38f",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p2",
+      "run_id": "4202fa31d8da4ab9be54c26e2a6f3a00",
+      "status": "FINISHED",
+      "parent_run_id": "5c5093acbb3f4a17ae98fe8e621fa38f",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p2",
+      "run_id": "525b66e662e54c5ab34532f481f01abe",
+      "status": "FINISHED",
+      "parent_run_id": "5c5093acbb3f4a17ae98fe8e621fa38f",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p2",
+      "run_id": "e3da780f969c448faeef0e0f3c409cb2",
+      "status": "FINISHED",
+      "parent_run_id": "5c5093acbb3f4a17ae98fe8e621fa38f",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p2",
+      "run_id": "75af061484fb466f8822659e51a541c2",
+      "status": "FINISHED",
+      "parent_run_id": "5c5093acbb3f4a17ae98fe8e621fa38f",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p3",
+      "run_id": "cba8f9deb64c467dbd72f872e3463575",
+      "status": "FINISHED",
+      "parent_run_id": "98d07f16ce634be0924e62f5aa633d77",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p3",
+      "run_id": "1d6347f7ddc1494da4cf4cb3400ecb8a",
+      "status": "FINISHED",
+      "parent_run_id": "98d07f16ce634be0924e62f5aa633d77",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p3",
+      "run_id": "5b2816f0fb784f1fbee6844de23381bc",
+      "status": "FINISHED",
+      "parent_run_id": "98d07f16ce634be0924e62f5aa633d77",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p3",
+      "run_id": "cd332469ad67431ca026e33db1fa8b9d",
+      "status": "FINISHED",
+      "parent_run_id": "98d07f16ce634be0924e62f5aa633d77",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    },
+    {
+      "question": "p3",
+      "run_id": "86c0cc74ff744aefb5cf3b3415770cc4",
+      "status": "FINISHED",
+      "parent_run_id": "98d07f16ce634be0924e62f5aa633d77",
+      "signature": true,
+      "dataset_input": true,
+      "artifact_folders": [
+        "config",
+        "data",
+        "evaluation",
+        "plots"
+      ]
+    }
+  ],
+  "registry_models_verified": 3,
+  "tests_passed": 23,
+  "pip_check": "No broken requirements found.",
+  "baseline_rebuilt": true,
+  "previous_database_available": false
+}

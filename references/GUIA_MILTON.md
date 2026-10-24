@@ -4,7 +4,7 @@ Usar la versión estable de la segunda entrega indicada en el PR de Martha. No h
 
 ## Ejecución
 
-1. Clonar el repositorio en una carpeta nueva. Cambiar a la rama estable indicada en el PR si aún no se integró a main. Crear el entorno y ejecutar `python -m pip check` y `python -m pytest -q`.
+1. Clonar el repositorio en una carpeta nueva. Si el PR de Martha sigue abierto, ejecutar `git switch --track origin/feat/mlflow-registry`; si ya se integró, usar main actualizado. Crear el entorno y ejecutar `python -m pip check` y `python -m pytest -q`.
 2. Iniciar un servidor propio en localhost:5014 con una base nueva. Configurar `MLFLOW_TRACKING_URI` y `MLFLOW_REGISTRY_URI` para ese servidor. El historial oficial permanece en la computadora de la campaña; no copiar su base o sus modelos.
 3. Ejecutar los comandos siguientes desde la raíz, con el entorno activo:
 
@@ -19,7 +19,7 @@ mlflow run . -e reproduce --env-manager local --experiment-name mibici-equipo14 
 4. Abrir la interfaz local, comprobar los parámetros de P1 y el manifiesto, y guardar una captura legible para la validación. No repetir toda la búsqueda.
 5. Añadir una prueba en `tests/test_reproduccion_p1.py` que compruebe una propiedad real de P1: por ejemplo, que un cambio posterior al corte no modifique el promedio entrenado ni los rezagos anteriores. No copiar sin comprobar una prueba ya existente.
 6. Crear `references/validaciones/p1.md` con commit utilizado, comando, data_version, run local y comparación real de métricas. No incluir datos de viajes ni modelos.
-7. Crear una rama `test/p1-reproduccion`, hacer commit de la prueba y la validación, publicar y abrir PR con base en la rama de integración indicada en el PR de Martha. Cuando la infraestructura esté en main, la base final será main. Martha revisa ese PR.
+7. Desde la versión estable, ejecutar `git switch -c test/p1-reproduccion`, hacer commit de la prueba y la validación y publicar con `git push -u origin test/p1-reproduccion`. Abrir PR con base main. Si el PR de infraestructura de Martha sigue abierto, indicarlo como dependencia; al integrarlo, el diff se reducirá a los archivos propios. Martha revisa ese PR.
 8. Revisar el PR de Víctor desde la cuenta propia en Files changed. Enviar una revisión formal con Approve o Request changes según corresponda.
 
 Esto deja una contribución técnica, un PR y una revisión verificables de esta entrega. No se necesita editar el código común de entrenamiento ni el reporte general.
