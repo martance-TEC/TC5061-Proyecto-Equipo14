@@ -27,6 +27,7 @@ from sklearn.metrics import (mean_absolute_error, mean_squared_error,
     adjusted_rand_score)
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
+from threadpoolctl import threadpool_limits
 
 from ..config import SETTINGS as S, CAMPAIGN, MODEL_DEFAULTS, DEFAULT_MODELS, REPORT_DIR
 from ..dataset import sha256
@@ -56,6 +57,7 @@ def finite(values):
 
 
 def setup():
+    threadpool_limits(limits=2)
     mlflow.set_tracking_uri(os.environ.get('MLFLOW_TRACKING_URI', 'http://127.0.0.1:5000'))
     mlflow.set_registry_uri(os.environ.get('MLFLOW_REGISTRY_URI', mlflow.get_tracking_uri()))
     mlflow.set_experiment(S.experiment)

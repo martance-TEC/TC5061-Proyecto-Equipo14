@@ -107,4 +107,16 @@ def ingest(verify=False):
     if expected is None:dest.write_text(json.dumps(manifest,indent=2),encoding="utf-8")
     print(json.dumps(manifest,indent=2));return manifest
 if __name__=="__main__":
-    parser=argparse.ArgumentParser();parser.add_argument("--verify",action="store_true");ingest(parser.parse_args().verify)
+    parser=argparse.ArgumentParser();parser.add_argument("--verify",action="store_true")
+    verify=parser.parse_args().verify
+    result=ingest(verify)
+    import os
+    if os.environ.get('MLFLOW_RUN_ID'):
+        import mlflow
+        run_id=os.environ.pop('MLFLOW_RUN_ID')
+        with mlflow.start_run(run_id=run_id):
+            mlflow.set_tags({'mlflow.runName':'eq14_verify_snapshot' if verify else 'eq14_ingest_snapshot',
+                'delivery':'2','equipo':'14','stage_of_work':'data','data_version':result['data_version']})
+            mlflow.log_dict(result,'data/data_manifest.json')
+            mlflow.log_params({'data_version':result['data_version'],'usable_trips':result['usable_trips'],
+                               'stations':result['stations']})
