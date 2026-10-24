@@ -247,9 +247,9 @@ def fit_and_log(question, spec, parts, meta, source):
         sha,dirty=git_state()
         if dirty:raise ValueError('Commit tracked code changes before the official run')
         mlflow.set_tags({'question':question,'pregunta':question.upper(),'model_family':spec['model'],
-            'stage_of_work':'baseline' if role=='baseline' else 'candidate','delivery':'2','equipo':'14',
+            'stage_of_work':'baseline' if role=='baseline' else 'reproduction' if role=='reproduction' else 'candidate','delivery':'2','equipo':'14',
             'previous_champion':str(role=='previous_champion').lower(),'git_commit':sha,'git_dirty':'false',
-            'data_version':source['data_version'],'reference_kind':'baseline_replay' if role in ['baseline','previous_champion'] else 'new_candidate'})
+            'data_version':source['data_version'],'reference_kind':'baseline_replay' if role in ['baseline','previous_champion'] else 'independent_reproduction' if role=='reproduction' else 'new_candidate'})
         config={**spec,'seed':S.seed,'start':S.start,'train_end':S.train_end,'val_end':S.val_end,'end':S.end,
                 'data_version':source['data_version'],'feature_version':meta['feature_version'],
                 'horizon_hours':1 if question=='p1' else S.horizon_hours if question=='p2' else 0}
