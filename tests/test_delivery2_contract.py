@@ -5,7 +5,7 @@ import pytest
 import mlflow.pyfunc
 from mlflow.models import infer_signature
 from sklearn.ensemble import RandomForestClassifier
-from mibici_equipo14.modeling.advanced import resolve, choose
+from mibici_equipo14.modeling.advanced import (resolve, choose, reproduction_tolerance,reproduction_passes)
 from mibici_equipo14.modeling.wrappers import HistoricalMean, RiskDecision
 
 
@@ -14,6 +14,22 @@ def test_invalid_model_parameters_are_rejected():
     with pytest.raises(ValueError):resolve('p3','kmeans',max_iter=100)
     with pytest.raises(ValueError):resolve('p2','rf',n_estimators=-1)
     assert resolve('p1','hgb',max_iter=0)['max_iter']==100
+
+
+def test_reproduction_tolerance_is_question_specific():
+    assert reproduction_tolerance('p1') == 1e-8
+    assert reproduction_tolerance('p2') == 2e-3
+    assert reproduction_tolerance('p3') == 1e-8
+
+
+def test_p2_accepts_small_cross_environment_variation():
+    assert reproduction_passes('p2', {'test_f2': .0011})
+    assert not reproduction_passes('p2', {'test_f2': .0021})
+
+
+def test_p3_keeps_strict_reproduction_tolerance():
+    assert reproduction_passes('p3', {'test_silhouette': 1e-9})
+    assert not reproduction_passes('p3', {'test_silhouette': .0011})
 
 
 def test_historical_mean_falls_back_without_using_evaluation_targets():
@@ -46,3 +62,4 @@ def test_risk_wrapper_retains_threshold_after_loading(tmp_path):
     actual=mlflow.pyfunc.load_model(str(path)).predict(X)
     np.testing.assert_allclose(actual.to_numpy(),expected.to_numpy())
     assert np.array_equal(actual.risk_class,actual.risk_probability>=.25)
+
