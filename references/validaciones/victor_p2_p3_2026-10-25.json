@@ -1,0 +1,37 @@
+{
+  "integrante": "Victor Villa Herrera",
+  "fecha": "2026-10-25",
+  "git_commit": "6ce8c4546624298193a9c79b4ee8b7e79bc844d2",
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "tests": {
+    "passed": 26
+  },
+  "p2": {
+    "question": "p2",
+    "model": "random_forest",
+    "n_estimators": 300,
+    "max_depth": 16,
+    "min_samples_leaf": 20,
+    "reproduction_passed": true,
+    "tolerance": 0.002,
+    "maximum_absolute_difference": 0.001007361487795455,
+    "run_id": "73315221f9664796b9b463dd28b54cdf",
+    "registered_model": "mibici-equipo14-p2-riesgo",
+    "model_version": "1",
+    "alias": "champion",
+    "predictions_match": true
+  },
+  "p3": {
+    "question": "p3",
+    "model": "kmeans",
+    "k": 3,
+    "reproduction_passed": true,
+    "tolerance": 1e-8,
+    "maximum_absolute_difference": 4.440892098500626e-16,
+    "run_id": "f3d30ab7dbdd4ee089d0729aee32bdfa",
+    "registered_model": "mibici-equipo14-p3-grupos",
+    "model_version": "1",
+    "alias": "champion",
+    "predictions_match": true
+  }
+}
