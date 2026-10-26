@@ -11,3 +11,40 @@ entry_points:
     command: "python -m mibici_equipo14.dataset"
   verify:
     command: "python -m mibici_equipo14.dataset --verify"
+  train:
+    parameters:
+      question: {type: string}
+      model: {type: string, default: ""}
+      max_iter: {type: int, default: 0}
+      learning_rate: {type: float, default: 0}
+      max_leaf_nodes: {type: int, default: 0}
+      n_estimators: {type: int, default: 0}
+      max_depth: {type: int, default: 0}
+      min_samples_leaf: {type: int, default: 0}
+      k: {type: int, default: 0}
+    command: >-
+      python -m mibici_equipo14.modeling.train
+      --question {question} --model "{model}"
+      --max-iter {max_iter} --learning-rate {learning_rate}
+      --max-leaf-nodes {max_leaf_nodes} --n-estimators {n_estimators}
+      --max-depth {max_depth} --min-samples-leaf {min_samples_leaf} --k {k}
+  search:
+    parameters:
+      question: {type: string}
+    command: "python -m mibici_equipo14.modeling.search --question {question}"
+  campaign:
+    command: "python -m mibici_equipo14.modeling.search --question all"
+  reproduce:
+    parameters:
+      question: {type: string}
+    command: "python -m mibici_equipo14.modeling.search --question {question} --reproduce"
+  promote:
+    parameters:
+      question: {type: string, default: all}
+      local: {type: int, default: 0}
+    command: "python -m mibici_equipo14.registry --action promote --question {question} --local {local}"
+  verify_registry:
+    parameters:
+      question: {type: string, default: all}
+      local: {type: int, default: 0}
+    command: "python -m mibici_equipo14.registry --action verify --question {question} --local {local}"

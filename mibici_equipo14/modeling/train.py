@@ -119,3 +119,7 @@ class ClusteringExperiment:
         for k in valid:
             if results[str(k)].get("val_silhouette",-1)>results[str(winner)].get("val_silhouette",-1)+.01:winner=k
         return {"models":results,"selected_k":winner,"selection":"validation silhouette, min 5 stations per validation group; tolerance 0.01 favors smaller k","eligible_stations":len(ids)}
+
+if __name__ == '__main__':
+    from .advanced import main
+    main()

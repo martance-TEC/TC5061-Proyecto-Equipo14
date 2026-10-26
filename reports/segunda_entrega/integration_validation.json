@@ -1,0 +1,19 @@
+{
+  "checked_at_utc": "2026-10-26T02:11:15.063880+00:00",
+  "source_commit": "7e5d87dfdd70a19dd93aba307dbe2d4fb14449d5",
+  "target_main_commit": "a7298aadd5836a0fa44eb279a3f71d8f9dbb56b9",
+  "tests": {
+    "total": 28,
+    "failures": 0,
+    "errors": 0
+  },
+  "pip_check": "No broken requirements found",
+  "merge_conflicts_with_main": false,
+  "training_metrics_modified": false,
+  "reproduction_tolerances": {
+    "p1": 1e-08,
+    "p2": 0.002,
+    "p3": 1e-08
+  },
+  "load_prediction_absolute_tolerance": 1e-08
+}

@@ -1,4 +1,9 @@
 .venv/
+.venv-tools/
+.python-runtime/
+mlflow.db
+reports/segunda_entrega/work/
+references/validaciones/local_*.json
 __pycache__/
 .pytest_cache/
 *.egg-info/
