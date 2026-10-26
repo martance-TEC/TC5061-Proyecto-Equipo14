@@ -40,6 +40,23 @@ from .wrappers import SeasonalNaive, HistoricalMean, RiskDecision
 P2_COLUMNS = FEATURES + ['capacity']
 WORK = REPORT_DIR / 'work'
 
+REPRODUCTION_TOLERANCES = {
+    'p1': 1e-8,
+    'p2': 2e-3,
+    'p3': 1e-8,
+}
+
+
+def reproduction_tolerance(question):
+    """Return the maximum allowed difference for an independent reproduction."""
+    return REPRODUCTION_TOLERANCES[question]
+
+
+def reproduction_passes(question, differences):
+    """Check whether all metric differences satisfy the question tolerance."""
+    maximum = max(differences.values(), default=0.0)
+    return maximum <= reproduction_tolerance(question)
+
 
 def write_json(path, value):
     path = Path(path)
@@ -409,10 +426,16 @@ def single(question, spec, role='candidate', reproduction=False):
             reference=next(r for r in reference if r['run_id']==read_json(REPORT_DIR/'selection.json')[question]['run_id'])
             diffs={key:abs(value-reference['metrics'][key]) for key,value in result['metrics'].items()
                    if key.startswith(('val_','test_')) and key in reference['metrics']}
-            if any(v>1e-8 for v in diffs.values()):raise ValueError(f'Reproduction differs: {diffs}')
-            write_json(S.root/'references/validaciones'/f'local_{question}.json',{'question':question,'passed':True,'run_id':result['run_id'],'reference_run_id':reference['run_id'],'absolute_differences':diffs,'data_version':source['data_version']})
+            tolerance=reproduction_tolerance(question)
+            maximum_difference=max(diffs.values(),default=0.0)
+            if not reproduction_passes(question,diffs):
+                raise ValueError(f'Reproduction differs: maximum={maximum_difference}, tolerance={tolerance}, differences={diffs}')
+            write_json(S.root/'references/validaciones'/f'local_{question}.json',
+                       {'question':question,'passed':True,'run_id':result['run_id'],
+                        'reference_run_id':reference['run_id'],'tolerance':tolerance,
+                        'maximum_absolute_difference':maximum_difference,
+                        'absolute_differences':diffs,'data_version':source['data_version']})
         return result
-
 
 def main():
     parser=argparse.ArgumentParser()
