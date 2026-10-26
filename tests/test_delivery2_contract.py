@@ -62,4 +62,3 @@ def test_risk_wrapper_retains_threshold_after_loading(tmp_path):
     actual=mlflow.pyfunc.load_model(str(path)).predict(X)
     np.testing.assert_allclose(actual.to_numpy(),expected.to_numpy())
     assert np.array_equal(actual.risk_class,actual.risk_probability>=.25)
-
