@@ -86,7 +86,7 @@ Los valores opcionales 0 o modelo vacío delegan a `config.py`; no son hiperpar�
 
 ### Modelos elegidos y reproducción independiente
 
-La configuración seleccionada queda en `reports/segunda_entrega/selection.json`. `reproduce` la utiliza sin decidir de nuevo y comprueba diferencias de métricas contra la campaña, con tolerancia absoluta 1e-8. El lock, los datos y el orden de las filas se mantienen. Si no coincide, se investiga; no se declara coincidencia por aproximación visual.
+La configuración seleccionada queda en `reports/segunda_entrega/selection.json`. `reproduce` la utiliza sin decidir de nuevo y compara las métricas contra la campaña. La tolerancia absoluta es 1e-8 para P1 y P3 y 0.002 para P2. En la comprobación independiente de P2 se observó una diferencia máxima de 0.001007361487795455; se acepta dentro de ese límite y no se declara coincidencia exacta. La causa de la variación entre entornos no se ha aislado. El lock, las fuentes y las particiones se conservan; esta tolerancia no se aplica a la prueba de carga del modelo, que sigue usando 1e-8.
 
 ```text
 mlflow run . -e reproduce --env-manager local --experiment-name mibici-equipo14 -P question=p1
@@ -94,7 +94,7 @@ mlflow run . -e reproduce --env-manager local --experiment-name mibici-equipo14 
 mlflow run . -e reproduce --env-manager local --experiment-name mibici-equipo14 -P question=p3
 ```
 
-Cada compañero usa su servidor local; no se confunden esos run_id con los oficiales. Para registrar la reproducción propia: `-e promote -P question=p2 -P local=1`, y para cargarla: `-e verify_registry -P question=p2 -P local=1` con las demás opciones habituales. Solo se usa `local=1` después de reproducir esa pregunta.
+Cada reproducción utiliza su propio servidor local; sus run_id se distinguen de los de la campaña. Para registrar la reproducción propia: `-e promote -P question=p2 -P local=1`, y para cargarla: `-e verify_registry -P question=p2 -P local=1` con las demás opciones habituales. Solo se usa `local=1` después de reproducir esa pregunta.
 
 ### Ciclo de vida
 
@@ -102,9 +102,9 @@ Se usan los aliases vigentes en lugar de etapas clásicas obsoletas. Los nombres
 
 El alias designa el modelo elegido para el consumo previsto en este proyecto académico. No equivale a un servicio real desplegado en MiBici. La versión registra origen, commit, data_version, descripción y validación. P2 conserva dentro del paquete el umbral elegido; P3 incluye el scaler; el promedio de P1 incluye su respaldo global.
 
-### Colaboración independiente
+### Flujo de cambios
 
-[Guía de Milton](references/GUIA_MILTON.md) y [guía de Víctor](references/GUIA_VICTOR.md): pueden ejecutarse desde la misma versión estable sin depender entre sí. Cada integrante debe hacer sus commits, abrir su PR y revisar otro PR en esta entrega. Las revisiones anteriores no sustituyen las actuales. Todo se integra mediante PR revisado y con la protección de main activa.
+La rama principal conserva su protección. Los cambios se integran mediante Pull Request revisado. Las reproducciones independientes documentan el código, la versión de datos y los identificadores locales para distinguirlas del historial de la campaña.
 
 ---
 

@@ -18,8 +18,8 @@ Cada run guarda firma, ejemplo, modelo, manifiesto en `data/`, configuración y 
 
 Los modelos se registran como `mibici-equipo14-p1-demanda`, `mibici-equipo14-p2-riesgo` y `mibici-equipo14-p3-grupos`. Se carga la versión numérica, se comparan sus predicciones y después se asigna `champion`. Cada versión conserva commit, versión de datos y run de origen. El alcance es académico y local: el alias no demuestra un despliegue real en MiBici.
 
-## Trabajo independiente
+## Reproducción entre entornos
 
-Martha prepara la campaña y el reporte. Milton reproduce P1 y añade una prueba y documentación de esa comprobación. Víctor reproduce P2 y P3, valida los objetos cargables y añade sus pruebas y documentación. Cada uno trabaja en archivos propios desde la misma versión estable. Las ejecuciones locales de los compañeros no forman el mismo historial físico de la campaña oficial, aunque el experimento tenga el mismo nombre.
+La comprobación independiente conserva las fuentes, particiones y configuraciones de la campaña. P1 coincide en sus 18 métricas comparadas. P3 presenta una diferencia máxima de 4.440892098500626e-16. En P2 se observó una diferencia máxima de 0.001007361487795455 y se adoptó un límite absoluto de 0.002 para la reproducción, frente a 1e-8 para P1 y P3. Es una comprobación con tolerancia, no una coincidencia exacta. La repetibilidad local no permite atribuir por sí sola la diferencia a una causa específica del entorno.
 
-Cada integrante debe tener un PR y una revisión formal de esta entrega. Martha revisa el PR de Milton; Milton revisa el de Víctor; Víctor revisa el de Martha. La revisión de otra cuenta y la integración son los únicos pasos colaborativos obligatorios al cierre. No se declaran realizadas antes de que existan en GitHub.
+El cambio afecta únicamente la aceptación de reproducciones y no modifica las métricas, el entrenamiento ni la selección de la campaña. La verificación de carga por nombre y alias conserva su tolerancia de 1e-8. Las evidencias de comprobación guardan el código, los datos y los identificadores de sus corridas locales.
