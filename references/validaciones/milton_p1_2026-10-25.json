@@ -1,0 +1,203 @@
+{
+  "checked_at_utc": "2026-10-25T07:56:16.189156+00:00",
+  "python": "3.11.9",
+  "git_commit": "895703efdcaf40cd1cb8c5768938eb79da3f8ff1",
+  "tracked_source_files_unchanged": true,
+  "experiment": "mibici-equipo14",
+  "tracking_uri": "http://127.0.0.1:5018",
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "model_run_id": "dbefbddf07a04405a52d314809addc03",
+  "model_uri": "models:/m-cdffd08270c740cfb61dd55b76eeb52f",
+  "reference_run_id": "48bc3dd1f2414f4ba31f9f2020226764",
+  "comparison_tolerance": 1e-08,
+  "compared_metrics": 18,
+  "max_absolute_metric_difference": 0.0,
+  "all_run_statuses": {
+    "dbefbddf07a04405a52d314809addc03": "FINISHED",
+    "02bfdf0340be4751ad1552843f946464": "FINISHED",
+    "533bae92483c4792a6a4281319ca721e": "FINISHED",
+    "d1f0a288118547ef8b4c1feb78dacffa": "FINISHED"
+  },
+  "model_count": 1,
+  "signature_present": true,
+  "input_example_present": true,
+  "full_prediction_comparison": {
+    "val": {
+      "rows": 540216,
+      "max_absolute_prediction_difference": 0.0,
+      "mae_independent": 0.8638844670093936
+    },
+    "test": {
+      "rows": 540216,
+      "max_absolute_prediction_difference": 0.0,
+      "mae_independent": 0.8776294806564072
+    }
+  },
+  "processed_files_hash_checked": 14,
+  "usable_trips": 4532032,
+  "rows": {
+    "train": 2090016,
+    "val": 540216,
+    "test": 540216
+  },
+  "metrics": {
+    "val_mae": 0.8638844670093936,
+    "val_rmse": 1.6046673010888644,
+    "val_wape": 0.585748779989666,
+    "val_month_9_mae": 0.8623444176608535,
+    "val_month_9_rmse": 1.6870246693855913,
+    "val_month_9_wape": 0.608052955060088,
+    "val_month_10_mae": 0.8653748373466904,
+    "val_month_10_rmse": 1.5207258339650138,
+    "val_month_10_wape": 0.5657365692067261,
+    "fit_seconds": 0.08409712498541921,
+    "predict_ms_per_1000_rows": 0.3063339972868562,
+    "serialized_model_bytes": 995572.0,
+    "test_mae": 0.8776294806564072,
+    "test_rmse": 1.5941786916188,
+    "test_wape": 0.662798190338916,
+    "test_month_11_mae": 0.8668538398223158,
+    "test_month_11_rmse": 1.6168688288898074,
+    "test_month_11_wape": 0.6058078460134018,
+    "test_month_12_mae": 0.8880575201732697,
+    "test_month_12_rmse": 1.571908675981798,
+    "test_month_12_wape": 0.7274423525990856
+  },
+  "fit_seconds": 0.08409712498541921,
+  "runs": [
+    {
+      "run_id": "dbefbddf07a04405a52d314809addc03",
+      "name": "eq14_p1_historical_mean_f492445",
+      "status": "FINISHED",
+      "parent_run_id": "02bfdf0340be4751ad1552843f946464"
+    },
+    {
+      "run_id": "02bfdf0340be4751ad1552843f946464",
+      "name": "eq14_p1_reproduction",
+      "status": "FINISHED",
+      "parent_run_id": null
+    },
+    {
+      "run_id": "533bae92483c4792a6a4281319ca721e",
+      "name": "eq14_verify_snapshot",
+      "status": "FINISHED",
+      "parent_run_id": null
+    },
+    {
+      "run_id": "d1f0a288118547ef8b4c1feb78dacffa",
+      "name": "eq14_ingest_snapshot",
+      "status": "FINISHED",
+      "parent_run_id": null
+    }
+  ],
+  "source_verification": {
+    "source_count": 13,
+    "reused_local_csv": true,
+    "all_hashes_match": true,
+    "all_sizes_match": true
+  },
+  "absolute_metric_differences": {
+    "val_mae": 0.0,
+    "val_rmse": 0.0,
+    "val_wape": 0.0,
+    "val_month_9_mae": 0.0,
+    "val_month_9_rmse": 0.0,
+    "val_month_9_wape": 0.0,
+    "val_month_10_mae": 0.0,
+    "val_month_10_rmse": 0.0,
+    "val_month_10_wape": 0.0,
+    "test_mae": 0.0,
+    "test_rmse": 0.0,
+    "test_wape": 0.0,
+    "test_month_11_mae": 0.0,
+    "test_month_11_rmse": 0.0,
+    "test_month_11_wape": 0.0,
+    "test_month_12_mae": 0.0,
+    "test_month_12_rmse": 0.0,
+    "test_month_12_wape": 0.0
+  },
+  "mutation_test": {
+    "mutation": "Cambiar el respaldo global por cero",
+    "expected_exit": 1,
+    "actual_exit": 1,
+    "detected": true,
+    "original_restored": true
+  },
+  "tests": {
+    "baseline_passed": 23,
+    "final_passed": 25,
+    "warnings": 18,
+    "new_test": "tests/test_milton_p1_loading.py",
+    "previous_final_passed": 24,
+    "new_post_fit_test": "tests/test_milton_p1_loading.py::test_historical_mean_keeps_predictions_after_training_data_changes",
+    "post_fit_case": {
+      "fit_calls": 1,
+      "mutated_training_variables": [
+        "station_id",
+        "weekday",
+        "hour"
+      ],
+      "mutated_original_targets": true,
+      "fixed_evaluation_inputs": true,
+      "fitted_predictions_unchanged": true,
+      "saved_loaded_predictions_unchanged": true
+    }
+  },
+  "environment": {
+    "fresh_venv": true,
+    "installed_from": "requirements.lock.txt",
+    "pip_check": "No broken requirements found",
+    "versions": {
+      "mlflow": "3.4.0",
+      "pandas": "2.2.3",
+      "numpy": "1.26.4",
+      "scikit-learn": "1.5.2",
+      "pyarrow": "18.1.0",
+      "pytest": "8.3.4"
+    },
+    "requirements_sha256": "9b9653b65c2fabcee5e3bca21228079c4997774b2bc049167e979cf3e4bcf491"
+  },
+  "scope": "Independent local reproduction of P1 winner only",
+  "registry_promotion_performed": false,
+  "closure_checked_at_utc": "2026-10-25T15:16:11.004591+00:00",
+  "screenshots": [
+    {
+      "file": "references/validaciones/capturas_milton_p1/01_corridas_p1.png",
+      "url": "http://127.0.0.1:5018/#/experiments/1/runs?searchFilter=&orderByKey=attributes.start_time&orderByAsc=false&startTime=ALL&lifecycleFilter=Active&modelVersionFilter=All+Runs&datasetsFilter=W10%3D",
+      "sha256": "1ff78c866627241b24187c5af4427ae5be14713804f5375aeeb447a858da7665",
+      "captured_at_utc": "2026-10-25T15:17:15.764Z",
+      "required_text": [
+        "eq14_p1_reproduction",
+        "eq14_p1_historical_mean_f492445",
+        "eq14_ingest_snapshot",
+        "eq14_verify_snapshot"
+      ]
+    },
+    {
+      "file": "references/validaciones/capturas_milton_p1/02_metricas_p1.png",
+      "url": "http://127.0.0.1:5018/#/experiments/1/runs/dbefbddf07a04405a52d314809addc03",
+      "sha256": "f80dfb77a31cfe637f7c2a159627a342adaacc5514c45e9268d3cc47f86fd81c",
+      "captured_at_utc": "2026-10-25T15:17:17.352Z",
+      "required_text": [
+        "0.8638844670093936",
+        "0.8776294806564072",
+        "Finished",
+        "eq14_p1_reproduction"
+      ]
+    },
+    {
+      "file": "references/validaciones/capturas_milton_p1/03_artefactos_p1.png",
+      "url": "http://127.0.0.1:5018/#/experiments/1/runs/dbefbddf07a04405a52d314809addc03/artifacts",
+      "sha256": "eed33461231b6829871bd394544d1efa205e0eb6094d94e1e3c6101cb169390c",
+      "captured_at_utc": "2026-10-25T15:17:19.347Z",
+      "required_text": [
+        "Artifacts",
+        "evaluation",
+        "config",
+        "data",
+        "plots"
+      ]
+    }
+  ],
+  "screenshot_browser": "Chromium for Testing local en MacBook de Milton"
+}
