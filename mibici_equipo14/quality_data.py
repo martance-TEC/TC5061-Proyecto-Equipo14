@@ -157,14 +157,14 @@ def run(output):
             record = {'issues': issues, 'checked_rows': len(frame)}
             if not issues:
                 result = integrity_suite(frame, question)
-                result.save_as_html(str(output / f'{question}_{split}_integrity.html'))
+                result.save_as_html(str(output / f'{question}_{split}_integrity.html'), as_widget=False)
                 record['deepchecks'] = result_status(result)
             item['partitions'][split] = record
             if issues or not record.get('deepchecks', {}).get('passed', False):
                 summary['passed'] = False
         if all(not p['issues'] for p in item['partitions'].values()):
             result = drift_check(parts['train'], parts['test'], question)
-            result.save_as_html(str(output / f'{question}_drift.html'))
+            result.save_as_html(str(output / f'{question}_drift.html'), as_widget=False)
             item['drift'] = result_status(result)
             item['drift']['scores'] = result.value
             if item['drift']['execution_errors']:
