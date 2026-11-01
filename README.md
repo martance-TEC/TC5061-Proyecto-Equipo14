@@ -1,5 +1,177 @@
 # MiBici
 
+## Pruebas, calidad de datos y seguridad
+
+Los controles comprueban la ingesta, las variables temporales, la capacidad de las
+estaciones y la repetibilidad del entrenamiento. Se ejecutan localmente con Python
+3.11.9. No requieren Docker, un servidor de MLflow ni acceso a credenciales.
+
+### Instalar las herramientas
+
+Desde la raíz del clon, con Git disponible. En macOS:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install pip==25.0.1 setuptools==78.1.0 wheel==0.45.1
+python -m pip install -r requirements-quality.lock.txt
+python -m pip install --no-deps --no-build-isolation -e .
+python -m pip check
+```
+
+En Windows, desde PowerShell:
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install pip==25.0.1 setuptools==78.1.0 wheel==0.45.1
+.\.venv\Scripts\python.exe -m pip install -r requirements-quality.lock.txt
+.\.venv\Scripts\python.exe -m pip install --no-deps --no-build-isolation -e .
+.\.venv\Scripts\python.exe -m pip check
+$env:PATH = "$PWD\.venv\Scripts;$env:PATH"
+```
+
+El lock de calidad incluye el entorno de entrenamiento y las herramientas
+adicionales. Plotly 5.24.1 conserva la compatibilidad de los reportes de Deepchecks.
+La instalación no elimina las vulnerabilidades conocidas del entorno histórico;
+su alcance se explica más adelante.
+
+### Ejecutar los controles
+
+Las pruebas usan ejemplos pequeños y no necesitan descargar datos:
+
+```text
+python -m mibici_equipo14.quality tests
+```
+
+Comprueban casos normales y límite, fuga temporal, integridad de archivos,
+predicciones después de cargar un modelo y dos entrenamientos nuevos con la misma
+semilla para P1, P2 y P3. No se comparan dos referencias al mismo modelo.
+La cobertura se guarda para identificar código pendiente; no significa que todas
+las rutas de entrenamiento, gráficos o Registry estén cubiertas por pruebas unitarias.
+
+Para revisar datos reales desde un clon limpio, primero reconstruir las fuentes:
+
+```text
+python -m mibici_equipo14.dataset
+python -m mibici_equipo14.dataset --verify
+python -m mibici_equipo14.quality data
+```
+
+La primera preparación puede tardar porque reconstruye las variables. Se conservan
+las fechas y las definiciones de la entrega anterior. El manifiesto local debe
+coincidir con la versión de fuentes publicada; se comprueban los hashes de los
+Parquet antes de abrirlos.
+
+La revisión de seguridad del código y del repositorio se ejecuta con:
+
+```text
+python -m mibici_equipo14.quality security
+```
+
+Con los datos preparados, un solo comando ejecuta PyTest, Deepchecks y la revisión
+local de seguridad:
+
+```text
+python -m mibici_equipo14.quality all
+```
+
+Cada control conserva su resultado. Un error de ejecución o una condición de
+integridad incumplida devuelve código 1; no se contabiliza como una prueba omitida
+con éxito. Este comando no consulta vulnerabilidades de dependencias en internet.
+Para incluir esa auditoría:
+
+```text
+python -m mibici_equipo14.quality all --audit-dependencies
+```
+
+También puede ejecutarse por separado:
+
+```text
+python -m mibici_equipo14.quality security --audit-dependencies
+```
+
+pip-audit envía nombres y versiones de paquetes a la base pública de avisos. No
+envía los viajes. Una auditoría con vulnerabilidades devuelve código 1 y requiere
+tratamiento; una conexión fallida tampoco se presenta como resultado limpio.
+
+### Qué revisa Deepchecks
+
+Las reglas de dominio revisan todas las filas de cada partición: columnas, tipos,
+faltantes, valores no finitos, conteos negativos, claves estación-hora, capacidad,
+etiquetas y límites temporales. En P3 se exige un índice de estaciones único y
+proporciones dentro de sus rangos válidos.
+
+Deepchecks comprueba faltantes y duplicados sobre una muestra de hasta 10,000 filas
+por partición, con semilla 42. En P3 se utilizan las 369 estaciones. Los duplicados
+se definen por la clave, no por perfiles de uso iguales: dos horas con cero viajes
+pueden ser registros distintos y válidos.
+
+El drift compara entrenamiento y prueba con KS para variables numéricas y Cramér V
+para calendario. El umbral de alerta es 0.2. Mes e identificadores quedan fuera de
+esa comparación. Una alerta de distribución se conserva para análisis; no se
+mezclan las particiones ni se modifica el umbral para hacerla desaparecer. Los
+faltantes iniciales de los rezagos se excluyen en la preparación original, no
+mediante una limpieza adicional dentro del chequeo.
+
+Los resultados de P3 muestran cambios en algunos perfiles horarios. Esto no prueba
+por sí solo una degradación del modelo, pero exige revisar la estacionalidad y
+evaluar su comportamiento en nuevos periodos antes de utilizarlo para decisiones.
+
+### Seguridad y alcance
+
+Bandit revisa el código del módulo. La descarga acepta únicamente HTTPS hacia el
+portal oficial, rechaza redirecciones y descarta archivos incompletos. La unicidad
+del catálogo se comprueba con un error explícito que sigue activo al optimizar Python.
+Las consultas a Git y las herramientas locales usan ejecutables resueltos y listas
+de argumentos, sin un shell. Las excepciones de Bandit están justificadas en las
+líneas correspondientes; no se desactiva una categoría completa de análisis.
+
+La revisión del repositorio busca archivos excluidos y patrones de credenciales
+en los archivos de texto actuales y en su historial local. Solo informa la regla
+y la ubicación; no muestra valores de credenciales. No analiza el contenido
+comprimido de imágenes, PDF o Word y no sustituye una revisión de seguridad completa.
+El `.gitignore` evita nuevas incorporaciones accidentales, pero no borra un secreto
+que ya hubiera sido publicado: en ese caso debe revocarse y tratarse el incidente.
+
+La auditoría del entorno histórico encontró avisos de dependencias, incluidos
+MLflow y sus componentes. Se conserva la evidencia y no se declara ese entorno
+apto para exposición pública. Los servidores siguen limitados a `127.0.0.1`.
+Actualizar las dependencias requiere comprobar carga de modelos, ingesta y
+reproducción antes de sustituir el entorno usado como referencia. Las pruebas
+aprobadas y un Bandit limpio no eliminan esos avisos.
+
+### Resultados y evidencias
+
+Los archivos detallados se guardan en `data/quality/`, excluida de Git:
+
+- `pytest.xml`, `pytest.txt` y `coverage.json`: pruebas y cobertura.
+- `data_checks.json` y reportes HTML: integridad y drift.
+- `bandit.json` y `security.json`: código e historial.
+- `pip_audit.json`: dependencias, cuando se solicita esa comprobación.
+- `all_summary.json`: resultado de la ejecución completa y commit comprobado.
+
+Para consultar el resumen de una ejecución completa guardada:
+
+```text
+python -m mibici_equipo14.quality summary
+```
+
+`python -m mibici_equipo14.quality evidence` prepara un resumen HTML de esos
+resultados para abrirlo en el navegador. No vuelve a ejecutar las comprobaciones.
+
+Los [resultados publicados](reports/calidad/resultados.json), el
+[análisis de hallazgos](reports/calidad/hallazgos.md) y las
+[capturas](reports/figures/calidad/) documentan la ejecución. Los HTML permanecen
+locales para evitar publicar muestras de datos. Las evidencias de una ejecución
+nueva deben conservar su commit y no sustituir los resultados históricos.
+
+### Referencias de las herramientas
+
+- pytest. (s. f.). *pytest documentation*. https://docs.pytest.org/en/stable/
+- Deepchecks. (s. f.). *Welcome to Deepchecks!*. https://docs.deepchecks.com/stable/getting-started/welcome.html
+- PyCQA. (s. f.). *Bandit documentation*. https://bandit.readthedocs.io/en/latest/
+- Python Packaging Authority. (s. f.). *pip-audit*. https://pypi.org/project/pip-audit/
+
 ## Segunda entrega de MLflow
 
 El [protocolo](references/segunda_entrega.md) amplía el proyecto con entrenamiento parametrizado, tres candidatos por pregunta, búsquedas anidadas y Model Registry. La base de la primera computadora no se conservó: los baselines se reconstruyen con los mismos datos y definiciones y quedan identificados como reproducciones. No se reutilizan los run_id históricos.

@@ -1,5 +1,10 @@
 .venv/
 .venv-tools/
+.venv-quality/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
 .python-runtime/
 mlflow.db
 reports/segunda_entrega/work/

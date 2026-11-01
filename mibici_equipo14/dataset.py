@@ -1,7 +1,9 @@
 """Descarga, normaliza y versiona fuentes oficiales sin datos personales."""
-import argparse,hashlib,json,urllib.request,re,unicodedata
+import argparse,hashlib,json,re,unicodedata
+from urllib.parse import urlsplit
 from pathlib import Path
 import pandas as pd
+import requests
 from .config import SETTINGS as S
 def sha256(path):
     h=hashlib.sha256()
@@ -43,6 +45,26 @@ def write_processed(frame, path):
     return {'path': path.relative_to(S.root).as_posix(), 'rows': len(frame),
             'bytes': path.stat().st_size, 'sha256': sha256(path)}
 
+
+def download_source(url, path):
+    """Descarga solamente por HTTPS desde el portal oficial, sin redirecciones."""
+    parsed = urlsplit(url)
+    if (parsed.scheme != 'https' or parsed.hostname not in {'mibici.net', 'www.mibici.net'}
+            or parsed.username or parsed.password or parsed.port not in (None, 443)):
+        raise ValueError('La fuente debe ser una URL HTTPS del portal oficial de MiBici')
+    temporary = path.with_suffix(path.suffix + '.part')
+    try:
+        with requests.get(url, stream=True, timeout=(10, 120), allow_redirects=False) as response:
+            response.raise_for_status()
+            if response.status_code != 200:
+                raise ValueError('La descarga debe responder 200 sin redirecciones')
+            with temporary.open('wb') as handle:
+                for block in response.iter_content(chunk_size=1024 * 1024):
+                    handle.write(block)
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
 def ingest(verify=False):
     sources=json.loads((S.root/"references/sources.json").read_text())
     dest=S.root/"references/data_manifest.json"
@@ -50,12 +72,12 @@ def ingest(verify=False):
     raw=S.root/"data/raw";raw.mkdir(parents=True,exist_ok=True)
     records=[];frames=[];seen={};duplicate=0;conflict=0;invalid=0;input_rows=0
     for source in sources:
+        if Path(source['name']).name != source['name'] or source['name'] in {'.', '..'}:
+            raise ValueError('Nombre de archivo de fuente no válido')
         path=raw/source["name"]
         if not path.exists():
             if verify: raise FileNotFoundError(path)
-            req=urllib.request.Request(source["url"],headers={"User-Agent":"TC5061-Equipo14/1.0"})
-            with urllib.request.urlopen(req,timeout=120) as response,path.open("wb") as out:
-                import shutil;shutil.copyfileobj(response,out)
+            download_source(source['url'], path)
         rec={**source,"sha256":sha256(path),"bytes":path.stat().st_size}
         if expected:
             reference=next((r for r in expected['sources'] if r['name']==source['name']),None)
@@ -89,7 +111,8 @@ def ingest(verify=False):
     trips=trips[(trips.started_at>=S.start)&(trips.started_at<S.end)]
     stations=pd.read_csv(raw/"estaciones.csv",dtype={"id":"string"}).rename(columns={"id":"station_id","dpcapacity":"capacity"})
     stations["capacity"]=pd.to_numeric(stations.capacity,errors="coerce")
-    assert stations.station_id.is_unique
+    if not stations.station_id.is_unique:
+        raise ValueError('El catálogo contiene identificadores de estación duplicados')
     data_version=canonical_version(records)
     dest=S.root/"references/data_manifest.json"
     if expected:
