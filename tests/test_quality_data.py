@@ -4,7 +4,7 @@ import pandas as pd
 import pytest
 
 from mibici_equipo14.quality_data import (
-    drift_check, integrity_suite, result_status, table_issues,
+    drift_check, integrity_suite, result_status, save_report, table_issues,
 )
 from mibici_equipo14.modeling.advanced import FEATURES
 
@@ -71,3 +71,13 @@ def test_deepchecks_detects_a_known_distribution_shift():
 
 def test_empty_partition_is_rejected(hourly_frame):
     assert table_issues(hourly_frame.iloc[:0], 'p1', 'train')
+
+
+def test_export_replaces_the_report_at_the_documented_path(hourly_frame, tmp_path):
+    path = tmp_path / 'integrity.html'
+    path.write_text('previous report', encoding='utf-8')
+    save_report(integrity_suite(hourly_frame, 'p1'), path)
+    contents = path.read_text(encoding='utf-8')
+    assert 'previous report' not in contents
+    assert 'Percent Of Nulls' in contents
+    assert list(tmp_path.glob('*.html')) == [path]

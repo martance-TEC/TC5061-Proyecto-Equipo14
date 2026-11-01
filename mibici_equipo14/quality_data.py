@@ -129,6 +129,12 @@ def result_status(result):
             'passed': not errors and not failed}
 
 
+def save_report(result, path):
+    """Actualiza el nombre documentado en vez de crear copias numeradas."""
+    with Path(path).open('w', encoding='utf-8') as handle:
+        result.save_as_html(handle, as_widget=False)
+
+
 def run(output):
     from .dataset import sha256
     from .modeling.advanced import prepare
@@ -157,14 +163,14 @@ def run(output):
             record = {'issues': issues, 'checked_rows': len(frame)}
             if not issues:
                 result = integrity_suite(frame, question)
-                result.save_as_html(str(output / f'{question}_{split}_integrity.html'), as_widget=False)
+                save_report(result, output / f'{question}_{split}_integrity.html')
                 record['deepchecks'] = result_status(result)
             item['partitions'][split] = record
             if issues or not record.get('deepchecks', {}).get('passed', False):
                 summary['passed'] = False
         if all(not p['issues'] for p in item['partitions'].values()):
             result = drift_check(parts['train'], parts['test'], question)
-            result.save_as_html(str(output / f'{question}_drift.html'), as_widget=False)
+            save_report(result, output / f'{question}_drift.html')
             item['drift'] = result_status(result)
             item['drift']['scores'] = result.value
             if item['drift']['execution_errors']:
