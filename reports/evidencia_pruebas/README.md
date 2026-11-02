@@ -5,7 +5,4 @@ Los archivos contienen la salida de las pruebas ejecutadas en macOS con Python 3
 - `especificas.txt`: `.venv/bin/python -m pytest -q tests/test_milton_processing_p1.py --tb=short`
 - `completa.txt`: `.venv/bin/python -m mibici_equipo14.quality tests`
 
-Las capturas muestran los registros guardados de estas ejecuciones:
-
-- `01_pruebas_especificas.png`: pruebas añadidas
-- `02_suite_completa.png`: suite completa
+La captura `02_suite_completa.png` muestra el registro guardado de la suite completa.
