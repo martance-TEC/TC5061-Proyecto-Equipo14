@@ -1,6 +1,6 @@
 {
   "execution": {
-    "checked_at_utc": "2026-11-01T04:15:36.848182+00:00",
+    "checked_at_utc": "2026-11-02T03:56:48.342825+00:00",
     "checks": {
       "tests": {
         "passed": true
@@ -12,7 +12,7 @@
         "passed": true
       }
     },
-    "source_commit": "22a6a5185f93367cc81b02739a9ecbddae7da172",
+    "source_commit": "aad391a0d2637b000ba5baca407fbe13ea4fd0c4",
     "working_tree_dirty": false,
     "passed": true
   },
@@ -31,13 +31,13 @@
     "pip": "26.2.2"
   },
   "tests": {
-    "total": 71,
+    "total": 86,
     "failures": 0,
     "errors": 0,
     "skipped": 0
   },
   "coverage": {
-    "overall_percent": 38.0564263322884,
+    "overall_percent": 39.74921630094044,
     "features_percent": 97.6470588235294,
     "note": "La cobertura global incluye rutas de orquestación y Registry no ejecutadas en la suite unitaria."
   },
@@ -831,8 +831,8 @@
   "security": {
     "repository": {
       "passed": true,
-      "tracked_files": 144,
-      "historical_text_objects": 172,
+      "tracked_files": 150,
+      "historical_text_objects": 183,
       "findings": [],
       "scope": "Reglas de credenciales en texto; no analiza contenido comprimido de imágenes, PDF o Word"
     },
@@ -1044,7 +1044,8 @@
       "passed": true
     },
     "tests": 71,
-    "environment": "Clon separado, con el mismo entorno local verificado; no es una instalación nueva en otro sistema operativo."
+    "environment": "Clon separado, con el mismo entorno local verificado; no es una instalación nueva en otro sistema operativo.",
+    "note": "Comprobación histórica de 71 pruebas; la ejecución conjunta actual de 86 pruebas figura en execution y tests."
   },
   "evidence": [
     "reports/figures/calidad/01_resumen_ejecucion.jpg",

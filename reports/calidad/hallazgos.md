@@ -1,8 +1,9 @@
 # Calidad y seguridad
 
-La ejecución comprobó 71 pruebas, sin fallos, errores ni casos omitidos. También
-pasaron desde un clon separado, usando el mismo entorno local. Esa segunda
-comprobación no equivale a una instalación nueva en Windows o Linux.
+La ejecución conjunta comprobó 86 pruebas, sin fallos, errores ni casos omitidos,
+tras integrar las pruebas de ingesta, P1 y validación de perfiles de P2 y P3.
+La comprobación anterior desde un clon separado incluyó 71 pruebas y utilizó
+el mismo entorno local; no equivale a una instalación nueva en Windows o Linux.
 El commit, las versiones y las cifras completas están en [resultados.json](resultados.json).
 
 ## Pruebas y reproducibilidad
@@ -21,7 +22,7 @@ fuera de su partición. Una distribución artificialmente desplazada activa la
 condición de drift. De esta manera se comprueba la capacidad de detectar errores,
 además del comportamiento con datos válidos.
 
-La cobertura global es cercana al 38 %. El módulo de variables alcanza cerca del
+La cobertura global es cercana al 40 %. El módulo de variables alcanza cerca del
 98 %. La diferencia se debe a que el cálculo global también incluye orquestación,
 gráficos, servidores y operaciones de Registry no ejecutadas por las pruebas
 unitarias. No se afirma cobertura completa del sistema ni validación operativa

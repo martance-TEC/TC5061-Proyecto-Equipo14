@@ -165,6 +165,10 @@ Los [resultados publicados](reports/calidad/resultados.json), el
 locales para evitar publicar muestras de datos. Las evidencias de una ejecución
 nueva deben conservar su commit y no sustituir los resultados históricos.
 
+La validación conjunta registró **86 pruebas aprobadas**, integridad aprobada
+para P1, P2 y P3 y cero hallazgos de Bandit. Se conserva la alerta de drift de P3
+y el reporte previo de dependencias con avisos en 11 paquetes.
+
 ### Referencias de las herramientas
 
 - pytest. (s. f.). *pytest documentation*. https://docs.pytest.org/en/stable/
