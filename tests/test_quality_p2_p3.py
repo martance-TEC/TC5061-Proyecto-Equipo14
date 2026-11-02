@@ -1,8 +1,8 @@
-"""Pruebas de calidad específicas para P2 y P3."""
-
 import pandas as pd
+import numpy as np
 
 from mibici_equipo14.config import SETTINGS as S
+from mibici_equipo14.features import station_profiles
 from mibici_equipo14.modeling.advanced import P2_COLUMNS
 from mibici_equipo14.quality_data import table_issues
 
@@ -25,20 +25,16 @@ def valid_p2_frame():
 
 
 def valid_p3_frame():
-    row = {}
-
-    for hour in range(48):
-        row[f"departures_{hour}"] = 1.0
-        row[f"arrivals_{hour}"] = 1.0
-
-    row["log_volume"] = 1.0
-    row["weekend_share"] = 0.25
-    row["balance"] = 0.0
-
-    return pd.DataFrame(
-        [row],
-        index=["station_100"],
-    )
+    """Genera el perfil de una estación con cuatro semanas de actividad."""
+    times = pd.date_range(S.start, periods=28 * 24, freq="h")
+    hourly = pd.DataFrame({
+        "station_id": "station_100",
+        "time": times,
+        "departures": 1,
+        "arrivals": 1,
+    })
+    end = times[-1] + pd.Timedelta(hours=1)
+    return station_profiles(hourly, times[0], end)
 
 
 def test_p2_valid_data_is_accepted():
@@ -56,6 +52,20 @@ def test_p2_invalid_risk_is_rejected():
     issues = table_issues(frame, "p2", "train")
 
     assert "risk debe contener solamente 0 y 1" in issues
+
+
+def test_p3_valid_normalized_profile_is_accepted():
+    frame = valid_p3_frame()
+    columns = [f"{kind}_{hour}" for kind in ("departures", "arrivals")
+               for hour in range(48)]
+    proportions = frame[columns]
+
+    assert frame.shape == (1, 99)
+    assert proportions.ge(0).all().all()
+    assert proportions.le(1).all().all()
+    np.testing.assert_allclose(proportions.sum(axis=1), [1.0], rtol=0, atol=1e-12)
+    np.testing.assert_allclose(frame["weekend_share"], [2 / 7], rtol=0, atol=1e-12)
+    assert table_issues(frame, "p3", "train") == []
 
 
 def test_p3_duplicate_station_is_rejected():
