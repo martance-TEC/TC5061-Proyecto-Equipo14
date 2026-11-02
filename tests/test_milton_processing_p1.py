@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from mibici_equipo14.dataset import TRIP_COLUMNS, canonical_column, trip_chunks
+from mibici_equipo14.dataset import canonical_column, trip_chunks
 from mibici_equipo14.modeling.wrappers import HistoricalMean
 
 
@@ -24,16 +24,21 @@ def test_trip_chunks_preserve_identifier_strings_and_leading_zeroes(tmp_path):
         encoding='utf-8',
     )
     frame = pd.concat(list(trip_chunks(path, 'utf-8')), ignore_index=True)
-    assert list(frame.columns) == list(TRIP_COLUMNS.values())
+    assert list(frame.columns) == [
+        'trip_id', 'started_at', 'ended_at', 'origin_id', 'destination_id',
+    ]
     assert frame.loc[0, ['trip_id', 'origin_id', 'destination_id']].tolist() == [
         '00012', '007', '0009',
     ]
 
 
-@pytest.mark.parametrize('missing', list(TRIP_COLUMNS))
+@pytest.mark.parametrize('missing', [
+    'viaje_id', 'inicio_del_viaje', 'fin_del_viaje', 'origen_id', 'destino_id',
+])
 def test_missing_operational_column_is_reported(tmp_path, missing):
     path = tmp_path / 'incompleto.csv'
-    columns = [name for name in TRIP_COLUMNS if name != missing]
+    required = ['viaje_id', 'inicio_del_viaje', 'fin_del_viaje', 'origen_id', 'destino_id']
+    columns = [name for name in required if name != missing]
     path.write_text(','.join(columns) + '\n', encoding='utf-8')
     with pytest.raises(ValueError, match='Missing operational columns') as error:
         list(trip_chunks(path, 'utf-8'))
