@@ -1,0 +1,88 @@
+
+=== TESTS ===
+........................................................................ [ 88%]
+.........                                                                [100%]
+=============================== warnings summary ===============================
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:64
+  [ruta del proyecto]/.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:64: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+    prop = Group((name + Suppress("=") + comma_separated(value)) | oneOf(_CONSTANTS))
+
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85
+  [ruta del proyecto]/.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+    parse = parser.parseString(pattern)
+
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89
+  [ruta del proyecto]/.venv/lib/python3.11/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+    parser.resetCache()
+
+.venv/lib/python3.11/site-packages/matplotlib/_mathtext.py:45
+  [ruta del proyecto]/.venv/lib/python3.11/site-packages/matplotlib/_mathtext.py:45: PyparsingDeprecationWarning: 'enablePackrat' deprecated - use 'enable_packrat'
+    ParserElement.enablePackrat()
+
+.venv/lib/python3.11/site-packages/mlflow/pyfunc/utils/data_validation.py:186
+  [ruta del proyecto]/.venv/lib/python3.11/site-packages/mlflow/pyfunc/utils/data_validation.py:186: UserWarning: Add type hints to the `predict` method to enable data validation and automatic signature inference during model logging. Check https://mlflow.org/docs/latest/model/python_model.html#type-hint-usage-in-pythonmodel for more details.
+    color_warning(
+
+tests/test_delivery2_contract.py::test_risk_wrapper_retains_threshold_after_loading
+tests/test_milton_p1_loading.py::test_historical_mean_roundtrip_preserves_groups_fallback_and_row_order
+tests/test_milton_p1_loading.py::test_historical_mean_keeps_predictions_after_training_data_changes
+  [ruta del proyecto]/.venv/lib/python3.11/site-packages/mlflow/types/utils.py:452: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+    warnings.warn(
+
+tests/test_quality_data.py::test_valid_hourly_data_and_zero_counts
+  [ruta del proyecto]/.venv/lib/python3.11/site-packages/deepchecks/core/serialization/dataframe/html.py:16: DeprecationWarning:
+
+  pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html
+
+tests/test_quality_data.py::test_valid_hourly_data_and_zero_counts
+  [ruta del proyecto]/.venv/lib/python3.11/site-packages/sklearn/metrics/_scorer.py:610: FutureWarning:
+
+  The `needs_threshold` and `needs_proba` parameter are deprecated in version 1.4 and will be removed in 1.6. You can either let `response_method` be `None` or set it to `predict` to preserve the same behaviour.
+
+tests/test_training_reproducibility.py::test_same_seed_repeats_training[p1-hgb-parameters0]
+  [ruta del proyecto]/.venv/lib/python3.11/site-packages/joblib/externals/loky/backend/context.py:134: UserWarning:
+
+  Could not find the number of physical cores for the following reason:
+  invalid literal for int() with base 10: ''
+  Returning the number of logical cores instead. You can silence this warning by setting LOKY_MAX_CPU_COUNT to the number of cores you want to use.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+- generated xml file: [ruta del proyecto]/data/quality/pytest.xml -
+================================ tests coverage ================================
+______________ coverage: platform darwin, python 3.11.15-final-0 _______________
+
+Name                                   Stmts   Miss Branch BrPart  Cover   Missing
+----------------------------------------------------------------------------------
+mibici_equipo14/audit.py                  41     41     26      0     0%   2-49
+mibici_equipo14/dataset.py               120     18     48      9    80%   76, 79-80, 84->86, 87->93, 106, 109->exit, 115, 119-120, 133-144
+mibici_equipo14/features.py               69      1     16      1    98%   26
+mibici_equipo14/modeling/advanced.py     363    274    106      6    24%   61-63, 68, 72, 76-80, 85-89, 93-103, 108-159, 164, 174->exit, 179-182, 187->exit, 188->exit, 190->exit, 196-208, 212-214, 218-254, 258-333, 343, 351-367, 371-383, 387-413, 417-437, 440-447, 451-454
+mibici_equipo14/modeling/search.py         8      8      2      0     0%   2-10
+mibici_equipo14/modeling/train.py        110     81     26      1    22%   32-65, 68-88, 90-91, 94-121, 124-125
+mibici_equipo14/modeling/wrappers.py      28      2      0      0    93%   10, 13
+mibici_equipo14/pipeline.py               47      1     12      4    92%   19->33, 33->42, 42->44, 49
+mibici_equipo14/quality.py               101    101     24      0     0%   2-138
+mibici_equipo14/quality_data.py          141     59     66      8    54%   23-25, 30, 45, 55-57, 70-73, 75-78, 89-90, 139-184
+mibici_equipo14/quality_security.py       77     58     30      0    20%   37-40, 46-75, 81-116
+mibici_equipo14/registry.py               67     67     14      0     0%   2-88
+mibici_equipo14/tracking.py               26     15      4      1    40%   8-13, 16-18, 20-24, 26, 27->exit
+----------------------------------------------------------------------------------
+TOTAL                                   1221    726    374     30    38%
+
+3 files skipped due to complete coverage.
+Coverage JSON written to file [ruta del proyecto]/data/quality/coverage.json
+81 passed, 21 warnings in 6.42s
+
+
+Resultado: APROBADO
+Resultados locales: data/quality

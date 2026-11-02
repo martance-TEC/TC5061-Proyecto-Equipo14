@@ -1,8 +1,8 @@
 """Comprobación de los entregables técnicos de la campaña oficial."""
 import json
-import subprocess
+import subprocess  # nosec B404: solo ejecuta pip check con el intérprete actual.
 import sys
-import xml.etree.ElementTree as ET
+from defusedxml import ElementTree as ET
 import mlflow
 from mlflow import MlflowClient
 from .config import SETTINGS as S, REPORT_DIR
@@ -39,7 +39,7 @@ def main():
     for suite in suites:
         if int(suite.get('failures',0))+int(suite.get('errors',0)):raise ValueError('Test suite failed')
         tests+=int(suite.get('tests',0))-int(suite.get('skipped',0))
-    check=subprocess.run([sys.executable,'-m','pip','check'],capture_output=True,text=True,check=True)
+    check=subprocess.run([sys.executable,'-m','pip','check'],capture_output=True,text=True,check=True)  # nosec B603: argumentos fijos, sin shell.
     result={'questions':questions,'model_checks':model_checks,'registry_models_verified':3,
             'tests_passed':tests,'pip_check':check.stdout.strip(),
             'baseline_rebuilt':True,'previous_database_available':False}

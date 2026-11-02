@@ -1,11 +1,15 @@
 """Tracking explícito del commit, fuentes, métricas y modelos."""
-import json,subprocess,os
+import json,os,shutil
+import subprocess  # nosec B404: consulta Git local con argumentos fijos y sin shell.
 import mlflow
 import numpy as np
 from .config import SETTINGS as S
 def git_state():
-    sha=subprocess.check_output(["git","rev-parse","HEAD"],cwd=S.root,text=True).strip()
-    dirty=bool(subprocess.check_output(["git","status","--porcelain","--untracked-files=no"],cwd=S.root,text=True).strip())
+    git = shutil.which('git')
+    if git is None:
+        raise RuntimeError('Git no está disponible')
+    sha=subprocess.check_output([git,"rev-parse","HEAD"],cwd=S.root,text=True).strip()  # nosec B603: consulta fija de Git.
+    dirty=bool(subprocess.check_output([git,"status","--porcelain","--untracked-files=no"],cwd=S.root,text=True).strip())  # nosec B603: consulta fija de Git.
     return sha,dirty
 class ExperimentTracker:
     def __init__(self,integrante,manifest):
