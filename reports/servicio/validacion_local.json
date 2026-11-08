@@ -1,0 +1,45 @@
+{
+  "checked_at_utc": "2026-11-08T21:06:09.522256+00:00",
+  "execution_mode": "local_python",
+  "tests": {
+    "tests": 97,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "bandit": {
+    "findings": 0,
+    "errors": []
+  },
+  "health": {
+    "http_status": 200,
+    "response": {
+      "status": "ready",
+      "model_name": "mibici-equipo14-p1-demanda",
+      "model_version": "1"
+    }
+  },
+  "prediction": {
+    "http_status": 200,
+    "request": {
+      "instances": [
+        {
+          "station_id": "10",
+          "weekday": 2,
+          "hour": 0
+        }
+      ]
+    },
+    "response": {
+      "predictions": [
+        0.058823529411764705
+      ]
+    }
+  },
+  "registry_prediction_matches_api": true,
+  "container": {
+    "build_verified": false,
+    "http_verified": false,
+    "status": "pending_runtime_validation"
+  }
+}

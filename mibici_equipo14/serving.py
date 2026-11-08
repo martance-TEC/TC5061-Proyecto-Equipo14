@@ -1,15 +1,16 @@
 """API académica para el promedio histórico de demanda P1"""
 import argparse
+from typing import Annotated, Literal
 from contextlib import asynccontextmanager
 
 import mlflow
 import mlflow.pyfunc
 import pandas as pd
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from mlflow import MlflowClient
 from mlflow.types.schema import ColSpec, Schema
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, ValidationError, field_validator
 
 from .config import REGISTRY_NAMES
 
@@ -21,11 +22,28 @@ class PredictionInstance(BaseModel):
     weekday: int = Field(ge=0, le=6)
     hour: int = Field(ge=0, le=23)
 
+    @field_validator('station_id')
+    @classmethod
+    def station_has_content(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError('station_id no puede contener solo espacios')
+        return value
+
 
 class PredictionRequest(BaseModel):
     model_config = ConfigDict(extra='forbid', strict=True)
 
-    instances: list[PredictionInstance] = Field(min_length=1)
+    instances: list[PredictionInstance] = Field(min_length=1, max_length=1000)
+
+
+class PredictionResponse(BaseModel):
+    predictions: list[Annotated[float, Field(ge=0, allow_inf_nan=False)]] = Field(min_length=1)
+
+
+class HealthResponse(BaseModel):
+    status: Literal['ready']
+    model_name: str
+    model_version: str
 
 
 def create_app(
@@ -36,6 +54,8 @@ def create_app(
     model_version: int | None = None,
     model_alias: str | None = None,
 ) -> FastAPI:
+    if model_version is not None and model_version < 1:
+        raise ValueError('La versión del modelo debe ser positiva')
     if model_version is not None and model_alias is not None:
         raise ValueError('Usa una versión o un alias, no ambos')
 
@@ -68,7 +88,7 @@ def create_app(
 
     app = FastAPI(title='MiBici P1', lifespan=lifespan)
 
-    @app.get('/health')
+    @app.get('/health', response_model=HealthResponse)
     def health() -> dict[str, str]:
         return {
             'status': 'ready',
@@ -76,12 +96,18 @@ def create_app(
             'model_version': app.state.model_version,
         }
 
-    @app.post('/predict')
-    def predict(payload: PredictionRequest) -> dict[str, list[float]]:
+    @app.post('/predict', response_model=PredictionResponse)
+    def predict(payload: PredictionRequest) -> PredictionResponse:
         frame = pd.DataFrame([row.model_dump() for row in payload.instances])
         # Tipos de entrada de MLflow
         frame = frame.astype({'weekday': 'int32', 'hour': 'int32'})
-        return {'predictions': app.state.model.predict(frame).tolist()}
+        values = app.state.model.predict(frame).tolist()
+        if len(values) != len(payload.instances):
+            raise HTTPException(status_code=500, detail='Cantidad de predicciones inválida')
+        try:
+            return PredictionResponse(predictions=values)
+        except ValidationError as error:
+            raise HTTPException(status_code=500, detail='Salida del modelo inválida') from error
 
     return app
 
