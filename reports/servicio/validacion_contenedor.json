@@ -1,0 +1,109 @@
+{
+  "checked_at_utc": "2026-11-08T21:29:41.012873+00:00",
+  "execution_mode": "podman_container",
+  "code_commit": "fbc2e6d6e611c97b3b446d8c7f6bc33470c494d3",
+  "podman_version": "6.1.4",
+  "image": {
+    "name": "localhost/mibici-p1:semana8",
+    "id": "4c67cfc07440501eb8f93b5b021ed0472a18c9e542331b196dc0ad2890435d8d",
+    "os": "linux",
+    "architecture": "arm64",
+    "size_bytes": 1017037038,
+    "user": "10001:10001"
+  },
+  "container": {
+    "name": "mibici-p1",
+    "id": "70b9ee6e2b2348df33862e8bf6c16c418c8c4519eb5fa8b063327c439db479a8",
+    "status": "running",
+    "health": "healthy",
+    "port": "127.0.0.1:8000:8000"
+  },
+  "model": {
+    "name": "mibici-equipo14-p1-demanda",
+    "version": "1",
+    "run_id": "48bc3dd1f2414f4ba31f9f2020226764",
+    "training_commit": "5373f1e79bb469c3c4e0da2481e59ea275b6789b",
+    "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f"
+  },
+  "health": {
+    "http_status": 200,
+    "response": {
+      "status": "ready",
+      "model_name": "mibici-equipo14-p1-demanda",
+      "model_version": "1"
+    }
+  },
+  "prediction": {
+    "http_status": 200,
+    "request": {
+      "instances": [
+        {
+          "station_id": "10",
+          "weekday": 2,
+          "hour": 0
+        },
+        {
+          "station_id": "20",
+          "weekday": 0,
+          "hour": 8
+        },
+        {
+          "station_id": "10",
+          "weekday": 2,
+          "hour": 0
+        }
+      ]
+    },
+    "response": {
+      "predictions": [
+        0.058823529411764705,
+        3.8181818181818183,
+        0.058823529411764705
+      ]
+    },
+    "matches_registry": true,
+    "maximum_absolute_difference": 0.0
+  },
+  "invalid_input": {
+    "request": {
+      "instances": [
+        {
+          "station_id": "10",
+          "weekday": 7,
+          "hour": 0
+        }
+      ]
+    },
+    "http_status": 422,
+    "response": {
+      "detail": [
+        {
+          "type": "less_than_equal",
+          "loc": [
+            "body",
+            "instances",
+            0,
+            "weekday"
+          ],
+          "msg": "Input should be less than or equal to 6",
+          "input": 7,
+          "ctx": {
+            "le": 6
+          }
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "pip_check_exit_code": 0,
+    "result": "No broken requirements found."
+  },
+  "files_sha256": {
+    "Containerfile": "0362ad3c8f0227c90ccd5adf3d6c44b4ab842fb30f72f2b5787bee7c28c2c10d",
+    "requirements.lock.txt": "2d84b3babbbb8323345c2816b3b0d735ec31d67972960b9fb7db17efc02b5e72",
+    "mibici_equipo14/serving.py": "2526891209ab3ed9a917c42c56e5177caefdbfe914b1d981d96bcae8560cbeac",
+    "mibici_equipo14/deployment.py": "2411dae1d31688e5fb7a2c8c6375ecbd2285ed4136d955209e56ad7e40fede4e"
+  },
+  "evidence": "reports/figures/servicio/01_prediccion_contenedor.jpg",
+  "build_command": "podman build --format docker -f Containerfile -t localhost/mibici-p1:semana8 ."
+}

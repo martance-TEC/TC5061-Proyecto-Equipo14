@@ -38,8 +38,8 @@
   },
   "registry_prediction_matches_api": true,
   "container": {
-    "build_verified": false,
-    "http_verified": false,
-    "status": "pending_runtime_validation"
+    "build_verified": true,
+    "http_verified": true,
+    "report": "reports/servicio/validacion_contenedor.json"
   }
 }

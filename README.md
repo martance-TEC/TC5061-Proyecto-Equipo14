@@ -193,9 +193,9 @@ La versión numérica mantiene fijo el modelo aunque cambie el alias `champion`.
 En macOS, el proveedor Apple Hypervisor puede inicializarse así:
 
 ```bash
-CONTAINERS_MACHINE_PROVIDER=applehv podman machine init --cpus 2 --memory 4096 --disk-size 20 mibici-applehv
-CONTAINERS_MACHINE_PROVIDER=applehv podman machine start mibici-applehv
-podman system connection default mibici-applehv
+CONTAINERS_MACHINE_PROVIDER=applehv podman machine init --cpus 2 --memory 3072 --disk-size 20 mibici-servicio
+CONTAINERS_MACHINE_PROVIDER=applehv podman machine start mibici-servicio
+podman system connection default mibici-servicio
 podman info
 ```
 
@@ -243,7 +243,7 @@ su dirección accesible desde el contenedor.
 ### Construcción y ejecución
 
 ```bash
-podman build -f Containerfile -t localhost/mibici-p1:semana8 .
+podman build --format docker -f Containerfile -t localhost/mibici-p1:semana8 .
 podman run -d --name mibici-p1 -p 127.0.0.1:8000:8000 -e MLFLOW_TRACKING_URI=http://host.containers.internal:5014 -e MLFLOW_REGISTRY_URI=http://host.containers.internal:5014 localhost/mibici-p1:semana8
 podman ps
 podman logs mibici-p1
@@ -256,8 +256,8 @@ El puerto de la API se publica solo en la interfaz local de la computadora.
 
 `Containerfile` usa Python 3.11.9, instala `requirements.lock.txt` y ejecuta el
 servicio con un usuario sin privilegios. `.containerignore` limita el contexto
-al código, sus dependencias y los archivos de instalación. La comprobación de
-salud consulta `/health` sin instalar herramientas adicionales.
+al código, sus dependencias y los archivos de instalación. La construcción usa `--format docker` para conservar el `HEALTHCHECK`.
+La comprobación de salud consulta `/health` sin instalar herramientas adicionales.
 
 La imagen arranca con `python -m mibici_equipo14.serving --host 0.0.0.0
 --model-version 1`. Para seleccionar otra versión compatible explícitamente:
@@ -301,8 +301,18 @@ Respuesta observada al cargar la versión 1 en la comprobación local:
 
 El linaje consultado está en [registry.json](reports/servicio/registry.json) y el
 resultado local en [validacion_local.json](reports/servicio/validacion_local.json).
-La comprobación local no sustituye la construcción ni la petición dentro de
-Podman: ambas se registran por separado cuando se ejecutan.
+La [validación en Podman](reports/servicio/validacion_contenedor.json) comprobó
+la construcción de la imagen, usuario 10001, estado `healthy`, dependencias sin
+incompatibilidades y respuestas HTTP 200 y 422. Las tres predicciones coincidieron
+con la carga directa del Registry, con diferencia máxima de 0.0. La prueba se
+realizó en Linux ARM64 dentro de Podman en macOS; no acredita por sí sola una
+ejecución independiente en Windows.
+
+![Petición y respuesta desde el contenedor](reports/figures/servicio/01_prediccion_contenedor.jpg)
+
+La captura procede de Swagger y muestra una petición atendida en el puerto
+publicado del contenedor. El reporte conserva la identidad de imagen y contenedor,
+la petición, la respuesta y el linaje del modelo.
 
 La documentación interactiva está en `/docs`. El detalle del contrato y las
 pruebas iniciales se conserva en [servicio_p1.md](references/servicio_p1.md).
