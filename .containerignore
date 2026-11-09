@@ -1,0 +1,8 @@
+**
+!Containerfile
+!requirements.lock.txt
+!pyproject.toml
+!mibici_equipo14/
+!mibici_equipo14/**
+mibici_equipo14/**/__pycache__/
+mibici_equipo14/**/*.pyc

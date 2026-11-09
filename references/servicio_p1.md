@@ -6,10 +6,10 @@ valida los datos de entrada.
 
 ## Entrada y respuesta
 
-`POST /predict` recibe un objeto con `instances`, una lista con al menos una
-fila. Cada fila tiene tres campos obligatorios:
+`POST /predict` recibe un objeto con `instances`, una lista de 1 a 1,000
+filas. Cada fila tiene tres campos obligatorios:
 
-- `station_id`: texto con al menos un carácter. Conserva sus ceros iniciales.
+- `station_id`: texto con al menos un carácter distinto de espacio. Conserva sus ceros iniciales.
 - `weekday`: entero de 0 a 6. El lunes corresponde a 0.
 - `hour`: entero de 0 a 23.
 
@@ -18,7 +18,7 @@ fila debe contener únicamente los tres campos del contrato. Las entradas
 inválidas reciben HTTP 422.
 
 La respuesta contiene una lista `predictions` con un valor por fila, en el
-mismo orden de la solicitud. Los promedios pueden tener decimales.
+mismo orden de la solicitud. Los promedios pueden tener decimales. La API valida que haya un valor finito y no negativo por fila; una salida inválida produce HTTP 500.
 
 `GET /health` devuelve `status`, `model_name` y `model_version` para consultar
 el estado del servicio y el modelo cargado.
