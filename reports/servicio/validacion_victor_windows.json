@@ -1,0 +1,86 @@
+{
+  "validation": "independent_windows_container_validation",
+  "platform": {
+    "host": "Windows",
+    "container_runtime": "Podman 6.1.4",
+    "container_os": "linux",
+    "architecture": "amd64",
+    "python": "3.11.9"
+  },
+  "git": {
+    "base_commit": "03134fcbd3deaa6da2ac2febd9f1dd3b77354761",
+    "base_branch": "feat/servicio-inferencia",
+    "validation_branch": "test/validacion-servicio-p1"
+  },
+  "baseline": {
+    "repository_tests_passed": 97,
+    "integration_tests_passed": 5
+  },
+  "image": {
+    "name": "localhost/mibici-p1:semana8",
+    "id": "e81e4cd6326d12125750b0c1b1ec5ed54516f0ad3d95c4a9a6130c156d37d778",
+    "size_bytes": 1014986986,
+    "user": "10001:10001"
+  },
+  "container": {
+    "name": "mibici-p1",
+    "id": "ae6a0a0725d779161b1c5e59ed7e3b13ea4343a44aa66110f1b5d39854d27eb8",
+    "status": "running",
+    "health": "healthy",
+    "service_url": "http://127.0.0.1:8000"
+  },
+  "registry": {
+    "tracking_uri": "http://127.0.0.1:5014",
+    "model_name": "mibici-equipo14-p1-demanda",
+    "model_version": "1",
+    "model_alias": "champion",
+    "model_status": "READY",
+    "source_run_id": "964ccfa12f17486e92b11654858be512",
+    "git_commit": "c4d8a8dcdf13438b5191a7516b0bc3e2530e1753",
+    "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f"
+  },
+  "http_validation": {
+    "health_status": 200,
+    "health_response": {
+      "status": "ready",
+      "model_name": "mibici-equipo14-p1-demanda",
+      "model_version": "1"
+    },
+    "valid_predictions": [
+      0.058823529411764705,
+      3.8181818181818183,
+      0.058823529411764705
+    ],
+    "prediction_order_preserved": true,
+    "missing_field_status": 422,
+    "weekday_out_of_range_status": 422,
+    "hour_out_of_range_status": 422
+  },
+  "registry_comparison": {
+    "registry_predictions": [
+      0.058823529411764705,
+      3.8181818181818183,
+      0.058823529411764705
+    ],
+    "api_predictions": [
+      0.058823529411764705,
+      3.8181818181818183,
+      0.058823529411764705
+    ],
+    "maximum_absolute_difference": 0.0,
+    "matches": true,
+    "absolute_tolerance": 1e-8
+  },
+  "commands_verified": [
+    "python -m pytest -q",
+    "python -m mibici_equipo14.dataset --verify",
+    "mlflow run . -e reproduce --env-manager local --experiment-name mibici-equipo14 -P question=p1",
+    "mlflow run . -e promote --env-manager local --experiment-name mibici-equipo14 -P question=p1 -P local=1",
+    "mlflow run . -e verify_registry --env-manager local --experiment-name mibici-equipo14 -P question=p1 -P local=1",
+    "podman build --format docker -f Containerfile -t localhost/mibici-p1:semana8 .",
+    "podman run -d --name mibici-p1 -p 127.0.0.1:8000:8000 -e MLFLOW_TRACKING_URI=http://host.containers.internal:5014 -e MLFLOW_REGISTRY_URI=http://host.containers.internal:5014 localhost/mibici-p1:semana8",
+    "python -m pytest tests/test_service_integration.py -q",
+    "podman logs mibici-p1"
+  ],
+  "result": "PASS"
+}
