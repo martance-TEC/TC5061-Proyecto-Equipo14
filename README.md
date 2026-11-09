@@ -142,6 +142,10 @@ aprobadas y un Bandit limpio no eliminan esos avisos.
 
 ### Resultados y evidencias
 
+La suite actual incluye pruebas HTTP: `quality tests` y `quality all` requieren
+la API y el Registry activos, con las variables indicadas en la sección de
+validación HTTP del contenedor.
+
 Los archivos detallados se guardan en `data/quality/`, excluida de Git:
 
 - `pytest.xml`, `pytest.txt` y `coverage.json`: pruebas y cobertura.
@@ -322,6 +326,45 @@ Para ejecutar las pruebas de la API:
 ```bash
 python -m pytest -q tests/test_serving.py tests/test_serving_outputs.py
 ```
+
+### Validación HTTP del contenedor
+
+La validación independiente de Windows/WSL2 y Linux AMD64 está en
+[validacion_victor_windows.json](reports/servicio/validacion_victor_windows.json).
+El conjunto integrado terminó con **102 pruebas aprobadas**, incluidas las cinco
+pruebas HTTP. Esas cinco pruebas requieren que la API y el Registry estén activos.
+
+Con el contenedor iniciado, desde una terminal con el entorno del proyecto activo:
+
+```bash
+export MLFLOW_TRACKING_URI=http://127.0.0.1:5014
+export MLFLOW_REGISTRY_URI=http://127.0.0.1:5014
+export MIBICI_SERVICE_URL=http://127.0.0.1:8000
+export MIBICI_MODEL_URI=models:/mibici-equipo14-p1-demanda/1
+python -m pytest -q tests/test_service_integration.py
+python -m pytest -q
+```
+
+Equivalente en PowerShell:
+
+```powershell
+$env:MLFLOW_TRACKING_URI = 'http://127.0.0.1:5014'
+$env:MLFLOW_REGISTRY_URI = 'http://127.0.0.1:5014'
+$env:MIBICI_SERVICE_URL = 'http://127.0.0.1:8000'
+$env:MIBICI_MODEL_URI = 'models:/mibici-equipo14-p1-demanda/1'
+python -m pytest -q tests/test_service_integration.py
+python -m pytest -q
+```
+
+Las URI deben identificar el Registry que contiene la misma versión usada por
+la API. Si está en otra computadora, se sustituye la dirección local.
+Para ejecutar las 97 pruebas que no necesitan el servicio HTTP:
+
+```bash
+python -m pytest -q --ignore=tests/test_service_integration.py
+```
+
+![Validación independiente del contenedor en Windows](reports/figures/servicio/02_validacion_victor_windows.png)
 
 Para detener y retirar el contenedor de prueba:
 
