@@ -1,0 +1,33 @@
+{
+  "checked_at_utc": "2026-11-08T21:00:52.917690+00:00",
+  "model_name": "mibici-equipo14-p1-demanda",
+  "model_version": "1",
+  "model_uri": "models:/mibici-equipo14-p1-demanda/1",
+  "run_id": "48bc3dd1f2414f4ba31f9f2020226764",
+  "experiment_id": "1",
+  "training_commit": "5373f1e79bb469c3c4e0da2481e59ea275b6789b",
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "inputs": [
+    {
+      "station_id": "10",
+      "weekday": 2,
+      "hour": 0
+    },
+    {
+      "station_id": "20",
+      "weekday": 0,
+      "hour": 8
+    },
+    {
+      "station_id": "10",
+      "weekday": 2,
+      "hour": 0
+    }
+  ],
+  "predictions": [
+    0.058823529411764705,
+    3.8181818181818183,
+    0.058823529411764705
+  ],
+  "signature_verified": true
+}

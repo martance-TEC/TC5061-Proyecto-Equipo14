@@ -142,6 +142,10 @@ aprobadas y un Bandit limpio no eliminan esos avisos.
 
 ### Resultados y evidencias
 
+La suite actual incluye pruebas HTTP: `quality tests` y `quality all` requieren
+la API y el Registry activos, con las variables indicadas en la sección de
+validación HTTP del contenedor.
+
 Los archivos detallados se guardan en `data/quality/`, excluida de Git:
 
 - `pytest.xml`, `pytest.txt` y `coverage.json`: pruebas y cobertura.
@@ -175,6 +179,205 @@ y el reporte previo de dependencias con avisos en 11 paquetes.
 - Deepchecks. (s. f.). *Welcome to Deepchecks!*. https://docs.deepchecks.com/stable/getting-started/welcome.html
 - PyCQA. (s. f.). *Bandit documentation*. https://bandit.readthedocs.io/en/latest/
 - Python Packaging Authority. (s. f.). *pip-audit*. https://pypi.org/project/pip-audit/
+
+## API P1 en Podman
+
+El servicio recibe una estación, un día de la semana y una hora, y devuelve
+la demanda estimada. Se usa inferencia bajo demanda: el modelo se carga una vez
+al arrancar y cada petición obtiene su respuesta sin entrenar de nuevo.
+La API usa `mibici-equipo14-p1-demanda`, versión **1**, desde el Model Registry.
+La versión numérica mantiene fijo el modelo aunque cambie el alias `champion`.
+
+### Requisitos
+
+- Podman instalado y una máquina Linux en ejecución en macOS o Windows.
+- Python 3.11 para los comandos locales y el entorno descrito anteriormente.
+- Acceso a un Registry de MLflow con la versión elegida y sus artefactos.
+
+En macOS, el proveedor Apple Hypervisor puede inicializarse así:
+
+```bash
+CONTAINERS_MACHINE_PROVIDER=applehv podman machine init --cpus 2 --memory 3072 --disk-size 20 mibici-servicio
+CONTAINERS_MACHINE_PROVIDER=applehv podman machine start mibici-servicio
+podman system connection default mibici-servicio
+podman info
+```
+
+La inicialización se realiza una sola vez. En las siguientes sesiones basta con
+arrancar la máquina existente. En Windows puede utilizarse el proveedor WSL de
+Podman; los comandos de construcción y las variables del contenedor son iguales.
+
+### Registry y artefactos
+
+La imagen contiene el código y sus dependencias. Al iniciar, la API recupera el
+modelo y sus artefactos por HTTP. No se incluyen bases de datos, credenciales,
+datos de viajes ni modelos serializados en Git o en el contexto de construcción.
+`MLFLOW_TRACKING_URI` y `MLFLOW_REGISTRY_URI` indican dónde está MLflow.
+
+Desde la raíz que contiene la base y el almacén existentes, con el entorno activo:
+
+```bash
+mlflow server --host 0.0.0.0 --port 5014 --workers 1 --backend-store-uri sqlite:///mlflow.db --serve-artifacts --artifacts-destination ./mlartifacts
+```
+
+Este comando permite la conexión desde la máquina virtual de Podman. Se utiliza
+para la prueba local y no debe exponerse como servicio público. El modo de proxy
+entrega los artefactos mediante MLflow, evitando rutas de disco de la computadora
+anfitriona dentro del contenedor.
+
+Para comprobar el Registry antes de construir:
+
+```bash
+export MLFLOW_TRACKING_URI=http://127.0.0.1:5014
+export MLFLOW_REGISTRY_URI=http://127.0.0.1:5014
+python -m mibici_equipo14.deployment --model-version 1
+```
+
+La comprobación verifica la firma, genera predicciones y guarda el nombre,
+versión, corrida, commit de entrenamiento y versión de datos en
+`data/servicio/registry.json`.
+
+Un clon no contiene `mlflow.db` ni `mlartifacts/`. En otra computadora se debe
+usar un Registry accesible o reconstruir el Registry local con la ingesta,
+campaña y promoción documentadas en la sección de MLflow. Después se comprueba
+la versión y su firma antes de arrancar el servicio. No basta con crear una base
+vacía. Cuando el Registry está en otra máquina, se sustituyen las dos URI por
+su dirección accesible desde el contenedor.
+
+### Construcción y ejecución
+
+```bash
+podman build --format docker -f Containerfile -t localhost/mibici-p1:semana8 .
+podman run -d --name mibici-p1 -p 127.0.0.1:8000:8000 -e MLFLOW_TRACKING_URI=http://host.containers.internal:5014 -e MLFLOW_REGISTRY_URI=http://host.containers.internal:5014 localhost/mibici-p1:semana8
+podman ps
+podman logs mibici-p1
+```
+
+En PowerShell, estos comandos pueden ejecutarse en una sola línea tal como se
+muestran. `host.containers.internal` permite al contenedor contactar con el
+anfitrión. `127.0.0.1` dentro del contenedor no representa al anfitrión.
+El puerto de la API se publica solo en la interfaz local de la computadora.
+
+`Containerfile` usa Python 3.11.9, instala `requirements.lock.txt` y ejecuta el
+servicio con un usuario sin privilegios. `.containerignore` limita el contexto
+al código, sus dependencias y los archivos de instalación. La construcción usa `--format docker` para conservar el `HEALTHCHECK`.
+La comprobación de salud consulta `/health` sin instalar herramientas adicionales.
+
+La imagen arranca con `python -m mibici_equipo14.serving --host 0.0.0.0
+--model-version 1`. Para seleccionar otra versión compatible explícitamente:
+
+```bash
+podman run -d --name mibici-p1-otra-version -p 127.0.0.1:8001:8000 -e MLFLOW_TRACKING_URI=http://host.containers.internal:5014 -e MLFLOW_REGISTRY_URI=http://host.containers.internal:5014 localhost/mibici-p1:semana8 --host 0.0.0.0 --model-version 2
+```
+
+La versión 2 es un ejemplo de configuración y debe existir en el Registry antes
+de utilizarla. No se crea ni se promueve una versión al arrancar la API.
+
+### Contrato y consumo
+
+```bash
+curl -i http://127.0.0.1:8000/health
+curl -i http://127.0.0.1:8000/predict -H 'Content-Type: application/json' -d '{"instances":[{"station_id":"10","weekday":2,"hour":0}]}'
+```
+
+En Windows se utiliza `curl.exe` o la interfaz interactiva
+`http://127.0.0.1:8000/docs`, que permite introducir el mismo JSON sin problemas
+de escape de comillas del shell.
+
+El contrato exige `station_id` como texto no vacío, `weekday` entero de 0 a 6
+(lunes = 0) y `hour` entero de 0 a 23. No acepta campos adicionales, conversiones
+automáticas de tipos, listas vacías ni más de 1,000 filas. Las entradas inválidas
+reciben HTTP 422. `weekday` y `hour` se convierten a int32 antes de llamar a MLflow.
+Las respuestas contienen una predicción finita y no negativa por fila, en el
+mismo orden. Una salida inválida del modelo recibe HTTP 500.
+
+Ejemplo de respuesta de salud:
+
+```json
+{"status":"ready","model_name":"mibici-equipo14-p1-demanda","model_version":"1"}
+```
+
+Respuesta observada al cargar la versión 1 en la comprobación local:
+
+```json
+{"predictions":[0.058823529411764705]}
+```
+
+El linaje consultado está en [registry.json](reports/servicio/registry.json) y el
+resultado local en [validacion_local.json](reports/servicio/validacion_local.json).
+La [validación en Podman](reports/servicio/validacion_contenedor.json) comprobó
+la construcción de la imagen, usuario 10001, estado `healthy`, dependencias sin
+incompatibilidades y respuestas HTTP 200 y 422. Las tres predicciones coincidieron
+con la carga directa del Registry, con diferencia máxima de 0.0. La prueba se
+realizó en Linux ARM64 dentro de Podman en macOS; no acredita por sí sola una
+ejecución independiente en Windows.
+
+![Petición y respuesta desde el contenedor](reports/figures/servicio/01_prediccion_contenedor.jpg)
+
+La captura procede de Swagger y muestra una petición atendida en el puerto
+publicado del contenedor. El reporte conserva la identidad de imagen y contenedor,
+la petición, la respuesta y el linaje del modelo.
+
+La documentación interactiva está en `/docs`. El detalle del contrato y las
+pruebas iniciales se conserva en [servicio_p1.md](references/servicio_p1.md).
+
+Para ejecutar las pruebas de la API:
+
+```bash
+python -m pytest -q tests/test_serving.py tests/test_serving_outputs.py
+```
+
+### Validación HTTP del contenedor
+
+La validación independiente de Windows/WSL2 y Linux AMD64 está en
+[validacion_victor_windows.json](reports/servicio/validacion_victor_windows.json).
+El conjunto integrado terminó con **102 pruebas aprobadas**, incluidas las cinco
+pruebas HTTP. Esas cinco pruebas requieren que la API y el Registry estén activos.
+
+Con el contenedor iniciado, desde una terminal con el entorno del proyecto activo:
+
+```bash
+export MLFLOW_TRACKING_URI=http://127.0.0.1:5014
+export MLFLOW_REGISTRY_URI=http://127.0.0.1:5014
+export MIBICI_SERVICE_URL=http://127.0.0.1:8000
+export MIBICI_MODEL_URI=models:/mibici-equipo14-p1-demanda/1
+python -m pytest -q tests/test_service_integration.py
+python -m pytest -q
+```
+
+Equivalente en PowerShell:
+
+```powershell
+$env:MLFLOW_TRACKING_URI = 'http://127.0.0.1:5014'
+$env:MLFLOW_REGISTRY_URI = 'http://127.0.0.1:5014'
+$env:MIBICI_SERVICE_URL = 'http://127.0.0.1:8000'
+$env:MIBICI_MODEL_URI = 'models:/mibici-equipo14-p1-demanda/1'
+python -m pytest -q tests/test_service_integration.py
+python -m pytest -q
+```
+
+Las URI deben identificar el Registry que contiene la misma versión usada por
+la API. Si está en otra computadora, se sustituye la dirección local.
+Para ejecutar las 97 pruebas que no necesitan el servicio HTTP:
+
+```bash
+python -m pytest -q --ignore=tests/test_service_integration.py
+```
+
+![Validación independiente del contenedor en Windows](reports/figures/servicio/02_validacion_victor_windows.png)
+
+Para detener y retirar el contenedor de prueba:
+
+```bash
+podman stop mibici-p1
+podman rm mibici-p1
+```
+
+La API es una demostración académica del promedio histórico. No consulta la
+ocupación actual ni garantiza la demanda futura. Las estaciones o combinaciones
+sin historial utilizan el promedio global aprendido. La imagen conserva las
+versiones del modelo; los avisos de dependencias documentados en calidad siguen
+requiriendo una actualización controlada antes de un despliegue público.
 
 ## Segunda entrega de MLflow
 
