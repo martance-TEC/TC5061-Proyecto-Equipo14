@@ -4,7 +4,9 @@ import json
 import os
 from pathlib import Path
 import platform
-import subprocess
+import shutil
+# Solo se consulta Git local con argumentos fijos y sin shell.
+import subprocess  # nosec B404
 
 os.environ.setdefault('DO_NOT_TRACK', '1')
 
@@ -128,6 +130,15 @@ def verify_inputs():
     return local['data_version']
 
 
+def source_commit():
+    """Identifica el código ejecutado sin incluir rutas locales en el reporte."""
+    git = shutil.which('git')
+    if git is None:
+        raise RuntimeError('Git no está disponible')
+    # La ruta ejecutable se resuelve localmente; los argumentos son constantes.
+    return subprocess.check_output([git, 'rev-parse', 'HEAD'], cwd=S.root, text=True).strip()  # nosec B603
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--sample-size', type=int, default=50000)
@@ -160,8 +171,7 @@ def main():
         'input_columns': INPUTS, 'context_columns': NUMERICAL + ['month'],
         'feature_sha256': sha256(S.root / 'mibici_equipo14/features.py'),
         'monitoring_sha256': sha256(Path(__file__)),
-        'source_commit': subprocess.check_output(
-            ['git', 'rev-parse', 'HEAD'], cwd=S.root, text=True).strip(),
+        'source_commit': source_commit(),
     }
     observed = trips[(trips.started_at >= S.train_end) & (trips.started_at < S.val_end)]
     outside = ~observed.origin_id.isin(reference.station_id.unique())
