@@ -1,0 +1,34 @@
+{
+  "source_commit": "0870b8b1ce69a4e9a7e73ed648d31670daefadac",
+  "monitoring_sha256": "05f5a162622b1d89c5152df52c8ef5988f971453b63f52eb0b686464735f0638",
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "monitoring_tests": {
+    "command": "python -m pytest tests/test_monitoring.py -q",
+    "passed": 7,
+    "failed": 0,
+    "environment": "requirements-monitoring.lock.txt"
+  },
+  "regression_tests": {
+    "command": "python -m pytest -q --ignore=tests/test_service_integration.py",
+    "passed": 103,
+    "skipped": 1,
+    "failed": 0,
+    "environment": "entorno previo del proyecto",
+    "skip_reason": "La prueba que requiere Evidently se ejecuta en el entorno separado de monitoreo."
+  },
+  "security": {
+    "tool": "Bandit",
+    "findings": 0,
+    "errors": 0,
+    "scope": "mibici_equipo14"
+  },
+  "report_validation": {
+    "html_opened_in_browser": true,
+    "screenshots": [
+      "04_evidently_resumen.jpg",
+      "05_evidently_demanda.jpg"
+    ],
+    "monitored_columns": 15,
+    "sample_rows_each_period": 50000
+  }
+}

@@ -1,0 +1,3077 @@
+{
+  "question": "p1",
+  "model_name": "mibici-equipo14-p1-demanda",
+  "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+  "reference_period": [
+    "2025-01-01",
+    "2025-09-01"
+  ],
+  "current_period": [
+    "2025-09-01",
+    "2025-11-01"
+  ],
+  "holdout_excluded": [
+    "2025-11-01",
+    "2026-01-01"
+  ],
+  "period_convention": "inicio inclusivo, fin exclusivo",
+  "warmup_rows_excluded": 61992,
+  "quality": {
+    "reference": {
+      "rows": 2090016,
+      "stations": 369,
+      "first_hour": "2025-01-08 00:00:00",
+      "last_hour": "2025-08-31 23:00:00",
+      "missing": {
+        "station_id": 0,
+        "weekday": 0,
+        "hour": 0,
+        "departures": 0,
+        "departures_lag1": 0,
+        "departures_lag24": 0,
+        "departures_lag168": 0,
+        "departures_mean24": 0,
+        "departures_mean168": 0,
+        "arrivals_lag1": 0,
+        "arrivals_lag24": 0,
+        "arrivals_lag168": 0,
+        "arrivals_mean24": 0,
+        "arrivals_mean168": 0,
+        "month": 0
+      },
+      "non_finite_numeric": 0,
+      "duplicate_station_hours": 0,
+      "invalid_values": {
+        "station_id": 0,
+        "weekday": 0,
+        "hour": 0,
+        "departures": 0
+      },
+      "departures_total": 2955687,
+      "departures_mean": 1.4141934798585274,
+      "zero_departures_share": 0.5265701315205242
+    },
+    "current": {
+      "rows": 540216,
+      "stations": 369,
+      "first_hour": "2025-09-01 00:00:00",
+      "last_hour": "2025-10-31 23:00:00",
+      "missing": {
+        "station_id": 0,
+        "weekday": 0,
+        "hour": 0,
+        "departures": 0,
+        "departures_lag1": 0,
+        "departures_lag24": 0,
+        "departures_lag168": 0,
+        "departures_mean24": 0,
+        "departures_mean168": 0,
+        "arrivals_lag1": 0,
+        "arrivals_lag24": 0,
+        "arrivals_lag168": 0,
+        "arrivals_mean24": 0,
+        "arrivals_mean168": 0,
+        "month": 0
+      },
+      "non_finite_numeric": 0,
+      "duplicate_station_hours": 0,
+      "invalid_values": {
+        "station_id": 0,
+        "weekday": 0,
+        "hour": 0,
+        "departures": 0
+      },
+      "departures_total": 796731,
+      "departures_mean": 1.4748378426407216,
+      "zero_departures_share": 0.5157640647444726
+    }
+  },
+  "sampling": {
+    "method": "uniform_without_replacement",
+    "seed": 42,
+    "requested_rows_per_period": 50000,
+    "reference_rows": 50000,
+    "current_rows": 50000
+  },
+  "methods": {
+    "numerical": "wasserstein",
+    "categorical": "jensenshannon",
+    "threshold": 0.1,
+    "dataset_drift_share": 0.5
+  },
+  "input_columns": [
+    "station_id",
+    "weekday",
+    "hour"
+  ],
+  "context_columns": [
+    "departures",
+    "departures_lag1",
+    "departures_lag24",
+    "departures_lag168",
+    "departures_mean24",
+    "departures_mean168",
+    "arrivals_lag1",
+    "arrivals_lag24",
+    "arrivals_lag168",
+    "arrivals_mean24",
+    "arrivals_mean168",
+    "month"
+  ],
+  "feature_sha256": "f22034e82a4cf61982dee450e7d0cf3cfd5e4922380fb7ba1cb9499eeaccc86c",
+  "monitoring_sha256": "05f5a162622b1d89c5152df52c8ef5988f971453b63f52eb0b686464735f0638",
+  "source_commit": "0870b8b1ce69a4e9a7e73ed648d31670daefadac",
+  "coverage": {
+    "current_trips_all_stations": 796853,
+    "current_trips_outside_training_cohort": 122,
+    "current_origin_stations_outside_cohort": 1,
+    "scope": "malla de la cohorte original; no equivale a disponibilidad real de bicicletas"
+  },
+  "segments": [
+    {
+      "segment": "station_id",
+      "value": "10",
+      "reference_mean": 1.444915254237288,
+      "current_mean": 1.601775956284153,
+      "difference": 0.15686070204686486
+    },
+    {
+      "segment": "station_id",
+      "value": "100",
+      "reference_mean": 0.4013064971751412,
+      "current_mean": 0.35860655737704916,
+      "difference": -0.04269993979809206
+    },
+    {
+      "segment": "station_id",
+      "value": "101",
+      "reference_mean": 0.17778954802259886,
+      "current_mean": 0.24385245901639344,
+      "difference": 0.06606291099379458
+    },
+    {
+      "segment": "station_id",
+      "value": "102",
+      "reference_mean": 1.6244703389830508,
+      "current_mean": 1.8531420765027322,
+      "difference": 0.2286717375196814
+    },
+    {
+      "segment": "station_id",
+      "value": "103",
+      "reference_mean": 0.6945621468926554,
+      "current_mean": 0.5580601092896175,
+      "difference": -0.13650203760303792
+    },
+    {
+      "segment": "station_id",
+      "value": "105",
+      "reference_mean": 0.7002118644067796,
+      "current_mean": 0.8763661202185792,
+      "difference": 0.17615425581179955
+    },
+    {
+      "segment": "station_id",
+      "value": "106",
+      "reference_mean": 0.8188559322033898,
+      "current_mean": 0.755464480874317,
+      "difference": -0.06339145132907287
+    },
+    {
+      "segment": "station_id",
+      "value": "107",
+      "reference_mean": 0.268361581920904,
+      "current_mean": 0.2629781420765027,
+      "difference": -0.005383439844401261
+    },
+    {
+      "segment": "station_id",
+      "value": "108",
+      "reference_mean": 1.3937146892655368,
+      "current_mean": 1.394808743169399,
+      "difference": 0.001094053903862191
+    },
+    {
+      "segment": "station_id",
+      "value": "11",
+      "reference_mean": 7.8682909604519775,
+      "current_mean": 8.758196721311476,
+      "difference": 0.8899057608594987
+    },
+    {
+      "segment": "station_id",
+      "value": "110",
+      "reference_mean": 2.197210451977401,
+      "current_mean": 2.0765027322404372,
+      "difference": -0.1207077197369637
+    },
+    {
+      "segment": "station_id",
+      "value": "111",
+      "reference_mean": 0.6954449152542372,
+      "current_mean": 0.8306010928961749,
+      "difference": 0.13515617764193766
+    },
+    {
+      "segment": "station_id",
+      "value": "112",
+      "reference_mean": 0.6202330508474576,
+      "current_mean": 0.5819672131147541,
+      "difference": -0.038265837732703534
+    },
+    {
+      "segment": "station_id",
+      "value": "115",
+      "reference_mean": 0.7999646892655368,
+      "current_mean": 0.8128415300546448,
+      "difference": 0.012876840789108002
+    },
+    {
+      "segment": "station_id",
+      "value": "117",
+      "reference_mean": 0.8711158192090396,
+      "current_mean": 0.8422131147540983,
+      "difference": -0.028902704454941253
+    },
+    {
+      "segment": "station_id",
+      "value": "118",
+      "reference_mean": 0.6804378531073446,
+      "current_mean": 0.7295081967213115,
+      "difference": 0.049070343613966894
+    },
+    {
+      "segment": "station_id",
+      "value": "119",
+      "reference_mean": 0.2782485875706215,
+      "current_mean": 0.40710382513661203,
+      "difference": 0.12885523756599054
+    },
+    {
+      "segment": "station_id",
+      "value": "12",
+      "reference_mean": 2.6825564971751414,
+      "current_mean": 2.6530054644808745,
+      "difference": -0.029551032694266954
+    },
+    {
+      "segment": "station_id",
+      "value": "120",
+      "reference_mean": 0.4179025423728814,
+      "current_mean": 0.4719945355191257,
+      "difference": 0.0540919931462443
+    },
+    {
+      "segment": "station_id",
+      "value": "125",
+      "reference_mean": 0.6191737288135594,
+      "current_mean": 0.6844262295081968,
+      "difference": 0.0652525006946374
+    },
+    {
+      "segment": "station_id",
+      "value": "126",
+      "reference_mean": 0.484816384180791,
+      "current_mean": 0.4883879781420765,
+      "difference": 0.003571593961285535
+    },
+    {
+      "segment": "station_id",
+      "value": "127",
+      "reference_mean": 0.3146186440677966,
+      "current_mean": 0.32308743169398907,
+      "difference": 0.008468787626192464
+    },
+    {
+      "segment": "station_id",
+      "value": "128",
+      "reference_mean": 0.473340395480226,
+      "current_mean": 0.3975409836065574,
+      "difference": -0.07579941187366862
+    },
+    {
+      "segment": "station_id",
+      "value": "129",
+      "reference_mean": 0.3721751412429379,
+      "current_mean": 0.3401639344262295,
+      "difference": -0.03201120681670838
+    },
+    {
+      "segment": "station_id",
+      "value": "13",
+      "reference_mean": 1.6687853107344632,
+      "current_mean": 1.7131147540983607,
+      "difference": 0.044329443363897436
+    },
+    {
+      "segment": "station_id",
+      "value": "130",
+      "reference_mean": 0.6747881355932204,
+      "current_mean": 0.5894808743169399,
+      "difference": -0.08530726127628052
+    },
+    {
+      "segment": "station_id",
+      "value": "131",
+      "reference_mean": 1.3160310734463276,
+      "current_mean": 1.3128415300546448,
+      "difference": -0.0031895433916828697
+    },
+    {
+      "segment": "station_id",
+      "value": "132",
+      "reference_mean": 0.5725635593220338,
+      "current_mean": 0.5860655737704918,
+      "difference": 0.013502014448458
+    },
+    {
+      "segment": "station_id",
+      "value": "133",
+      "reference_mean": 0.4897598870056497,
+      "current_mean": 0.36475409836065575,
+      "difference": -0.12500578864499395
+    },
+    {
+      "segment": "station_id",
+      "value": "134",
+      "reference_mean": 0.3347457627118644,
+      "current_mean": 0.3114754098360656,
+      "difference": -0.023270352875798817
+    },
+    {
+      "segment": "station_id",
+      "value": "135",
+      "reference_mean": 0.6933262711864406,
+      "current_mean": 0.5409836065573771,
+      "difference": -0.15234266462906354
+    },
+    {
+      "segment": "station_id",
+      "value": "136",
+      "reference_mean": 0.22263418079096045,
+      "current_mean": 0.24521857923497267,
+      "difference": 0.02258439844401222
+    },
+    {
+      "segment": "station_id",
+      "value": "137",
+      "reference_mean": 0.4156073446327684,
+      "current_mean": 0.44398907103825136,
+      "difference": 0.028381726405482977
+    },
+    {
+      "segment": "station_id",
+      "value": "139",
+      "reference_mean": 0.2962570621468927,
+      "current_mean": 0.34153005464480873,
+      "difference": 0.045272992497916054
+    },
+    {
+      "segment": "station_id",
+      "value": "14",
+      "reference_mean": 1.7199858757062148,
+      "current_mean": 1.7827868852459017,
+      "difference": 0.06280100953968693
+    },
+    {
+      "segment": "station_id",
+      "value": "140",
+      "reference_mean": 0.8077330508474576,
+      "current_mean": 0.9904371584699454,
+      "difference": 0.1827041076224878
+    },
+    {
+      "segment": "station_id",
+      "value": "141",
+      "reference_mean": 0.4574505649717514,
+      "current_mean": 0.40505464480874315,
+      "difference": -0.05239592016300826
+    },
+    {
+      "segment": "station_id",
+      "value": "142",
+      "reference_mean": 0.721927966101695,
+      "current_mean": 0.644808743169399,
+      "difference": -0.077119222932296
+    },
+    {
+      "segment": "station_id",
+      "value": "143",
+      "reference_mean": 0.8767655367231638,
+      "current_mean": 0.8736338797814208,
+      "difference": -0.0031316569417429996
+    },
+    {
+      "segment": "station_id",
+      "value": "144",
+      "reference_mean": 0.4442090395480226,
+      "current_mean": 0.421448087431694,
+      "difference": -0.022760952116328614
+    },
+    {
+      "segment": "station_id",
+      "value": "145",
+      "reference_mean": 0.4509180790960452,
+      "current_mean": 0.3729508196721312,
+      "difference": -0.07796725942391403
+    },
+    {
+      "segment": "station_id",
+      "value": "146",
+      "reference_mean": 0.17143361581920905,
+      "current_mean": 0.13797814207650272,
+      "difference": -0.033455473742706326
+    },
+    {
+      "segment": "station_id",
+      "value": "148",
+      "reference_mean": 0.8534604519774012,
+      "current_mean": 0.7520491803278688,
+      "difference": -0.10141127164953234
+    },
+    {
+      "segment": "station_id",
+      "value": "15",
+      "reference_mean": 1.6592514124293785,
+      "current_mean": 1.6543715846994536,
+      "difference": -0.0048798277299249015
+    },
+    {
+      "segment": "station_id",
+      "value": "150",
+      "reference_mean": 0.8995409604519774,
+      "current_mean": 0.8579234972677595,
+      "difference": -0.041617463184217884
+    },
+    {
+      "segment": "station_id",
+      "value": "151",
+      "reference_mean": 0.2600635593220339,
+      "current_mean": 0.22404371584699453,
+      "difference": -0.036019843475039365
+    },
+    {
+      "segment": "station_id",
+      "value": "152",
+      "reference_mean": 0.2902542372881356,
+      "current_mean": 0.2677595628415301,
+      "difference": -0.022494674446605523
+    },
+    {
+      "segment": "station_id",
+      "value": "153",
+      "reference_mean": 0.2388771186440678,
+      "current_mean": 0.16598360655737704,
+      "difference": -0.07289351208669076
+    },
+    {
+      "segment": "station_id",
+      "value": "154",
+      "reference_mean": 2.307379943502825,
+      "current_mean": 2.19672131147541,
+      "difference": -0.11065863202741477
+    },
+    {
+      "segment": "station_id",
+      "value": "155",
+      "reference_mean": 1.4629237288135593,
+      "current_mean": 1.4467213114754098,
+      "difference": -0.016202417338149422
+    },
+    {
+      "segment": "station_id",
+      "value": "156",
+      "reference_mean": 2.6174081920903953,
+      "current_mean": 2.599726775956284,
+      "difference": -0.017681416134111227
+    },
+    {
+      "segment": "station_id",
+      "value": "157",
+      "reference_mean": 4.096045197740113,
+      "current_mean": 4.353825136612022,
+      "difference": 0.2577799388719084
+    },
+    {
+      "segment": "station_id",
+      "value": "158",
+      "reference_mean": 2.146892655367232,
+      "current_mean": 2.2424863387978142,
+      "difference": 0.09559368343058239
+    },
+    {
+      "segment": "station_id",
+      "value": "159",
+      "reference_mean": 1.1551906779661016,
+      "current_mean": 1.1031420765027322,
+      "difference": -0.052048601463369426
+    },
+    {
+      "segment": "station_id",
+      "value": "16",
+      "reference_mean": 3.3741172316384183,
+      "current_mean": 3.568306010928962,
+      "difference": 0.19418877929054368
+    },
+    {
+      "segment": "station_id",
+      "value": "160",
+      "reference_mean": 3.0118290960451977,
+      "current_mean": 2.672814207650273,
+      "difference": -0.33901488839492444
+    },
+    {
+      "segment": "station_id",
+      "value": "161",
+      "reference_mean": 1.6677259887005649,
+      "current_mean": 1.5389344262295082,
+      "difference": -0.12879156247105672
+    },
+    {
+      "segment": "station_id",
+      "value": "162",
+      "reference_mean": 1.2063912429378532,
+      "current_mean": 1.3415300546448088,
+      "difference": 0.13513881170695563
+    },
+    {
+      "segment": "station_id",
+      "value": "163",
+      "reference_mean": 1.2745409604519775,
+      "current_mean": 1.3066939890710383,
+      "difference": 0.032153028619060775
+    },
+    {
+      "segment": "station_id",
+      "value": "164",
+      "reference_mean": 2.389830508474576,
+      "current_mean": 2.3825136612021858,
+      "difference": -0.007316847272390348
+    },
+    {
+      "segment": "station_id",
+      "value": "165",
+      "reference_mean": 2.7194562146892656,
+      "current_mean": 2.6987704918032787,
+      "difference": -0.020685722885986912
+    },
+    {
+      "segment": "station_id",
+      "value": "166",
+      "reference_mean": 1.3259180790960452,
+      "current_mean": 1.3907103825136613,
+      "difference": 0.0647923034176161
+    },
+    {
+      "segment": "station_id",
+      "value": "167",
+      "reference_mean": 1.0218926553672316,
+      "current_mean": 1.110655737704918,
+      "difference": 0.08876308233768637
+    },
+    {
+      "segment": "station_id",
+      "value": "168",
+      "reference_mean": 1.9915254237288136,
+      "current_mean": 1.8770491803278688,
+      "difference": -0.11447624340094475
+    },
+    {
+      "segment": "station_id",
+      "value": "169",
+      "reference_mean": 1.926553672316384,
+      "current_mean": 1.9959016393442623,
+      "difference": 0.06934796702787827
+    },
+    {
+      "segment": "station_id",
+      "value": "17",
+      "reference_mean": 2.9427966101694913,
+      "current_mean": 2.915983606557377,
+      "difference": -0.02681300361211436
+    },
+    {
+      "segment": "station_id",
+      "value": "170",
+      "reference_mean": 2.7951977401129944,
+      "current_mean": 2.67827868852459,
+      "difference": -0.11691905158840443
+    },
+    {
+      "segment": "station_id",
+      "value": "171",
+      "reference_mean": 3.34180790960452,
+      "current_mean": 3.9596994535519126,
+      "difference": 0.6178915439473927
+    },
+    {
+      "segment": "station_id",
+      "value": "172",
+      "reference_mean": 1.870409604519774,
+      "current_mean": 2.0724043715846996,
+      "difference": 0.20199476706492558
+    },
+    {
+      "segment": "station_id",
+      "value": "173",
+      "reference_mean": 1.6880296610169492,
+      "current_mean": 2.073087431693989,
+      "difference": 0.38505777067703995
+    },
+    {
+      "segment": "station_id",
+      "value": "174",
+      "reference_mean": 1.6384180790960452,
+      "current_mean": 1.8005464480874316,
+      "difference": 0.16212836899138638
+    },
+    {
+      "segment": "station_id",
+      "value": "175",
+      "reference_mean": 1.6961511299435028,
+      "current_mean": 1.889344262295082,
+      "difference": 0.1931931323515792
+    },
+    {
+      "segment": "station_id",
+      "value": "176",
+      "reference_mean": 1.36670197740113,
+      "current_mean": 1.2206284153005464,
+      "difference": -0.14607356210058353
+    },
+    {
+      "segment": "station_id",
+      "value": "177",
+      "reference_mean": 1.5178319209039548,
+      "current_mean": 1.314207650273224,
+      "difference": -0.20362427063073074
+    },
+    {
+      "segment": "station_id",
+      "value": "178",
+      "reference_mean": 1.0273658192090396,
+      "current_mean": 1.1769125683060109,
+      "difference": 0.1495467490969713
+    },
+    {
+      "segment": "station_id",
+      "value": "179",
+      "reference_mean": 3.066031073446328,
+      "current_mean": 2.9139344262295084,
+      "difference": -0.15209664721681948
+    },
+    {
+      "segment": "station_id",
+      "value": "18",
+      "reference_mean": 1.918255649717514,
+      "current_mean": 1.7329234972677596,
+      "difference": -0.18533215244975443
+    },
+    {
+      "segment": "station_id",
+      "value": "180",
+      "reference_mean": 0.1652542372881356,
+      "current_mean": 0.0,
+      "difference": -0.1652542372881356
+    },
+    {
+      "segment": "station_id",
+      "value": "181",
+      "reference_mean": 0.8278601694915254,
+      "current_mean": 0.9672131147540983,
+      "difference": 0.1393529452625729
+    },
+    {
+      "segment": "station_id",
+      "value": "182",
+      "reference_mean": 2.7111581920903953,
+      "current_mean": 2.685109289617486,
+      "difference": -0.02604890247290914
+    },
+    {
+      "segment": "station_id",
+      "value": "183",
+      "reference_mean": 0.972457627118644,
+      "current_mean": 1.023224043715847,
+      "difference": 0.050766416597203046
+    },
+    {
+      "segment": "station_id",
+      "value": "184",
+      "reference_mean": 1.066207627118644,
+      "current_mean": 1.0068306010928962,
+      "difference": -0.05937702602574779
+    },
+    {
+      "segment": "station_id",
+      "value": "185",
+      "reference_mean": 0.7556497175141242,
+      "current_mean": 0.7336065573770492,
+      "difference": -0.02204316013707508
+    },
+    {
+      "segment": "station_id",
+      "value": "186",
+      "reference_mean": 0.5833333333333334,
+      "current_mean": 0.7131147540983607,
+      "difference": 0.1297814207650273
+    },
+    {
+      "segment": "station_id",
+      "value": "187",
+      "reference_mean": 1.0176553672316384,
+      "current_mean": 1.085382513661202,
+      "difference": 0.06772714642956368
+    },
+    {
+      "segment": "station_id",
+      "value": "188",
+      "reference_mean": 1.8306850282485876,
+      "current_mean": 1.6987704918032787,
+      "difference": -0.13191453644530893
+    },
+    {
+      "segment": "station_id",
+      "value": "189",
+      "reference_mean": 1.319915254237288,
+      "current_mean": 1.282103825136612,
+      "difference": -0.03781142910067614
+    },
+    {
+      "segment": "station_id",
+      "value": "19",
+      "reference_mean": 2.039901129943503,
+      "current_mean": 1.2534153005464481,
+      "difference": -0.7864858293970549
+    },
+    {
+      "segment": "station_id",
+      "value": "190",
+      "reference_mean": 1.3185028248587571,
+      "current_mean": 1.310792349726776,
+      "difference": -0.007710475131981198
+    },
+    {
+      "segment": "station_id",
+      "value": "191",
+      "reference_mean": 1.216984463276836,
+      "current_mean": 1.2622950819672132,
+      "difference": 0.045310618690377114
+    },
+    {
+      "segment": "station_id",
+      "value": "192",
+      "reference_mean": 0.9864053672316384,
+      "current_mean": 0.9842896174863388,
+      "difference": -0.0021157497452996
+    },
+    {
+      "segment": "station_id",
+      "value": "193",
+      "reference_mean": 2.077683615819209,
+      "current_mean": 2.0703551912568305,
+      "difference": -0.007328424562378366
+    },
+    {
+      "segment": "station_id",
+      "value": "194",
+      "reference_mean": 4.46875,
+      "current_mean": 6.256147540983607,
+      "difference": 1.7873975409836067
+    },
+    {
+      "segment": "station_id",
+      "value": "195",
+      "reference_mean": 1.8659957627118644,
+      "current_mean": 1.9726775956284153,
+      "difference": 0.10668183291655087
+    },
+    {
+      "segment": "station_id",
+      "value": "196",
+      "reference_mean": 3.102401129943503,
+      "current_mean": 2.898224043715847,
+      "difference": -0.20417708622765618
+    },
+    {
+      "segment": "station_id",
+      "value": "197",
+      "reference_mean": 2.1885593220338984,
+      "current_mean": 2.1475409836065573,
+      "difference": -0.04101833842734104
+    },
+    {
+      "segment": "station_id",
+      "value": "198",
+      "reference_mean": 1.9021892655367232,
+      "current_mean": 2.003415300546448,
+      "difference": 0.10122603500972494
+    },
+    {
+      "segment": "station_id",
+      "value": "199",
+      "reference_mean": 2.73146186440678,
+      "current_mean": 2.7581967213114753,
+      "difference": 0.02673485690469546
+    },
+    {
+      "segment": "station_id",
+      "value": "2",
+      "reference_mean": 2.161370056497175,
+      "current_mean": 2.2841530054644807,
+      "difference": 0.12278294896730557
+    },
+    {
+      "segment": "station_id",
+      "value": "20",
+      "reference_mean": 2.316207627118644,
+      "current_mean": 1.530054644808743,
+      "difference": -0.7861529823099009
+    },
+    {
+      "segment": "station_id",
+      "value": "200",
+      "reference_mean": 2.0746822033898304,
+      "current_mean": 1.9726775956284153,
+      "difference": -0.10200460776141518
+    },
+    {
+      "segment": "station_id",
+      "value": "201",
+      "reference_mean": 1.9009533898305084,
+      "current_mean": 1.784153005464481,
+      "difference": -0.11680038436602747
+    },
+    {
+      "segment": "station_id",
+      "value": "202",
+      "reference_mean": 0.9385593220338984,
+      "current_mean": 1.0478142076502732,
+      "difference": 0.10925488561637486
+    },
+    {
+      "segment": "station_id",
+      "value": "203",
+      "reference_mean": 1.533015536723164,
+      "current_mean": 1.5915300546448088,
+      "difference": 0.05851451792164486
+    },
+    {
+      "segment": "station_id",
+      "value": "204",
+      "reference_mean": 1.2897245762711864,
+      "current_mean": 1.3128415300546448,
+      "difference": 0.02311695378345835
+    },
+    {
+      "segment": "station_id",
+      "value": "205",
+      "reference_mean": 0.5146539548022598,
+      "current_mean": 0.44808743169398907,
+      "difference": -0.06656652310827077
+    },
+    {
+      "segment": "station_id",
+      "value": "206",
+      "reference_mean": 0.9876412429378532,
+      "current_mean": 1.055327868852459,
+      "difference": 0.06768662591460584
+    },
+    {
+      "segment": "station_id",
+      "value": "207",
+      "reference_mean": 1.9088983050847457,
+      "current_mean": 1.9576502732240437,
+      "difference": 0.04875196813929805
+    },
+    {
+      "segment": "station_id",
+      "value": "208",
+      "reference_mean": 1.4235522598870056,
+      "current_mean": 1.4726775956284153,
+      "difference": 0.04912533574140965
+    },
+    {
+      "segment": "station_id",
+      "value": "209",
+      "reference_mean": 0.4498587570621469,
+      "current_mean": 0.37636612021857924,
+      "difference": -0.07349263684356766
+    },
+    {
+      "segment": "station_id",
+      "value": "21",
+      "reference_mean": 3.9405014124293785,
+      "current_mean": 3.598360655737705,
+      "difference": -0.34214075669167343
+    },
+    {
+      "segment": "station_id",
+      "value": "210",
+      "reference_mean": 1.2441737288135593,
+      "current_mean": 1.1898907103825136,
+      "difference": -0.05428301843104566
+    },
+    {
+      "segment": "station_id",
+      "value": "211",
+      "reference_mean": 0.710981638418079,
+      "current_mean": 0.6632513661202186,
+      "difference": -0.04773027229786042
+    },
+    {
+      "segment": "station_id",
+      "value": "212",
+      "reference_mean": 0.7616525423728814,
+      "current_mean": 0.6612021857923497,
+      "difference": -0.1004503565805317
+    },
+    {
+      "segment": "station_id",
+      "value": "213",
+      "reference_mean": 0.6910310734463276,
+      "current_mean": 0.6475409836065574,
+      "difference": -0.04349008983977021
+    },
+    {
+      "segment": "station_id",
+      "value": "214",
+      "reference_mean": 0.6025776836158192,
+      "current_mean": 0.5430327868852459,
+      "difference": -0.05954489673057328
+    },
+    {
+      "segment": "station_id",
+      "value": "215",
+      "reference_mean": 0.454978813559322,
+      "current_mean": 0.3818306010928962,
+      "difference": -0.07314821246642583
+    },
+    {
+      "segment": "station_id",
+      "value": "216",
+      "reference_mean": 1.010063559322034,
+      "current_mean": 0.9911202185792349,
+      "difference": -0.01894334074279902
+    },
+    {
+      "segment": "station_id",
+      "value": "217",
+      "reference_mean": 0.2616525423728814,
+      "current_mean": 0.26229508196721313,
+      "difference": 0.000642539594331748
+    },
+    {
+      "segment": "station_id",
+      "value": "218",
+      "reference_mean": 0.2951977401129944,
+      "current_mean": 0.32172131147540983,
+      "difference": 0.026523571362415455
+    },
+    {
+      "segment": "station_id",
+      "value": "219",
+      "reference_mean": 0.4143714689265537,
+      "current_mean": 0.37158469945355194,
+      "difference": -0.04278676947300175
+    },
+    {
+      "segment": "station_id",
+      "value": "220",
+      "reference_mean": 0.2678319209039548,
+      "current_mean": 0.3121584699453552,
+      "difference": 0.044326549041400376
+    },
+    {
+      "segment": "station_id",
+      "value": "221",
+      "reference_mean": 0.5132415254237288,
+      "current_mean": 0.4918032786885246,
+      "difference": -0.021438246735204225
+    },
+    {
+      "segment": "station_id",
+      "value": "222",
+      "reference_mean": 0.3762358757062147,
+      "current_mean": 0.38456284153005466,
+      "difference": 0.00832696582383996
+    },
+    {
+      "segment": "station_id",
+      "value": "224",
+      "reference_mean": 0.6128177966101694,
+      "current_mean": 0.5683060109289617,
+      "difference": -0.04451178568120773
+    },
+    {
+      "segment": "station_id",
+      "value": "225",
+      "reference_mean": 0.596927966101695,
+      "current_mean": 0.601775956284153,
+      "difference": 0.004847990182458073
+    },
+    {
+      "segment": "station_id",
+      "value": "226",
+      "reference_mean": 1.9668079096045197,
+      "current_mean": 1.924863387978142,
+      "difference": -0.04194452162637763
+    },
+    {
+      "segment": "station_id",
+      "value": "227",
+      "reference_mean": 0.609816384180791,
+      "current_mean": 0.6325136612021858,
+      "difference": 0.02269727702139479
+    },
+    {
+      "segment": "station_id",
+      "value": "228",
+      "reference_mean": 0.5413135593220338,
+      "current_mean": 0.5095628415300546,
+      "difference": -0.031750717791979244
+    },
+    {
+      "segment": "station_id",
+      "value": "229",
+      "reference_mean": 0.9830508474576272,
+      "current_mean": 0.8292349726775956,
+      "difference": -0.15381587478003156
+    },
+    {
+      "segment": "station_id",
+      "value": "23",
+      "reference_mean": 2.1278248587570623,
+      "current_mean": 2.3046448087431695,
+      "difference": 0.17681994998610717
+    },
+    {
+      "segment": "station_id",
+      "value": "230",
+      "reference_mean": 1.2800141242937852,
+      "current_mean": 1.2875683060109289,
+      "difference": 0.007554181717143615
+    },
+    {
+      "segment": "station_id",
+      "value": "231",
+      "reference_mean": 0.6018714689265536,
+      "current_mean": 0.610655737704918,
+      "difference": 0.008784268778364357
+    },
+    {
+      "segment": "station_id",
+      "value": "232",
+      "reference_mean": 1.2685381355932204,
+      "current_mean": 1.3019125683060109,
+      "difference": 0.0333744327127905
+    },
+    {
+      "segment": "station_id",
+      "value": "233",
+      "reference_mean": 1.0623234463276836,
+      "current_mean": 1.3101092896174864,
+      "difference": 0.2477858432898028
+    },
+    {
+      "segment": "station_id",
+      "value": "234",
+      "reference_mean": 0.899364406779661,
+      "current_mean": 1.0881147540983607,
+      "difference": 0.18875034731869966
+    },
+    {
+      "segment": "station_id",
+      "value": "235",
+      "reference_mean": 1.21045197740113,
+      "current_mean": 1.169398907103825,
+      "difference": -0.04105307029730487
+    },
+    {
+      "segment": "station_id",
+      "value": "236",
+      "reference_mean": 1.1371822033898304,
+      "current_mean": 1.1256830601092895,
+      "difference": -0.011499143280540913
+    },
+    {
+      "segment": "station_id",
+      "value": "237",
+      "reference_mean": 0.2828389830508475,
+      "current_mean": 0.3128415300546448,
+      "difference": 0.030002547003797342
+    },
+    {
+      "segment": "station_id",
+      "value": "238",
+      "reference_mean": 0.3225635593220339,
+      "current_mean": 0.2930327868852459,
+      "difference": -0.029530772436787978
+    },
+    {
+      "segment": "station_id",
+      "value": "239",
+      "reference_mean": 0.3305084745762712,
+      "current_mean": 0.30327868852459017,
+      "difference": -0.027229786051681026
+    },
+    {
+      "segment": "station_id",
+      "value": "24",
+      "reference_mean": 2.0192443502824857,
+      "current_mean": 2.0942622950819674,
+      "difference": 0.07501794479948165
+    },
+    {
+      "segment": "station_id",
+      "value": "240",
+      "reference_mean": 0.1015183615819209,
+      "current_mean": 0.0,
+      "difference": -0.1015183615819209
+    },
+    {
+      "segment": "station_id",
+      "value": "241",
+      "reference_mean": 0.5144774011299436,
+      "current_mean": 0.51775956284153,
+      "difference": 0.003282161711586462
+    },
+    {
+      "segment": "station_id",
+      "value": "242",
+      "reference_mean": 0.439795197740113,
+      "current_mean": 0.4378415300546448,
+      "difference": -0.0019536676854681745
+    },
+    {
+      "segment": "station_id",
+      "value": "243",
+      "reference_mean": 0.3619350282485876,
+      "current_mean": 0.35655737704918034,
+      "difference": -0.005377651199407252
+    },
+    {
+      "segment": "station_id",
+      "value": "244",
+      "reference_mean": 1.0123587570621468,
+      "current_mean": 1.0519125683060109,
+      "difference": 0.039553811243864034
+    },
+    {
+      "segment": "station_id",
+      "value": "246",
+      "reference_mean": 0.7434675141242938,
+      "current_mean": 0.9098360655737705,
+      "difference": 0.1663685514494767
+    },
+    {
+      "segment": "station_id",
+      "value": "247",
+      "reference_mean": 1.0231285310734464,
+      "current_mean": 1.5020491803278688,
+      "difference": 0.47892064925442246
+    },
+    {
+      "segment": "station_id",
+      "value": "248",
+      "reference_mean": 0.5121822033898306,
+      "current_mean": 0.6161202185792349,
+      "difference": 0.10393801518940438
+    },
+    {
+      "segment": "station_id",
+      "value": "249",
+      "reference_mean": 1.4749293785310735,
+      "current_mean": 1.5334699453551912,
+      "difference": 0.05854056682411768
+    },
+    {
+      "segment": "station_id",
+      "value": "25",
+      "reference_mean": 1.4708686440677967,
+      "current_mean": 1.758879781420765,
+      "difference": 0.28801113735296835
+    },
+    {
+      "segment": "station_id",
+      "value": "251",
+      "reference_mean": 0.9394420903954802,
+      "current_mean": 0.9084699453551912,
+      "difference": -0.030972145040289
+    },
+    {
+      "segment": "station_id",
+      "value": "253",
+      "reference_mean": 2.8538135593220337,
+      "current_mean": 2.648224043715847,
+      "difference": -0.20558951560618688
+    },
+    {
+      "segment": "station_id",
+      "value": "254",
+      "reference_mean": 2.084922316384181,
+      "current_mean": 2.0724043715846996,
+      "difference": -0.012517944799481207
+    },
+    {
+      "segment": "station_id",
+      "value": "255",
+      "reference_mean": 1.8926553672316384,
+      "current_mean": 1.9153005464480874,
+      "difference": 0.02264517921644904
+    },
+    {
+      "segment": "station_id",
+      "value": "256",
+      "reference_mean": 3.2037429378531073,
+      "current_mean": 2.717896174863388,
+      "difference": -0.4858467629897194
+    },
+    {
+      "segment": "station_id",
+      "value": "257",
+      "reference_mean": 2.5042372881355934,
+      "current_mean": 3.17896174863388,
+      "difference": 0.6747244604982865
+    },
+    {
+      "segment": "station_id",
+      "value": "258",
+      "reference_mean": 0.6084039548022598,
+      "current_mean": 0.6331967213114754,
+      "difference": 0.02479276650921558
+    },
+    {
+      "segment": "station_id",
+      "value": "259",
+      "reference_mean": 1.4758121468926553,
+      "current_mean": 1.7984972677595628,
+      "difference": 0.3226851208669075
+    },
+    {
+      "segment": "station_id",
+      "value": "26",
+      "reference_mean": 2.4141949152542375,
+      "current_mean": 2.704234972677596,
+      "difference": 0.29004005742335837
+    },
+    {
+      "segment": "station_id",
+      "value": "260",
+      "reference_mean": 4.401129943502825,
+      "current_mean": 4.761612021857924,
+      "difference": 0.3604820783550986
+    },
+    {
+      "segment": "station_id",
+      "value": "261",
+      "reference_mean": 0.686617231638418,
+      "current_mean": 0.703551912568306,
+      "difference": 0.016934680929887924
+    },
+    {
+      "segment": "station_id",
+      "value": "262",
+      "reference_mean": 1.4256709039548023,
+      "current_mean": 1.3709016393442623,
+      "difference": -0.05476926461053999
+    },
+    {
+      "segment": "station_id",
+      "value": "263",
+      "reference_mean": 1.1809675141242937,
+      "current_mean": 1.3886612021857923,
+      "difference": 0.20769368806149857
+    },
+    {
+      "segment": "station_id",
+      "value": "264",
+      "reference_mean": 0.4752824858757062,
+      "current_mean": 0.5607923497267759,
+      "difference": 0.08550986385106973
+    },
+    {
+      "segment": "station_id",
+      "value": "265",
+      "reference_mean": 1.6371822033898304,
+      "current_mean": 1.7882513661202186,
+      "difference": 0.15106916273038817
+    },
+    {
+      "segment": "station_id",
+      "value": "266",
+      "reference_mean": 1.9401483050847457,
+      "current_mean": 1.9692622950819672,
+      "difference": 0.02911398999722148
+    },
+    {
+      "segment": "station_id",
+      "value": "267",
+      "reference_mean": 1.7466454802259888,
+      "current_mean": 1.6113387978142077,
+      "difference": -0.135306682411781
+    },
+    {
+      "segment": "station_id",
+      "value": "268",
+      "reference_mean": 3.3109110169491527,
+      "current_mean": 4.150956284153006,
+      "difference": 0.8400452672038532
+    },
+    {
+      "segment": "station_id",
+      "value": "269",
+      "reference_mean": 1.1308262711864407,
+      "current_mean": 1.4364754098360655,
+      "difference": 0.30564913864962473
+    },
+    {
+      "segment": "station_id",
+      "value": "27",
+      "reference_mean": 3.0526129943502824,
+      "current_mean": 3.394125683060109,
+      "difference": 0.34151268870982676
+    },
+    {
+      "segment": "station_id",
+      "value": "270",
+      "reference_mean": 0.6038135593220338,
+      "current_mean": 0.6359289617486339,
+      "difference": 0.03211540242660005
+    },
+    {
+      "segment": "station_id",
+      "value": "271",
+      "reference_mean": 7.779131355932203,
+      "current_mean": 8.57035519125683,
+      "difference": 0.7912238353246268
+    },
+    {
+      "segment": "station_id",
+      "value": "272",
+      "reference_mean": 2.4961158192090394,
+      "current_mean": 2.594945355191257,
+      "difference": 0.09882953598221755
+    },
+    {
+      "segment": "station_id",
+      "value": "273",
+      "reference_mean": 3.843926553672316,
+      "current_mean": 4.334016393442623,
+      "difference": 0.4900898397703064
+    },
+    {
+      "segment": "station_id",
+      "value": "274",
+      "reference_mean": 0.4286723163841808,
+      "current_mean": 0.48633879781420764,
+      "difference": 0.05766648143002684
+    },
+    {
+      "segment": "station_id",
+      "value": "275",
+      "reference_mean": 1.4819915254237288,
+      "current_mean": 1.4788251366120218,
+      "difference": -0.003166388811707055
+    },
+    {
+      "segment": "station_id",
+      "value": "276",
+      "reference_mean": 1.4247881355932204,
+      "current_mean": 1.5976775956284153,
+      "difference": 0.1728894600351949
+    },
+    {
+      "segment": "station_id",
+      "value": "277",
+      "reference_mean": 1.902542372881356,
+      "current_mean": 1.8743169398907105,
+      "difference": -0.028225432990645505
+    },
+    {
+      "segment": "station_id",
+      "value": "278",
+      "reference_mean": 0.892478813559322,
+      "current_mean": 0.851775956284153,
+      "difference": -0.04070285727516898
+    },
+    {
+      "segment": "station_id",
+      "value": "279",
+      "reference_mean": 1.1885593220338984,
+      "current_mean": 1.278688524590164,
+      "difference": 0.09012920255626566
+    },
+    {
+      "segment": "station_id",
+      "value": "28",
+      "reference_mean": 3.2544138418079096,
+      "current_mean": 3.6065573770491803,
+      "difference": 0.35214353524127073
+    },
+    {
+      "segment": "station_id",
+      "value": "280",
+      "reference_mean": 1.4763418079096045,
+      "current_mean": 1.7595628415300546,
+      "difference": 0.28322103362045015
+    },
+    {
+      "segment": "station_id",
+      "value": "281",
+      "reference_mean": 2.629060734463277,
+      "current_mean": 2.4508196721311477,
+      "difference": -0.1782410623321291
+    },
+    {
+      "segment": "station_id",
+      "value": "282",
+      "reference_mean": 1.3485169491525424,
+      "current_mean": 1.4262295081967213,
+      "difference": 0.07771255904417895
+    },
+    {
+      "segment": "station_id",
+      "value": "283",
+      "reference_mean": 2.3476341807909606,
+      "current_mean": 2.5423497267759565,
+      "difference": 0.19471554598499585
+    },
+    {
+      "segment": "station_id",
+      "value": "284",
+      "reference_mean": 0.6867937853107344,
+      "current_mean": 0.7786885245901639,
+      "difference": 0.09189473927942948
+    },
+    {
+      "segment": "station_id",
+      "value": "285",
+      "reference_mean": 1.0241878531073447,
+      "current_mean": 1.0881147540983607,
+      "difference": 0.06392690099101594
+    },
+    {
+      "segment": "station_id",
+      "value": "286",
+      "reference_mean": 1.0024717514124293,
+      "current_mean": 1.0040983606557377,
+      "difference": 0.0016266092433083745
+    },
+    {
+      "segment": "station_id",
+      "value": "287",
+      "reference_mean": 0.2445268361581921,
+      "current_mean": 0.2650273224043716,
+      "difference": 0.020500486246179506
+    },
+    {
+      "segment": "station_id",
+      "value": "288",
+      "reference_mean": 2.3479872881355934,
+      "current_mean": 3.0150273224043715,
+      "difference": 0.6670400342687781
+    },
+    {
+      "segment": "station_id",
+      "value": "289",
+      "reference_mean": 0.775247175141243,
+      "current_mean": 0.8510928961748634,
+      "difference": 0.07584572103362042
+    },
+    {
+      "segment": "station_id",
+      "value": "29",
+      "reference_mean": 1.4295550847457628,
+      "current_mean": 1.7930327868852458,
+      "difference": 0.36347770213948305
+    },
+    {
+      "segment": "station_id",
+      "value": "290",
+      "reference_mean": 0.9897598870056498,
+      "current_mean": 1.0648907103825136,
+      "difference": 0.07513082337686383
+    },
+    {
+      "segment": "station_id",
+      "value": "291",
+      "reference_mean": 2.7475282485875705,
+      "current_mean": 3.3975409836065573,
+      "difference": 0.6500127350189868
+    },
+    {
+      "segment": "station_id",
+      "value": "292",
+      "reference_mean": 0.22387005649717515,
+      "current_mean": 0.2575136612021858,
+      "difference": 0.03364360470501063
+    },
+    {
+      "segment": "station_id",
+      "value": "293",
+      "reference_mean": 0.688912429378531,
+      "current_mean": 0.9911202185792349,
+      "difference": 0.3022077892007039
+    },
+    {
+      "segment": "station_id",
+      "value": "294",
+      "reference_mean": 0.4270833333333333,
+      "current_mean": 0.5218579234972678,
+      "difference": 0.09477459016393447
+    },
+    {
+      "segment": "station_id",
+      "value": "295",
+      "reference_mean": 0.9027189265536724,
+      "current_mean": 1.0204918032786885,
+      "difference": 0.11777287672501613
+    },
+    {
+      "segment": "station_id",
+      "value": "296",
+      "reference_mean": 1.6242937853107344,
+      "current_mean": 1.5601092896174864,
+      "difference": -0.06418449569324802
+    },
+    {
+      "segment": "station_id",
+      "value": "3",
+      "reference_mean": 2.1604872881355934,
+      "current_mean": 2.2745901639344264,
+      "difference": 0.11410287579883294
+    },
+    {
+      "segment": "station_id",
+      "value": "30",
+      "reference_mean": 2.455331920903955,
+      "current_mean": 2.396857923497268,
+      "difference": -0.05847399740668724
+    },
+    {
+      "segment": "station_id",
+      "value": "302",
+      "reference_mean": 0.5231285310734464,
+      "current_mean": 0.46789617486338797,
+      "difference": -0.0552323562100584
+    },
+    {
+      "segment": "station_id",
+      "value": "303",
+      "reference_mean": 1.8975988700564972,
+      "current_mean": 1.7916666666666667,
+      "difference": -0.10593220338983045
+    },
+    {
+      "segment": "station_id",
+      "value": "304",
+      "reference_mean": 0.7434675141242938,
+      "current_mean": 0.7725409836065574,
+      "difference": 0.029073469482263636
+    },
+    {
+      "segment": "station_id",
+      "value": "305",
+      "reference_mean": 0.375,
+      "current_mean": 0.3743169398907104,
+      "difference": -0.0006830601092895905
+    },
+    {
+      "segment": "station_id",
+      "value": "306",
+      "reference_mean": 0.5775070621468926,
+      "current_mean": 0.5129781420765027,
+      "difference": -0.0645289200703899
+    },
+    {
+      "segment": "station_id",
+      "value": "307",
+      "reference_mean": 0.5873940677966102,
+      "current_mean": 0.44808743169398907,
+      "difference": -0.13930663610262112
+    },
+    {
+      "segment": "station_id",
+      "value": "308",
+      "reference_mean": 0.5640889830508474,
+      "current_mean": 0.5525956284153005,
+      "difference": -0.011493354635546904
+    },
+    {
+      "segment": "station_id",
+      "value": "309",
+      "reference_mean": 0.4405014124293785,
+      "current_mean": 0.3879781420765027,
+      "difference": -0.052523270352875795
+    },
+    {
+      "segment": "station_id",
+      "value": "31",
+      "reference_mean": 0.9510946327683616,
+      "current_mean": 1.2889344262295082,
+      "difference": 0.33783979346114656
+    },
+    {
+      "segment": "station_id",
+      "value": "311",
+      "reference_mean": 1.2434675141242937,
+      "current_mean": 1.2903005464480874,
+      "difference": 0.046833032323793766
+    },
+    {
+      "segment": "station_id",
+      "value": "312",
+      "reference_mean": 1.3626412429378532,
+      "current_mean": 1.2677595628415301,
+      "difference": -0.09488168009632303
+    },
+    {
+      "segment": "station_id",
+      "value": "313",
+      "reference_mean": 0.3474576271186441,
+      "current_mean": 0.2677595628415301,
+      "difference": -0.07969806427711401
+    },
+    {
+      "segment": "station_id",
+      "value": "314",
+      "reference_mean": 0.2695974576271186,
+      "current_mean": 0.3483606557377049,
+      "difference": 0.0787631981105863
+    },
+    {
+      "segment": "station_id",
+      "value": "315",
+      "reference_mean": 0.4676906779661017,
+      "current_mean": 0.43306010928961747,
+      "difference": -0.03463056867648423
+    },
+    {
+      "segment": "station_id",
+      "value": "316",
+      "reference_mean": 0.4113700564971751,
+      "current_mean": 0.3790983606557377,
+      "difference": -0.03227169584143741
+    },
+    {
+      "segment": "station_id",
+      "value": "317",
+      "reference_mean": 0.22475282485875706,
+      "current_mean": 0.2062841530054645,
+      "difference": -0.018468671853292568
+    },
+    {
+      "segment": "station_id",
+      "value": "318",
+      "reference_mean": 0.1896186440677966,
+      "current_mean": 0.16666666666666666,
+      "difference": -0.022951977401129947
+    },
+    {
+      "segment": "station_id",
+      "value": "319",
+      "reference_mean": 0.6620762711864406,
+      "current_mean": 0.5983606557377049,
+      "difference": -0.06371561544873572
+    },
+    {
+      "segment": "station_id",
+      "value": "32",
+      "reference_mean": 2.900776836158192,
+      "current_mean": 2.9644808743169397,
+      "difference": 0.0637040381587477
+    },
+    {
+      "segment": "station_id",
+      "value": "320",
+      "reference_mean": 0.3372175141242938,
+      "current_mean": 0.3435792349726776,
+      "difference": 0.006361720848383823
+    },
+    {
+      "segment": "station_id",
+      "value": "321",
+      "reference_mean": 1.1401836158192091,
+      "current_mean": 1.085382513661202,
+      "difference": -0.05480110215800704
+    },
+    {
+      "segment": "station_id",
+      "value": "322",
+      "reference_mean": 0.7530014124293786,
+      "current_mean": 0.8162568306010929,
+      "difference": 0.06325541817171432
+    },
+    {
+      "segment": "station_id",
+      "value": "323",
+      "reference_mean": 0.8908898305084746,
+      "current_mean": 0.8046448087431693,
+      "difference": -0.08624502176530524
+    },
+    {
+      "segment": "station_id",
+      "value": "324",
+      "reference_mean": 1.1255296610169492,
+      "current_mean": 1.155054644808743,
+      "difference": 0.029524983791793913
+    },
+    {
+      "segment": "station_id",
+      "value": "325",
+      "reference_mean": 0.5513771186440678,
+      "current_mean": 0.5648907103825137,
+      "difference": 0.013513591738445907
+    },
+    {
+      "segment": "station_id",
+      "value": "326",
+      "reference_mean": 0.5697387005649718,
+      "current_mean": 0.6079234972677595,
+      "difference": 0.03818479670278774
+    },
+    {
+      "segment": "station_id",
+      "value": "327",
+      "reference_mean": 0.3712923728813559,
+      "current_mean": 0.37841530054644806,
+      "difference": 0.007122927665092149
+    },
+    {
+      "segment": "station_id",
+      "value": "328",
+      "reference_mean": 0.23923022598870056,
+      "current_mean": 0.3469945355191257,
+      "difference": 0.10776430953042512
+    },
+    {
+      "segment": "station_id",
+      "value": "329",
+      "reference_mean": 0.4721045197740113,
+      "current_mean": 0.5013661202185792,
+      "difference": 0.02926160044456788
+    },
+    {
+      "segment": "station_id",
+      "value": "33",
+      "reference_mean": 2.6950918079096047,
+      "current_mean": 2.694672131147541,
+      "difference": -0.0004196767620636699
+    },
+    {
+      "segment": "station_id",
+      "value": "330",
+      "reference_mean": 0.5760946327683616,
+      "current_mean": 0.6789617486338798,
+      "difference": 0.10286711586551822
+    },
+    {
+      "segment": "station_id",
+      "value": "331",
+      "reference_mean": 0.8225635593220338,
+      "current_mean": 0.8353825136612022,
+      "difference": 0.012818954339168354
+    },
+    {
+      "segment": "station_id",
+      "value": "332",
+      "reference_mean": 0.5561440677966102,
+      "current_mean": 0.6680327868852459,
+      "difference": 0.11188871908863574
+    },
+    {
+      "segment": "station_id",
+      "value": "333",
+      "reference_mean": 2.4516242937853105,
+      "current_mean": 2.655054644808743,
+      "difference": 0.20343035102343254
+    },
+    {
+      "segment": "station_id",
+      "value": "334",
+      "reference_mean": 0.7106285310734464,
+      "current_mean": 0.625,
+      "difference": -0.08562853107344637
+    },
+    {
+      "segment": "station_id",
+      "value": "335",
+      "reference_mean": 0.459569209039548,
+      "current_mean": 0.48565573770491804,
+      "difference": 0.026086528665370035
+    },
+    {
+      "segment": "station_id",
+      "value": "336",
+      "reference_mean": 0.3991878531073446,
+      "current_mean": 0.4801912568306011,
+      "difference": 0.08100340372325648
+    },
+    {
+      "segment": "station_id",
+      "value": "337",
+      "reference_mean": 0.6719632768361582,
+      "current_mean": 0.7581967213114754,
+      "difference": 0.08623344447531722
+    },
+    {
+      "segment": "station_id",
+      "value": "338",
+      "reference_mean": 0.4249646892655367,
+      "current_mean": 0.4993169398907104,
+      "difference": 0.0743522506251737
+    },
+    {
+      "segment": "station_id",
+      "value": "339",
+      "reference_mean": 0.5308968926553672,
+      "current_mean": 0.5956284153005464,
+      "difference": 0.06473152264517923
+    },
+    {
+      "segment": "station_id",
+      "value": "34",
+      "reference_mean": 3.430261299435028,
+      "current_mean": 1.5437158469945356,
+      "difference": -1.8865454524404925
+    },
+    {
+      "segment": "station_id",
+      "value": "340",
+      "reference_mean": 0.8527542372881356,
+      "current_mean": 1.0245901639344261,
+      "difference": 0.17183592664629055
+    },
+    {
+      "segment": "station_id",
+      "value": "341",
+      "reference_mean": 0.9516242937853108,
+      "current_mean": 1.1871584699453552,
+      "difference": 0.23553417616004446
+    },
+    {
+      "segment": "station_id",
+      "value": "342",
+      "reference_mean": 0.2911370056497175,
+      "current_mean": 0.32103825136612024,
+      "difference": 0.029901245716402736
+    },
+    {
+      "segment": "station_id",
+      "value": "343",
+      "reference_mean": 0.3269774011299435,
+      "current_mean": 0.27117486338797814,
+      "difference": -0.05580253774196536
+    },
+    {
+      "segment": "station_id",
+      "value": "344",
+      "reference_mean": 0.4719279661016949,
+      "current_mean": 0.4405737704918033,
+      "difference": -0.03135419560989161
+    },
+    {
+      "segment": "station_id",
+      "value": "345",
+      "reference_mean": 0.5391949152542372,
+      "current_mean": 0.48633879781420764,
+      "difference": -0.052856117440029604
+    },
+    {
+      "segment": "station_id",
+      "value": "346",
+      "reference_mean": 1.8991878531073447,
+      "current_mean": 2.0976775956284155,
+      "difference": 0.19848974252107077
+    },
+    {
+      "segment": "station_id",
+      "value": "347",
+      "reference_mean": 0.7639477401129944,
+      "current_mean": 0.9610655737704918,
+      "difference": 0.19711783365749747
+    },
+    {
+      "segment": "station_id",
+      "value": "348",
+      "reference_mean": 0.21133474576271186,
+      "current_mean": 0.30327868852459017,
+      "difference": 0.09194394276187831
+    },
+    {
+      "segment": "station_id",
+      "value": "349",
+      "reference_mean": 1.066207627118644,
+      "current_mean": 1.2547814207650274,
+      "difference": 0.18857379364638338
+    },
+    {
+      "segment": "station_id",
+      "value": "35",
+      "reference_mean": 8.423552259887005,
+      "current_mean": 10.101775956284152,
+      "difference": 1.678223696397147
+    },
+    {
+      "segment": "station_id",
+      "value": "350",
+      "reference_mean": 0.9509180790960452,
+      "current_mean": 1.0293715846994536,
+      "difference": 0.07845350560340836
+    },
+    {
+      "segment": "station_id",
+      "value": "351",
+      "reference_mean": 0.8012005649717514,
+      "current_mean": 0.7336065573770492,
+      "difference": -0.06759400759470224
+    },
+    {
+      "segment": "station_id",
+      "value": "352",
+      "reference_mean": 0.6055790960451978,
+      "current_mean": 0.5730874316939891,
+      "difference": -0.03249166435120865
+    },
+    {
+      "segment": "station_id",
+      "value": "353",
+      "reference_mean": 0.3866525423728814,
+      "current_mean": 0.4979508196721312,
+      "difference": 0.11129827729924979
+    },
+    {
+      "segment": "station_id",
+      "value": "354",
+      "reference_mean": 1.4479166666666667,
+      "current_mean": 1.6243169398907105,
+      "difference": 0.17640027322404372
+    },
+    {
+      "segment": "station_id",
+      "value": "355",
+      "reference_mean": 0.4922316384180791,
+      "current_mean": 0.4883879781420765,
+      "difference": -0.0038436602760025806
+    },
+    {
+      "segment": "station_id",
+      "value": "356",
+      "reference_mean": 0.15466101694915255,
+      "current_mean": 0.1489071038251366,
+      "difference": -0.005753913124015936
+    },
+    {
+      "segment": "station_id",
+      "value": "357",
+      "reference_mean": 0.4092514124293785,
+      "current_mean": 0.5683060109289617,
+      "difference": 0.1590545984995832
+    },
+    {
+      "segment": "station_id",
+      "value": "358",
+      "reference_mean": 0.22916666666666666,
+      "current_mean": 0.2616120218579235,
+      "difference": 0.032445355191256825
+    },
+    {
+      "segment": "station_id",
+      "value": "359",
+      "reference_mean": 0.8220338983050848,
+      "current_mean": 0.8189890710382514,
+      "difference": -0.0030448272668334164
+    },
+    {
+      "segment": "station_id",
+      "value": "36",
+      "reference_mean": 2.9111935028248586,
+      "current_mean": 3.431693989071038,
+      "difference": 0.5205004862461795
+    },
+    {
+      "segment": "station_id",
+      "value": "360",
+      "reference_mean": 0.21486581920903955,
+      "current_mean": 0.24043715846994534,
+      "difference": 0.025571339260905795
+    },
+    {
+      "segment": "station_id",
+      "value": "361",
+      "reference_mean": 0.4551553672316384,
+      "current_mean": 0.5819672131147541,
+      "difference": 0.12681184588311567
+    },
+    {
+      "segment": "station_id",
+      "value": "362",
+      "reference_mean": 0.21610169491525424,
+      "current_mean": 0.18579234972677597,
+      "difference": -0.030309345188478276
+    },
+    {
+      "segment": "station_id",
+      "value": "363",
+      "reference_mean": 1.034074858757062,
+      "current_mean": 1.1612021857923498,
+      "difference": 0.12712732703528773
+    },
+    {
+      "segment": "station_id",
+      "value": "364",
+      "reference_mean": 0.2657132768361582,
+      "current_mean": 0.3756830601092896,
+      "difference": 0.1099697832731314
+    },
+    {
+      "segment": "station_id",
+      "value": "365",
+      "reference_mean": 0.2597104519774011,
+      "current_mean": 0.3176229508196721,
+      "difference": 0.05791249884227101
+    },
+    {
+      "segment": "station_id",
+      "value": "366",
+      "reference_mean": 0.4025423728813559,
+      "current_mean": 0.4521857923497268,
+      "difference": 0.049643419468370864
+    },
+    {
+      "segment": "station_id",
+      "value": "368",
+      "reference_mean": 0.5201271186440678,
+      "current_mean": 0.5580601092896175,
+      "difference": 0.03793299064554967
+    },
+    {
+      "segment": "station_id",
+      "value": "369",
+      "reference_mean": 0.3328036723163842,
+      "current_mean": 0.38934426229508196,
+      "difference": 0.056540589978697764
+    },
+    {
+      "segment": "station_id",
+      "value": "37",
+      "reference_mean": 1.8522245762711864,
+      "current_mean": 2.08879781420765,
+      "difference": 0.2365732379364638
+    },
+    {
+      "segment": "station_id",
+      "value": "370",
+      "reference_mean": 0.2051553672316384,
+      "current_mean": 0.28620218579234974,
+      "difference": 0.08104681856071133
+    },
+    {
+      "segment": "station_id",
+      "value": "371",
+      "reference_mean": 2.091984463276836,
+      "current_mean": 2.3476775956284155,
+      "difference": 0.2556931323515794
+    },
+    {
+      "segment": "station_id",
+      "value": "372",
+      "reference_mean": 0.305614406779661,
+      "current_mean": 0.40915300546448086,
+      "difference": 0.10353859868481985
+    },
+    {
+      "segment": "station_id",
+      "value": "373",
+      "reference_mean": 0.6942090395480226,
+      "current_mean": 0.6919398907103825,
+      "difference": -0.002269148837640067
+    },
+    {
+      "segment": "station_id",
+      "value": "374",
+      "reference_mean": 0.2630649717514124,
+      "current_mean": 0.36065573770491804,
+      "difference": 0.09759076595350563
+    },
+    {
+      "segment": "station_id",
+      "value": "375",
+      "reference_mean": 0.365819209039548,
+      "current_mean": 0.3790983606557377,
+      "difference": 0.0132791516161897
+    },
+    {
+      "segment": "station_id",
+      "value": "376",
+      "reference_mean": 1.026659604519774,
+      "current_mean": 1.2185792349726776,
+      "difference": 0.1919196304529036
+    },
+    {
+      "segment": "station_id",
+      "value": "377",
+      "reference_mean": 0.8509887005649718,
+      "current_mean": 0.8579234972677595,
+      "difference": 0.006934796702787738
+    },
+    {
+      "segment": "station_id",
+      "value": "378",
+      "reference_mean": 0.24505649717514125,
+      "current_mean": 0.21994535519125682,
+      "difference": -0.025111141983884422
+    },
+    {
+      "segment": "station_id",
+      "value": "379",
+      "reference_mean": 0.3181497175141243,
+      "current_mean": 0.375,
+      "difference": 0.0568502824858757
+    },
+    {
+      "segment": "station_id",
+      "value": "38",
+      "reference_mean": 4.291843220338983,
+      "current_mean": 4.528688524590164,
+      "difference": 0.23684530425118133
+    },
+    {
+      "segment": "station_id",
+      "value": "380",
+      "reference_mean": 0.16790254237288135,
+      "current_mean": 0.1407103825136612,
+      "difference": -0.02719215985922016
+    },
+    {
+      "segment": "station_id",
+      "value": "381",
+      "reference_mean": 0.5132415254237288,
+      "current_mean": 0.5519125683060109,
+      "difference": 0.03867104288228207
+    },
+    {
+      "segment": "station_id",
+      "value": "382",
+      "reference_mean": 0.804731638418079,
+      "current_mean": 0.837431693989071,
+      "difference": 0.03270005557099198
+    },
+    {
+      "segment": "station_id",
+      "value": "383",
+      "reference_mean": 1.043255649717514,
+      "current_mean": 1.0177595628415301,
+      "difference": -0.025496086875983925
+    },
+    {
+      "segment": "station_id",
+      "value": "384",
+      "reference_mean": 1.2715395480225988,
+      "current_mean": 1.5157103825136613,
+      "difference": 0.24417083449106247
+    },
+    {
+      "segment": "station_id",
+      "value": "385",
+      "reference_mean": 0.817973163841808,
+      "current_mean": 0.8162568306010929,
+      "difference": -0.0017163332407150733
+    },
+    {
+      "segment": "station_id",
+      "value": "386",
+      "reference_mean": 0.8930084745762712,
+      "current_mean": 1.0587431693989071,
+      "difference": 0.16573469482263592
+    },
+    {
+      "segment": "station_id",
+      "value": "387",
+      "reference_mean": 0.9126059322033898,
+      "current_mean": 1.0935792349726776,
+      "difference": 0.1809733027692878
+    },
+    {
+      "segment": "station_id",
+      "value": "388",
+      "reference_mean": 0.6126412429378532,
+      "current_mean": 0.6960382513661202,
+      "difference": 0.08339700842826703
+    },
+    {
+      "segment": "station_id",
+      "value": "389",
+      "reference_mean": 0.5504943502824858,
+      "current_mean": 0.5621584699453552,
+      "difference": 0.011664119662869399
+    },
+    {
+      "segment": "station_id",
+      "value": "39",
+      "reference_mean": 2.1657838983050848,
+      "current_mean": 2.1605191256830603,
+      "difference": -0.005264772622024516
+    },
+    {
+      "segment": "station_id",
+      "value": "390",
+      "reference_mean": 0.6788488700564972,
+      "current_mean": 0.8456284153005464,
+      "difference": 0.16677954524404925
+    },
+    {
+      "segment": "station_id",
+      "value": "391",
+      "reference_mean": 0.1728460451977401,
+      "current_mean": 0.20765027322404372,
+      "difference": 0.03480422802630362
+    },
+    {
+      "segment": "station_id",
+      "value": "392",
+      "reference_mean": 0.7643008474576272,
+      "current_mean": 0.851775956284153,
+      "difference": 0.08747510882652587
+    },
+    {
+      "segment": "station_id",
+      "value": "393",
+      "reference_mean": 0.736228813559322,
+      "current_mean": 0.8592896174863388,
+      "difference": 0.12306080392701679
+    },
+    {
+      "segment": "station_id",
+      "value": "394",
+      "reference_mean": 0.4918785310734463,
+      "current_mean": 0.4733606557377049,
+      "difference": -0.018517875335741396
+    },
+    {
+      "segment": "station_id",
+      "value": "395",
+      "reference_mean": 0.88329802259887,
+      "current_mean": 0.9938524590163934,
+      "difference": 0.11055443641752338
+    },
+    {
+      "segment": "station_id",
+      "value": "396",
+      "reference_mean": 1.8218573446327684,
+      "current_mean": 0.37841530054644806,
+      "difference": -1.4434420440863203
+    },
+    {
+      "segment": "station_id",
+      "value": "397",
+      "reference_mean": 0.6018714689265536,
+      "current_mean": 0.5642076502732241,
+      "difference": -0.03766381865332957
+    },
+    {
+      "segment": "station_id",
+      "value": "398",
+      "reference_mean": 0.4883474576271186,
+      "current_mean": 0.6810109289617486,
+      "difference": 0.19266347133463002
+    },
+    {
+      "segment": "station_id",
+      "value": "4",
+      "reference_mean": 2.73340395480226,
+      "current_mean": 2.7814207650273226,
+      "difference": 0.048016810225062656
+    },
+    {
+      "segment": "station_id",
+      "value": "40",
+      "reference_mean": 3.0720338983050848,
+      "current_mean": 3.456967213114754,
+      "difference": 0.3849333148096692
+    },
+    {
+      "segment": "station_id",
+      "value": "400",
+      "reference_mean": 0.4277895480225989,
+      "current_mean": 1.4808743169398908,
+      "difference": 1.053084768917292
+    },
+    {
+      "segment": "station_id",
+      "value": "41",
+      "reference_mean": 1.7138064971751412,
+      "current_mean": 1.6270491803278688,
+      "difference": -0.08675731684727239
+    },
+    {
+      "segment": "station_id",
+      "value": "42",
+      "reference_mean": 2.7102754237288136,
+      "current_mean": 3.0341530054644807,
+      "difference": 0.32387758173566716
+    },
+    {
+      "segment": "station_id",
+      "value": "43",
+      "reference_mean": 3.074858757062147,
+      "current_mean": 3.2274590163934427,
+      "difference": 0.15260025933129562
+    },
+    {
+      "segment": "station_id",
+      "value": "44",
+      "reference_mean": 1.7572387005649717,
+      "current_mean": 1.7308743169398908,
+      "difference": -0.026364383625080867
+    },
+    {
+      "segment": "station_id",
+      "value": "45",
+      "reference_mean": 2.6573093220338984,
+      "current_mean": 2.6325136612021858,
+      "difference": -0.024795660831712585
+    },
+    {
+      "segment": "station_id",
+      "value": "46",
+      "reference_mean": 1.8912429378531073,
+      "current_mean": 1.7957650273224044,
+      "difference": -0.09547791053070287
+    },
+    {
+      "segment": "station_id",
+      "value": "47",
+      "reference_mean": 1.2326977401129944,
+      "current_mean": 1.3128415300546448,
+      "difference": 0.08014378994165039
+    },
+    {
+      "segment": "station_id",
+      "value": "48",
+      "reference_mean": 1.3730579096045197,
+      "current_mean": 1.3784153005464481,
+      "difference": 0.0053573909419284416
+    },
+    {
+      "segment": "station_id",
+      "value": "49",
+      "reference_mean": 2.2037429378531073,
+      "current_mean": 2.254781420765027,
+      "difference": 0.051038482911919925
+    },
+    {
+      "segment": "station_id",
+      "value": "5",
+      "reference_mean": 2.1587217514124295,
+      "current_mean": 2.4132513661202184,
+      "difference": 0.2545296147077889
+    },
+    {
+      "segment": "station_id",
+      "value": "50",
+      "reference_mean": 6.503177966101695,
+      "current_mean": 6.64412568306011,
+      "difference": 0.14094771695841501
+    },
+    {
+      "segment": "station_id",
+      "value": "51",
+      "reference_mean": 10.034074858757062,
+      "current_mean": 10.538934426229508,
+      "difference": 0.5048595674724456
+    },
+    {
+      "segment": "station_id",
+      "value": "52",
+      "reference_mean": 7.286370056497175,
+      "current_mean": 7.887295081967213,
+      "difference": 0.6009250254700387
+    },
+    {
+      "segment": "station_id",
+      "value": "53",
+      "reference_mean": 3.353460451977401,
+      "current_mean": 3.5204918032786887,
+      "difference": 0.16703135130128777
+    },
+    {
+      "segment": "station_id",
+      "value": "54",
+      "reference_mean": 5.869526836158192,
+      "current_mean": 6.282103825136612,
+      "difference": 0.41257698897841966
+    },
+    {
+      "segment": "station_id",
+      "value": "55",
+      "reference_mean": 1.2556497175141244,
+      "current_mean": 1.8756830601092895,
+      "difference": 0.6200333425951652
+    },
+    {
+      "segment": "station_id",
+      "value": "56",
+      "reference_mean": 2.7741878531073447,
+      "current_mean": 3.16120218579235,
+      "difference": 0.38701433268500507
+    },
+    {
+      "segment": "station_id",
+      "value": "57",
+      "reference_mean": 0.8991878531073446,
+      "current_mean": 1.0969945355191257,
+      "difference": 0.19780668241178112
+    },
+    {
+      "segment": "station_id",
+      "value": "58",
+      "reference_mean": 3.883827683615819,
+      "current_mean": 4.0997267759562845,
+      "difference": 0.21589909234046534
+    },
+    {
+      "segment": "station_id",
+      "value": "59",
+      "reference_mean": 1.2183968926553672,
+      "current_mean": 1.282103825136612,
+      "difference": 0.0637069324812447
+    },
+    {
+      "segment": "station_id",
+      "value": "6",
+      "reference_mean": 1.0510240112994351,
+      "current_mean": 1.0614754098360655,
+      "difference": 0.010451398536630352
+    },
+    {
+      "segment": "station_id",
+      "value": "60",
+      "reference_mean": 1.5247175141242937,
+      "current_mean": 1.4480874316939891,
+      "difference": -0.07663008243030456
+    },
+    {
+      "segment": "station_id",
+      "value": "61",
+      "reference_mean": 1.5206567796610169,
+      "current_mean": 1.760928961748634,
+      "difference": 0.24027218208761703
+    },
+    {
+      "segment": "station_id",
+      "value": "62",
+      "reference_mean": 2.46680790960452,
+      "current_mean": 2.5498633879781423,
+      "difference": 0.08305547837362237
+    },
+    {
+      "segment": "station_id",
+      "value": "63",
+      "reference_mean": 3.164018361581921,
+      "current_mean": 3.4631147540983607,
+      "difference": 0.2990963925164398
+    },
+    {
+      "segment": "station_id",
+      "value": "64",
+      "reference_mean": 2.9537429378531073,
+      "current_mean": 3.0976775956284155,
+      "difference": 0.14393465777530823
+    },
+    {
+      "segment": "station_id",
+      "value": "65",
+      "reference_mean": 3.7957274011299433,
+      "current_mean": 3.6311475409836067,
+      "difference": -0.16457986014633663
+    },
+    {
+      "segment": "station_id",
+      "value": "66",
+      "reference_mean": 3.4823446327683616,
+      "current_mean": 3.2663934426229506,
+      "difference": -0.21595119014541098
+    },
+    {
+      "segment": "station_id",
+      "value": "67",
+      "reference_mean": 1.7630649717514124,
+      "current_mean": 1.7329234972677596,
+      "difference": -0.030141474483652786
+    },
+    {
+      "segment": "station_id",
+      "value": "68",
+      "reference_mean": 1.703213276836158,
+      "current_mean": 1.5519125683060109,
+      "difference": -0.1513007085301472
+    },
+    {
+      "segment": "station_id",
+      "value": "69",
+      "reference_mean": 3.6297669491525424,
+      "current_mean": 4.004781420765028,
+      "difference": 0.37501447161248525
+    },
+    {
+      "segment": "station_id",
+      "value": "70",
+      "reference_mean": 2.175141242937853,
+      "current_mean": 2.359289617486339,
+      "difference": 0.18414837454848598
+    },
+    {
+      "segment": "station_id",
+      "value": "71",
+      "reference_mean": 1.8548728813559323,
+      "current_mean": 2.069672131147541,
+      "difference": 0.2147992497916087
+    },
+    {
+      "segment": "station_id",
+      "value": "72",
+      "reference_mean": 2.4390889830508473,
+      "current_mean": 2.42896174863388,
+      "difference": -0.01012723441696739
+    },
+    {
+      "segment": "station_id",
+      "value": "73",
+      "reference_mean": 3.154484463276836,
+      "current_mean": 3.2916666666666665,
+      "difference": 0.13718220338983045
+    },
+    {
+      "segment": "station_id",
+      "value": "74",
+      "reference_mean": 1.74364406779661,
+      "current_mean": 1.810792349726776,
+      "difference": 0.06714828193016587
+    },
+    {
+      "segment": "station_id",
+      "value": "75",
+      "reference_mean": 4.28707627118644,
+      "current_mean": 4.579918032786885,
+      "difference": 0.29284176160044506
+    },
+    {
+      "segment": "station_id",
+      "value": "76",
+      "reference_mean": 1.4897598870056497,
+      "current_mean": 1.439207650273224,
+      "difference": -0.05055223673242559
+    },
+    {
+      "segment": "station_id",
+      "value": "77",
+      "reference_mean": 1.501765536723164,
+      "current_mean": 1.7062841530054644,
+      "difference": 0.2045186162823005
+    },
+    {
+      "segment": "station_id",
+      "value": "78",
+      "reference_mean": 2.167196327683616,
+      "current_mean": 2.5184426229508197,
+      "difference": 0.35124629526720375
+    },
+    {
+      "segment": "station_id",
+      "value": "79",
+      "reference_mean": 1.841984463276836,
+      "current_mean": 1.8627049180327868,
+      "difference": 0.020720454755950746
+    },
+    {
+      "segment": "station_id",
+      "value": "8",
+      "reference_mean": 1.1537782485875707,
+      "current_mean": 1.2329234972677596,
+      "difference": 0.0791452486801889
+    },
+    {
+      "segment": "station_id",
+      "value": "80",
+      "reference_mean": 2.6295903954802258,
+      "current_mean": 2.723360655737705,
+      "difference": 0.09377026025747925
+    },
+    {
+      "segment": "station_id",
+      "value": "81",
+      "reference_mean": 1.7503531073446328,
+      "current_mean": 1.930327868852459,
+      "difference": 0.1799747615078262
+    },
+    {
+      "segment": "station_id",
+      "value": "82",
+      "reference_mean": 2.1041666666666665,
+      "current_mean": 1.953551912568306,
+      "difference": -0.15061475409836045
+    },
+    {
+      "segment": "station_id",
+      "value": "83",
+      "reference_mean": 1.4037782485875707,
+      "current_mean": 1.467896174863388,
+      "difference": 0.06411792627581736
+    },
+    {
+      "segment": "station_id",
+      "value": "84",
+      "reference_mean": 1.8451624293785311,
+      "current_mean": 1.9173497267759563,
+      "difference": 0.07218729739742513
+    },
+    {
+      "segment": "station_id",
+      "value": "85",
+      "reference_mean": 2.7840748587570623,
+      "current_mean": 2.789617486338798,
+      "difference": 0.005542627581735626
+    },
+    {
+      "segment": "station_id",
+      "value": "86",
+      "reference_mean": 2.43944209039548,
+      "current_mean": 2.2540983606557377,
+      "difference": -0.18534372973974245
+    },
+    {
+      "segment": "station_id",
+      "value": "87",
+      "reference_mean": 1.2228107344632768,
+      "current_mean": 1.239071038251366,
+      "difference": 0.016260303788089292
+    },
+    {
+      "segment": "station_id",
+      "value": "88",
+      "reference_mean": 1.4387358757062148,
+      "current_mean": 1.5013661202185793,
+      "difference": 0.06263024451236454
+    },
+    {
+      "segment": "station_id",
+      "value": "9",
+      "reference_mean": 1.5420197740112995,
+      "current_mean": 1.689207650273224,
+      "difference": 0.14718787626192453
+    },
+    {
+      "segment": "station_id",
+      "value": "91",
+      "reference_mean": 0.3870056497175141,
+      "current_mean": 0.4166666666666667,
+      "difference": 0.029661016949152574
+    },
+    {
+      "segment": "station_id",
+      "value": "92",
+      "reference_mean": 0.6232344632768362,
+      "current_mean": 0.5833333333333334,
+      "difference": -0.03990112994350281
+    },
+    {
+      "segment": "station_id",
+      "value": "93",
+      "reference_mean": 0.4996468926553672,
+      "current_mean": 0.5211748633879781,
+      "difference": 0.021527970732610924
+    },
+    {
+      "segment": "station_id",
+      "value": "94",
+      "reference_mean": 0.5736228813559322,
+      "current_mean": 0.6816939890710383,
+      "difference": 0.10807110771510609
+    },
+    {
+      "segment": "station_id",
+      "value": "95",
+      "reference_mean": 0.3020833333333333,
+      "current_mean": 0.3251366120218579,
+      "difference": 0.02305327868852458
+    },
+    {
+      "segment": "station_id",
+      "value": "96",
+      "reference_mean": 0.7598870056497176,
+      "current_mean": 0.6461748633879781,
+      "difference": -0.11371214226173942
+    },
+    {
+      "segment": "station_id",
+      "value": "98",
+      "reference_mean": 0.556497175141243,
+      "current_mean": 0.5129781420765027,
+      "difference": -0.04351903306474025
+    },
+    {
+      "segment": "hour",
+      "value": "0",
+      "reference_mean": 0.2058127784667677,
+      "current_mean": 0.20818339330934293,
+      "difference": 0.002370614842575225
+    },
+    {
+      "segment": "hour",
+      "value": "1",
+      "reference_mean": 6.889899407468652e-05,
+      "current_mean": 0.00017770669509973788,
+      "difference": 0.00010880770102505137
+    },
+    {
+      "segment": "hour",
+      "value": "2",
+      "reference_mean": 0.0,
+      "current_mean": 0.0,
+      "difference": 0.0
+    },
+    {
+      "segment": "hour",
+      "value": "3",
+      "reference_mean": 0.0,
+      "current_mean": 0.0,
+      "difference": 0.0
+    },
+    {
+      "segment": "hour",
+      "value": "4",
+      "reference_mean": 0.0,
+      "current_mean": 0.0,
+      "difference": 0.0
+    },
+    {
+      "segment": "hour",
+      "value": "5",
+      "reference_mean": 0.2629185613890037,
+      "current_mean": 0.32960149273623884,
+      "difference": 0.06668293134723513
+    },
+    {
+      "segment": "hour",
+      "value": "6",
+      "reference_mean": 0.927437876073676,
+      "current_mean": 1.1286596472522101,
+      "difference": 0.20122177117853413
+    },
+    {
+      "segment": "hour",
+      "value": "7",
+      "reference_mean": 1.9016007532956685,
+      "current_mean": 2.0764138788928874,
+      "difference": 0.17481312559721895
+    },
+    {
+      "segment": "hour",
+      "value": "8",
+      "reference_mean": 2.719684442607138,
+      "current_mean": 2.8409080812119596,
+      "difference": 0.12122363860482155
+    },
+    {
+      "segment": "hour",
+      "value": "9",
+      "reference_mean": 1.9058150750999034,
+      "current_mean": 1.9289173219601048,
+      "difference": 0.023102246860201348
+    },
+    {
+      "segment": "hour",
+      "value": "10",
+      "reference_mean": 1.6506591337099812,
+      "current_mean": 1.688169176773735,
+      "difference": 0.03751004306375383
+    },
+    {
+      "segment": "hour",
+      "value": "11",
+      "reference_mean": 1.6567222451885535,
+      "current_mean": 1.7079834732773558,
+      "difference": 0.05126122808880229
+    },
+    {
+      "segment": "hour",
+      "value": "12",
+      "reference_mean": 1.7317991823986036,
+      "current_mean": 1.8201163978852903,
+      "difference": 0.0883172154866867
+    },
+    {
+      "segment": "hour",
+      "value": "13",
+      "reference_mean": 1.9545725965734233,
+      "current_mean": 2.057132702474566,
+      "difference": 0.1025601059011425
+    },
+    {
+      "segment": "hour",
+      "value": "14",
+      "reference_mean": 2.1850167654218917,
+      "current_mean": 2.3980185703496377,
+      "difference": 0.213001804927746
+    },
+    {
+      "segment": "hour",
+      "value": "15",
+      "reference_mean": 2.2091199301823528,
+      "current_mean": 2.4408458838686746,
+      "difference": 0.23172595368632187
+    },
+    {
+      "segment": "hour",
+      "value": "16",
+      "reference_mean": 2.0998805750769374,
+      "current_mean": 2.306410769025723,
+      "difference": 0.2065301939487858
+    },
+    {
+      "segment": "hour",
+      "value": "17",
+      "reference_mean": 2.5484474760001836,
+      "current_mean": 2.6076236172197786,
+      "difference": 0.059176141219595024
+    },
+    {
+      "segment": "hour",
+      "value": "18",
+      "reference_mean": 3.2206375453585045,
+      "current_mean": 3.152072504331601,
+      "difference": -0.06856504102690364
+    },
+    {
+      "segment": "hour",
+      "value": "19",
+      "reference_mean": 2.4308254099490147,
+      "current_mean": 2.3133857568083878,
+      "difference": -0.11743965314062699
+    },
+    {
+      "segment": "hour",
+      "value": "20",
+      "reference_mean": 1.8005374121537825,
+      "current_mean": 1.780398951530499,
+      "difference": -0.020138460623283505
+    },
+    {
+      "segment": "hour",
+      "value": "21",
+      "reference_mean": 1.3540834137154931,
+      "current_mean": 1.4015727042516326,
+      "difference": 0.047489290536139483
+    },
+    {
+      "segment": "hour",
+      "value": "22",
+      "reference_mean": 0.7722084424234072,
+      "current_mean": 0.7780443378204274,
+      "difference": 0.005835895397020119
+    },
+    {
+      "segment": "hour",
+      "value": "23",
+      "reference_mean": 0.40279500252629646,
+      "current_mean": 0.43147185570216356,
+      "difference": 0.0286768531758671
+    },
+    {
+      "segment": "weekday",
+      "value": "0",
+      "reference_mean": 1.5127905066929457,
+      "current_mean": 1.5545267489711934,
+      "difference": 0.04173624227824768
+    },
+    {
+      "segment": "weekday",
+      "value": "1",
+      "reference_mean": 1.641006952998823,
+      "current_mean": 1.6054777677406404,
+      "difference": -0.035529185258182494
+    },
+    {
+      "segment": "weekday",
+      "value": "2",
+      "reference_mean": 1.640336893565014,
+      "current_mean": 1.6695899829368663,
+      "difference": 0.029253089371852337
+    },
+    {
+      "segment": "weekday",
+      "value": "3",
+      "reference_mean": 1.5773553323768532,
+      "current_mean": 1.6696401686239084,
+      "difference": 0.09228483624705519
+    },
+    {
+      "segment": "weekday",
+      "value": "4",
+      "reference_mean": 1.5114877251713694,
+      "current_mean": 1.5921534678309746,
+      "difference": 0.08066574265960513
+    },
+    {
+      "segment": "weekday",
+      "value": "5",
+      "reference_mean": 1.0591257505712313,
+      "current_mean": 1.1620652664859983,
+      "difference": 0.10293951591476702
+    },
+    {
+      "segment": "weekday",
+      "value": "6",
+      "reference_mean": 0.9668220946915351,
+      "current_mean": 0.980761630532972,
+      "difference": 0.013939535841436923
+    }
+  ],
+  "environment": {
+    "python": "3.11.9",
+    "evidently": "0.7.20",
+    "dependencies": "requirements-monitoring.lock.txt"
+  },
+  "variables": [
+    {
+      "column": "station_id",
+      "score": 0.04128606221684685,
+      "method": "jensenshannon",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "model_input"
+    },
+    {
+      "column": "weekday",
+      "score": 0.020786616568363375,
+      "method": "jensenshannon",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "model_input"
+    },
+    {
+      "column": "hour",
+      "score": 0.010693946933597877,
+      "method": "jensenshannon",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "model_input"
+    },
+    {
+      "column": "departures",
+      "score": 0.0410071764519032,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "departures_lag1",
+      "score": 0.03155398500097825,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "departures_lag24",
+      "score": 0.02049778618976077,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "departures_lag168",
+      "score": 0.03347205863273284,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "departures_mean24",
+      "score": 0.04027609707286805,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "departures_mean168",
+      "score": 0.033831408008437,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "arrivals_lag1",
+      "score": 0.04030962574247118,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "arrivals_lag24",
+      "score": 0.01977928355364485,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "arrivals_lag168",
+      "score": 0.028811326678294728,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "arrivals_mean24",
+      "score": 0.03790805855339069,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "arrivals_mean168",
+      "score": 0.03385404144089371,
+      "method": "wasserstein",
+      "threshold": 0.1,
+      "drift_detected": false,
+      "role": "context"
+    },
+    {
+      "column": "month",
+      "score": 0.8325546111576978,
+      "method": "jensenshannon",
+      "threshold": 0.1,
+      "drift_detected": true,
+      "role": "context"
+    }
+  ],
+  "model_inputs": {
+    "drifted": 0,
+    "total": 3,
+    "share": 0.0,
+    "dataset_drift": false
+  },
+  "context_without_month": {
+    "drifted": 0,
+    "total": 11,
+    "share": 0.0,
+    "dataset_drift": false
+  },
+  "all_monitored_columns": {
+    "drifted": 1,
+    "total": 15,
+    "share": 0.06666666666666667,
+    "dataset_drift": false
+  }
+}
