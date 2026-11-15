@@ -1,0 +1,2107 @@
+{
+  "metrics": [
+    {
+      "id": "7a8dc9ec8eb8afd46a488dedecd07a52",
+      "metric_name": "DriftedColumnsCount(columns=station_id,weekday,hour,departures,departures_lag1,departures_lag24,departures_lag168,departures_mean24,departures_mean168,arrivals_lag1,arrivals_lag24,arrivals_lag168,arrivals_mean24,arrivals_mean168,month,drift_share=0.5,cat_method=jensenshannon,num_method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:DriftedColumnsCount",
+        "columns": [
+          "station_id",
+          "weekday",
+          "hour",
+          "departures",
+          "departures_lag1",
+          "departures_lag24",
+          "departures_lag168",
+          "departures_mean24",
+          "departures_mean168",
+          "arrivals_lag1",
+          "arrivals_lag24",
+          "arrivals_lag168",
+          "arrivals_mean24",
+          "arrivals_mean168",
+          "month"
+        ],
+        "drift_share": 0.5,
+        "cat_method": "jensenshannon",
+        "num_method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": {
+        "count": 1.0,
+        "share": 0.06666666666666667
+      }
+    },
+    {
+      "id": "694a4016cbd4451cad5d9e8230710a80",
+      "metric_name": "ValueDrift(column=station_id,method=jensenshannon,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "station_id",
+        "method": "jensenshannon",
+        "threshold": 0.1
+      },
+      "value": 0.04128606221684685
+    },
+    {
+      "id": "ae4d6c29cea069a747beb034f2fccce1",
+      "metric_name": "ValueDrift(column=weekday,method=jensenshannon,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "weekday",
+        "method": "jensenshannon",
+        "threshold": 0.1
+      },
+      "value": 0.020786616568363375
+    },
+    {
+      "id": "3fcecf816bc7433f48fcdd7d63c3b257",
+      "metric_name": "ValueDrift(column=hour,method=jensenshannon,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "hour",
+        "method": "jensenshannon",
+        "threshold": 0.1
+      },
+      "value": 0.010693946933597877
+    },
+    {
+      "id": "1841932335cfd22b54a9d89b3febee7f",
+      "metric_name": "ValueDrift(column=departures,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "departures",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.0410071764519032
+    },
+    {
+      "id": "b65a8bbe0978962896bf4f54ec80b675",
+      "metric_name": "ValueDrift(column=departures_lag1,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "departures_lag1",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.03155398500097825
+    },
+    {
+      "id": "1a34426af05b29e02f1c734fdd6d59fc",
+      "metric_name": "ValueDrift(column=departures_lag24,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "departures_lag24",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.02049778618976077
+    },
+    {
+      "id": "b874e0002db67de9f730af29098a319b",
+      "metric_name": "ValueDrift(column=departures_lag168,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "departures_lag168",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.03347205863273284
+    },
+    {
+      "id": "bc93f8caeddcd0568b10e5d2ccc1c5f9",
+      "metric_name": "ValueDrift(column=departures_mean24,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "departures_mean24",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.04027609707286805
+    },
+    {
+      "id": "a1eceb034d2e60354ca2809c9cde70b3",
+      "metric_name": "ValueDrift(column=departures_mean168,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "departures_mean168",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.033831408008437
+    },
+    {
+      "id": "712c4e0753dec07c9c254a9f38b2bb7e",
+      "metric_name": "ValueDrift(column=arrivals_lag1,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "arrivals_lag1",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.04030962574247118
+    },
+    {
+      "id": "13352ed6f6ee224842ca095d3e2d9d97",
+      "metric_name": "ValueDrift(column=arrivals_lag24,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "arrivals_lag24",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.01977928355364485
+    },
+    {
+      "id": "ce42939f45f88e289ee3025a036ed9fb",
+      "metric_name": "ValueDrift(column=arrivals_lag168,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "arrivals_lag168",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.028811326678294728
+    },
+    {
+      "id": "c487b5f5ff347f3edde3543f6f142906",
+      "metric_name": "ValueDrift(column=arrivals_mean24,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "arrivals_mean24",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.03790805855339069
+    },
+    {
+      "id": "f56f2d322954536d70a06a75f02e674a",
+      "metric_name": "ValueDrift(column=arrivals_mean168,method=wasserstein,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "arrivals_mean168",
+        "method": "wasserstein",
+        "threshold": 0.1
+      },
+      "value": 0.03385404144089371
+    },
+    {
+      "id": "ccb76a516d54d89172144ce90021abc5",
+      "metric_name": "ValueDrift(column=month,method=jensenshannon,threshold=0.1)",
+      "config": {
+        "type": "evidently:metric_v2:ValueDrift",
+        "column": "month",
+        "method": "jensenshannon",
+        "threshold": 0.1
+      },
+      "value": 0.8325546111576978
+    },
+    {
+      "id": "00404ffe284d7862baa4095093452630",
+      "metric_name": "RowCount()",
+      "config": {
+        "type": "evidently:metric_v2:RowCount"
+      },
+      "value": 50000.0
+    },
+    {
+      "id": "91e498263b6502661774b15eb39ea154",
+      "metric_name": "ColumnCount()",
+      "config": {
+        "type": "evidently:metric_v2:ColumnCount"
+      },
+      "value": 15.0
+    },
+    {
+      "id": "31b8c78bad2b7108842265cd082d5abf",
+      "metric_name": "ColumnCount(column_type=ColumnType.Numerical)",
+      "config": {
+        "type": "evidently:metric_v2:ColumnCount",
+        "tests": [],
+        "column_type": "num"
+      },
+      "value": 11.0
+    },
+    {
+      "id": "bb154bb9a843cad0d72fa3dc4983394d",
+      "metric_name": "ColumnCount(column_type=ColumnType.Categorical)",
+      "config": {
+        "type": "evidently:metric_v2:ColumnCount",
+        "tests": [],
+        "column_type": "cat"
+      },
+      "value": 4.0
+    },
+    {
+      "id": "012cbfb269361272d4773e1a68559396",
+      "metric_name": "ColumnCount(column_type=ColumnType.Datetime)",
+      "config": {
+        "type": "evidently:metric_v2:ColumnCount",
+        "tests": [],
+        "column_type": "datetime"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "3f5e595e26bc8e120aadf51967bb0355",
+      "metric_name": "ColumnCount(column_type=ColumnType.Text)",
+      "config": {
+        "type": "evidently:metric_v2:ColumnCount",
+        "tests": [],
+        "column_type": "text"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "ff1caea5e148b287bd5348d4bb40eccf",
+      "metric_name": "DuplicatedRowCount()",
+      "config": {
+        "type": "evidently:metric_v2:DuplicatedRowCount"
+      },
+      "value": 39.0
+    },
+    {
+      "id": "02fbcbd017b30a0b075d9d5a72ce2a32",
+      "metric_name": "DuplicatedColumnsCount()",
+      "config": {
+        "type": "evidently:metric_v2:DuplicatedColumnsCount"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "4c2efb888b5c5f8afb50895b4b4abcec",
+      "metric_name": "AlmostDuplicatedColumnsCount()",
+      "config": {
+        "type": "evidently:metric_v2:AlmostDuplicatedColumnsCount"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "9e9fa5ec57528fadbf97a35ad5b66838",
+      "metric_name": "AlmostConstantColumnsCount()",
+      "config": {
+        "type": "evidently:metric_v2:AlmostConstantColumnsCount"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "c86e32eba7f3826051b804c0df7a97fe",
+      "metric_name": "EmptyRowsCount()",
+      "config": {
+        "type": "evidently:metric_v2:EmptyRowsCount"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "ce527bc2e35349e7f7a2e047a57f85ca",
+      "metric_name": "EmptyColumnsCount()",
+      "config": {
+        "type": "evidently:metric_v2:EmptyColumnsCount"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "5f958296980b95bddb41264800ab7a93",
+      "metric_name": "ConstantColumnsCount()",
+      "config": {
+        "type": "evidently:metric_v2:ConstantColumnsCount"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "89b8d715e93a15e3acbc483410aff2f4",
+      "metric_name": "DatasetMissingValueCount()",
+      "config": {
+        "type": "evidently:metric_v2:DatasetMissingValueCount"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "c034dbf7dc1f94200df0f42443a38cfe",
+      "metric_name": "MissingValueCount(column=station_id)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "station_id"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "fe625fd13a047df363c4f4734f332d6c",
+      "metric_name": "UniqueValueCount(column=station_id)",
+      "config": {
+        "type": "evidently:metric_v2:UniqueValueCount",
+        "column": "station_id"
+      },
+      "value": {
+        "counts": {
+          "270": 139.0,
+          "168": 141.0,
+          "165": 134.0,
+          "14": 150.0,
+          "203": 137.0,
+          "222": 154.0,
+          "189": 139.0,
+          "238": 138.0,
+          "78": 130.0,
+          "28": 145.0,
+          "229": 122.0,
+          "127": 128.0,
+          "340": 125.0,
+          "13": 160.0,
+          "137": 154.0,
+          "154": 128.0,
+          "259": 126.0,
+          "68": 150.0,
+          "48": 135.0,
+          "374": 126.0,
+          "163": 137.0,
+          "249": 123.0,
+          "328": 123.0,
+          "24": 156.0,
+          "120": 145.0,
+          "155": 153.0,
+          "23": 140.0,
+          "215": 116.0,
+          "40": 133.0,
+          "230": 150.0,
+          "93": 128.0,
+          "372": 152.0,
+          "173": 130.0,
+          "289": 145.0,
+          "323": 142.0,
+          "292": 142.0,
+          "321": 154.0,
+          "306": 133.0,
+          "281": 135.0,
+          "125": 133.0,
+          "31": 131.0,
+          "317": 135.0,
+          "2": 133.0,
+          "336": 107.0,
+          "129": 159.0,
+          "80": 130.0,
+          "219": 146.0,
+          "346": 123.0,
+          "307": 132.0,
+          "158": 135.0,
+          "195": 134.0,
+          "208": 147.0,
+          "179": 135.0,
+          "176": 117.0,
+          "214": 133.0,
+          "101": 136.0,
+          "267": 118.0,
+          "266": 140.0,
+          "262": 123.0,
+          "303": 115.0,
+          "30": 147.0,
+          "177": 135.0,
+          "64": 126.0,
+          "151": 129.0,
+          "134": 127.0,
+          "41": 138.0,
+          "184": 138.0,
+          "159": 141.0,
+          "206": 151.0,
+          "381": 142.0,
+          "329": 148.0,
+          "264": 135.0,
+          "395": 133.0,
+          "271": 136.0,
+          "160": 152.0,
+          "342": 139.0,
+          "4": 127.0,
+          "325": 138.0,
+          "302": 122.0,
+          "119": 147.0,
+          "383": 135.0,
+          "118": 130.0,
+          "130": 146.0,
+          "39": 130.0,
+          "373": 132.0,
+          "198": 154.0,
+          "55": 127.0,
+          "188": 126.0,
+          "92": 119.0,
+          "242": 145.0,
+          "371": 120.0,
+          "352": 144.0,
+          "357": 121.0,
+          "200": 139.0,
+          "21": 144.0,
+          "290": 136.0,
+          "140": 146.0,
+          "75": 132.0,
+          "139": 129.0,
+          "347": 124.0,
+          "365": 133.0,
+          "186": 148.0,
+          "131": 126.0,
+          "185": 139.0,
+          "45": 162.0,
+          "70": 150.0,
+          "376": 128.0,
+          "382": 134.0,
+          "51": 135.0,
+          "167": 118.0,
+          "87": 137.0,
+          "32": 143.0,
+          "150": 146.0,
+          "296": 145.0,
+          "309": 135.0,
+          "199": 139.0,
+          "390": 121.0,
+          "207": 127.0,
+          "74": 145.0,
+          "193": 145.0,
+          "282": 113.0,
+          "59": 125.0,
+          "330": 135.0,
+          "359": 147.0,
+          "349": 127.0,
+          "361": 150.0,
+          "37": 147.0,
+          "393": 146.0,
+          "181": 121.0,
+          "91": 141.0,
+          "141": 142.0,
+          "343": 138.0,
+          "61": 140.0,
+          "81": 160.0,
+          "204": 156.0,
+          "272": 143.0,
+          "265": 171.0,
+          "363": 141.0,
+          "379": 120.0,
+          "38": 129.0,
+          "332": 151.0,
+          "380": 146.0,
+          "161": 143.0,
+          "398": 143.0,
+          "16": 152.0,
+          "261": 141.0,
+          "366": 138.0,
+          "244": 151.0,
+          "57": 121.0,
+          "232": 129.0,
+          "344": 148.0,
+          "322": 129.0,
+          "153": 120.0,
+          "76": 137.0,
+          "187": 129.0,
+          "105": 133.0,
+          "378": 135.0,
+          "110": 134.0,
+          "209": 145.0,
+          "156": 126.0,
+          "35": 135.0,
+          "132": 141.0,
+          "293": 146.0,
+          "5": 123.0,
+          "295": 144.0,
+          "102": 128.0,
+          "42": 122.0,
+          "338": 151.0,
+          "263": 132.0,
+          "20": 153.0,
+          "305": 116.0,
+          "172": 119.0,
+          "254": 121.0,
+          "8": 133.0,
+          "312": 141.0,
+          "72": 144.0,
+          "136": 139.0,
+          "66": 145.0,
+          "386": 125.0,
+          "334": 147.0,
+          "10": 136.0,
+          "27": 129.0,
+          "86": 131.0,
+          "56": 156.0,
+          "63": 138.0,
+          "218": 151.0,
+          "258": 130.0,
+          "283": 130.0,
+          "180": 132.0,
+          "394": 130.0,
+          "36": 151.0,
+          "6": 126.0,
+          "103": 132.0,
+          "65": 148.0,
+          "157": 136.0,
+          "358": 137.0,
+          "46": 142.0,
+          "82": 127.0,
+          "190": 123.0,
+          "235": 119.0,
+          "3": 152.0,
+          "388": 133.0,
+          "17": 139.0,
+          "226": 132.0,
+          "166": 129.0,
+          "341": 169.0,
+          "79": 129.0,
+          "248": 134.0,
+          "246": 130.0,
+          "191": 124.0,
+          "77": 135.0,
+          "391": 135.0,
+          "274": 118.0,
+          "26": 122.0,
+          "384": 130.0,
+          "308": 144.0,
+          "94": 126.0,
+          "362": 121.0,
+          "152": 145.0,
+          "313": 138.0,
+          "174": 128.0,
+          "171": 133.0,
+          "100": 125.0,
+          "287": 130.0,
+          "356": 146.0,
+          "273": 126.0,
+          "276": 118.0,
+          "337": 146.0,
+          "182": 133.0,
+          "257": 140.0,
+          "52": 136.0,
+          "135": 151.0,
+          "58": 124.0,
+          "377": 114.0,
+          "106": 129.0,
+          "88": 134.0,
+          "285": 117.0,
+          "236": 144.0,
+          "345": 114.0,
+          "210": 143.0,
+          "243": 166.0,
+          "339": 119.0,
+          "133": 129.0,
+          "18": 121.0,
+          "29": 130.0,
+          "12": 134.0,
+          "211": 145.0,
+          "96": 137.0,
+          "201": 132.0,
+          "318": 131.0,
+          "400": 134.0,
+          "19": 137.0,
+          "44": 119.0,
+          "85": 148.0,
+          "368": 129.0,
+          "375": 154.0,
+          "50": 120.0,
+          "144": 150.0,
+          "98": 149.0,
+          "277": 153.0,
+          "260": 133.0,
+          "280": 137.0,
+          "83": 143.0,
+          "146": 125.0,
+          "164": 123.0,
+          "234": 153.0,
+          "117": 138.0,
+          "268": 129.0,
+          "389": 132.0,
+          "53": 131.0,
+          "247": 120.0,
+          "275": 138.0,
+          "202": 137.0,
+          "253": 153.0,
+          "34": 114.0,
+          "145": 130.0,
+          "255": 142.0,
+          "15": 138.0,
+          "326": 147.0,
+          "353": 131.0,
+          "286": 148.0,
+          "304": 133.0,
+          "331": 149.0,
+          "9": 146.0,
+          "162": 132.0,
+          "33": 127.0,
+          "284": 136.0,
+          "320": 128.0,
+          "291": 124.0,
+          "224": 153.0,
+          "205": 150.0,
+          "169": 120.0,
+          "216": 138.0,
+          "47": 137.0,
+          "43": 138.0,
+          "319": 143.0,
+          "231": 120.0,
+          "143": 132.0,
+          "333": 132.0,
+          "351": 129.0,
+          "364": 132.0,
+          "335": 125.0,
+          "175": 123.0,
+          "251": 154.0,
+          "108": 157.0,
+          "142": 107.0,
+          "288": 133.0,
+          "73": 136.0,
+          "84": 145.0,
+          "67": 137.0,
+          "170": 134.0,
+          "350": 138.0,
+          "279": 130.0,
+          "194": 141.0,
+          "115": 135.0,
+          "269": 136.0,
+          "354": 132.0,
+          "228": 145.0,
+          "71": 123.0,
+          "197": 119.0,
+          "95": 125.0,
+          "62": 143.0,
+          "192": 134.0,
+          "278": 133.0,
+          "196": 139.0,
+          "360": 125.0,
+          "237": 150.0,
+          "324": 140.0,
+          "239": 143.0,
+          "314": 131.0,
+          "213": 142.0,
+          "217": 137.0,
+          "227": 127.0,
+          "294": 135.0,
+          "111": 141.0,
+          "369": 122.0,
+          "49": 122.0,
+          "348": 125.0,
+          "221": 134.0,
+          "126": 117.0,
+          "316": 130.0,
+          "60": 119.0,
+          "54": 137.0,
+          "183": 135.0,
+          "107": 137.0,
+          "256": 125.0,
+          "11": 131.0,
+          "241": 151.0,
+          "311": 130.0,
+          "148": 153.0,
+          "387": 131.0,
+          "392": 145.0,
+          "240": 141.0,
+          "315": 116.0,
+          "178": 135.0,
+          "225": 139.0,
+          "327": 137.0,
+          "69": 136.0,
+          "233": 137.0,
+          "397": 127.0,
+          "355": 144.0,
+          "212": 129.0,
+          "370": 133.0,
+          "220": 126.0,
+          "396": 116.0,
+          "128": 151.0,
+          "25": 143.0,
+          "385": 147.0,
+          "112": 112.0
+        },
+        "shares": {
+          "270": 0.00278,
+          "168": 0.00282,
+          "165": 0.00268,
+          "14": 0.003,
+          "203": 0.00274,
+          "222": 0.00308,
+          "189": 0.00278,
+          "238": 0.00276,
+          "78": 0.0026,
+          "28": 0.0029,
+          "229": 0.00244,
+          "127": 0.00256,
+          "340": 0.0025,
+          "13": 0.0032,
+          "137": 0.00308,
+          "154": 0.00256,
+          "259": 0.00252,
+          "68": 0.003,
+          "48": 0.0027,
+          "374": 0.00252,
+          "163": 0.00274,
+          "249": 0.00246,
+          "328": 0.00246,
+          "24": 0.00312,
+          "120": 0.0029,
+          "155": 0.00306,
+          "23": 0.0028,
+          "215": 0.00232,
+          "40": 0.00266,
+          "230": 0.003,
+          "93": 0.00256,
+          "372": 0.00304,
+          "173": 0.0026,
+          "289": 0.0029,
+          "323": 0.00284,
+          "292": 0.00284,
+          "321": 0.00308,
+          "306": 0.00266,
+          "281": 0.0027,
+          "125": 0.00266,
+          "31": 0.00262,
+          "317": 0.0027,
+          "2": 0.00266,
+          "336": 0.00214,
+          "129": 0.00318,
+          "80": 0.0026,
+          "219": 0.00292,
+          "346": 0.00246,
+          "307": 0.00264,
+          "158": 0.0027,
+          "195": 0.00268,
+          "208": 0.00294,
+          "179": 0.0027,
+          "176": 0.00234,
+          "214": 0.00266,
+          "101": 0.00272,
+          "267": 0.00236,
+          "266": 0.0028,
+          "262": 0.00246,
+          "303": 0.0023,
+          "30": 0.00294,
+          "177": 0.0027,
+          "64": 0.00252,
+          "151": 0.00258,
+          "134": 0.00254,
+          "41": 0.00276,
+          "184": 0.00276,
+          "159": 0.00282,
+          "206": 0.00302,
+          "381": 0.00284,
+          "329": 0.00296,
+          "264": 0.0027,
+          "395": 0.00266,
+          "271": 0.00272,
+          "160": 0.00304,
+          "342": 0.00278,
+          "4": 0.00254,
+          "325": 0.00276,
+          "302": 0.00244,
+          "119": 0.00294,
+          "383": 0.0027,
+          "118": 0.0026,
+          "130": 0.00292,
+          "39": 0.0026,
+          "373": 0.00264,
+          "198": 0.00308,
+          "55": 0.00254,
+          "188": 0.00252,
+          "92": 0.00238,
+          "242": 0.0029,
+          "371": 0.0024,
+          "352": 0.00288,
+          "357": 0.00242,
+          "200": 0.00278,
+          "21": 0.00288,
+          "290": 0.00272,
+          "140": 0.00292,
+          "75": 0.00264,
+          "139": 0.00258,
+          "347": 0.00248,
+          "365": 0.00266,
+          "186": 0.00296,
+          "131": 0.00252,
+          "185": 0.00278,
+          "45": 0.00324,
+          "70": 0.003,
+          "376": 0.00256,
+          "382": 0.00268,
+          "51": 0.0027,
+          "167": 0.00236,
+          "87": 0.00274,
+          "32": 0.00286,
+          "150": 0.00292,
+          "296": 0.0029,
+          "309": 0.0027,
+          "199": 0.00278,
+          "390": 0.00242,
+          "207": 0.00254,
+          "74": 0.0029,
+          "193": 0.0029,
+          "282": 0.00226,
+          "59": 0.0025,
+          "330": 0.0027,
+          "359": 0.00294,
+          "349": 0.00254,
+          "361": 0.003,
+          "37": 0.00294,
+          "393": 0.00292,
+          "181": 0.00242,
+          "91": 0.00282,
+          "141": 0.00284,
+          "343": 0.00276,
+          "61": 0.0028,
+          "81": 0.0032,
+          "204": 0.00312,
+          "272": 0.00286,
+          "265": 0.00342,
+          "363": 0.00282,
+          "379": 0.0024,
+          "38": 0.00258,
+          "332": 0.00302,
+          "380": 0.00292,
+          "161": 0.00286,
+          "398": 0.00286,
+          "16": 0.00304,
+          "261": 0.00282,
+          "366": 0.00276,
+          "244": 0.00302,
+          "57": 0.00242,
+          "232": 0.00258,
+          "344": 0.00296,
+          "322": 0.00258,
+          "153": 0.0024,
+          "76": 0.00274,
+          "187": 0.00258,
+          "105": 0.00266,
+          "378": 0.0027,
+          "110": 0.00268,
+          "209": 0.0029,
+          "156": 0.00252,
+          "35": 0.0027,
+          "132": 0.00282,
+          "293": 0.00292,
+          "5": 0.00246,
+          "295": 0.00288,
+          "102": 0.00256,
+          "42": 0.00244,
+          "338": 0.00302,
+          "263": 0.00264,
+          "20": 0.00306,
+          "305": 0.00232,
+          "172": 0.00238,
+          "254": 0.00242,
+          "8": 0.00266,
+          "312": 0.00282,
+          "72": 0.00288,
+          "136": 0.00278,
+          "66": 0.0029,
+          "386": 0.0025,
+          "334": 0.00294,
+          "10": 0.00272,
+          "27": 0.00258,
+          "86": 0.00262,
+          "56": 0.00312,
+          "63": 0.00276,
+          "218": 0.00302,
+          "258": 0.0026,
+          "283": 0.0026,
+          "180": 0.00264,
+          "394": 0.0026,
+          "36": 0.00302,
+          "6": 0.00252,
+          "103": 0.00264,
+          "65": 0.00296,
+          "157": 0.00272,
+          "358": 0.00274,
+          "46": 0.00284,
+          "82": 0.00254,
+          "190": 0.00246,
+          "235": 0.00238,
+          "3": 0.00304,
+          "388": 0.00266,
+          "17": 0.00278,
+          "226": 0.00264,
+          "166": 0.00258,
+          "341": 0.00338,
+          "79": 0.00258,
+          "248": 0.00268,
+          "246": 0.0026,
+          "191": 0.00248,
+          "77": 0.0027,
+          "391": 0.0027,
+          "274": 0.00236,
+          "26": 0.00244,
+          "384": 0.0026,
+          "308": 0.00288,
+          "94": 0.00252,
+          "362": 0.00242,
+          "152": 0.0029,
+          "313": 0.00276,
+          "174": 0.00256,
+          "171": 0.00266,
+          "100": 0.0025,
+          "287": 0.0026,
+          "356": 0.00292,
+          "273": 0.00252,
+          "276": 0.00236,
+          "337": 0.00292,
+          "182": 0.00266,
+          "257": 0.0028,
+          "52": 0.00272,
+          "135": 0.00302,
+          "58": 0.00248,
+          "377": 0.00228,
+          "106": 0.00258,
+          "88": 0.00268,
+          "285": 0.00234,
+          "236": 0.00288,
+          "345": 0.00228,
+          "210": 0.00286,
+          "243": 0.00332,
+          "339": 0.00238,
+          "133": 0.00258,
+          "18": 0.00242,
+          "29": 0.0026,
+          "12": 0.00268,
+          "211": 0.0029,
+          "96": 0.00274,
+          "201": 0.00264,
+          "318": 0.00262,
+          "400": 0.00268,
+          "19": 0.00274,
+          "44": 0.00238,
+          "85": 0.00296,
+          "368": 0.00258,
+          "375": 0.00308,
+          "50": 0.0024,
+          "144": 0.003,
+          "98": 0.00298,
+          "277": 0.00306,
+          "260": 0.00266,
+          "280": 0.00274,
+          "83": 0.00286,
+          "146": 0.0025,
+          "164": 0.00246,
+          "234": 0.00306,
+          "117": 0.00276,
+          "268": 0.00258,
+          "389": 0.00264,
+          "53": 0.00262,
+          "247": 0.0024,
+          "275": 0.00276,
+          "202": 0.00274,
+          "253": 0.00306,
+          "34": 0.00228,
+          "145": 0.0026,
+          "255": 0.00284,
+          "15": 0.00276,
+          "326": 0.00294,
+          "353": 0.00262,
+          "286": 0.00296,
+          "304": 0.00266,
+          "331": 0.00298,
+          "9": 0.00292,
+          "162": 0.00264,
+          "33": 0.00254,
+          "284": 0.00272,
+          "320": 0.00256,
+          "291": 0.00248,
+          "224": 0.00306,
+          "205": 0.003,
+          "169": 0.0024,
+          "216": 0.00276,
+          "47": 0.00274,
+          "43": 0.00276,
+          "319": 0.00286,
+          "231": 0.0024,
+          "143": 0.00264,
+          "333": 0.00264,
+          "351": 0.00258,
+          "364": 0.00264,
+          "335": 0.0025,
+          "175": 0.00246,
+          "251": 0.00308,
+          "108": 0.00314,
+          "142": 0.00214,
+          "288": 0.00266,
+          "73": 0.00272,
+          "84": 0.0029,
+          "67": 0.00274,
+          "170": 0.00268,
+          "350": 0.00276,
+          "279": 0.0026,
+          "194": 0.00282,
+          "115": 0.0027,
+          "269": 0.00272,
+          "354": 0.00264,
+          "228": 0.0029,
+          "71": 0.00246,
+          "197": 0.00238,
+          "95": 0.0025,
+          "62": 0.00286,
+          "192": 0.00268,
+          "278": 0.00266,
+          "196": 0.00278,
+          "360": 0.0025,
+          "237": 0.003,
+          "324": 0.0028,
+          "239": 0.00286,
+          "314": 0.00262,
+          "213": 0.00284,
+          "217": 0.00274,
+          "227": 0.00254,
+          "294": 0.0027,
+          "111": 0.00282,
+          "369": 0.00244,
+          "49": 0.00244,
+          "348": 0.0025,
+          "221": 0.00268,
+          "126": 0.00234,
+          "316": 0.0026,
+          "60": 0.00238,
+          "54": 0.00274,
+          "183": 0.0027,
+          "107": 0.00274,
+          "256": 0.0025,
+          "11": 0.00262,
+          "241": 0.00302,
+          "311": 0.0026,
+          "148": 0.00306,
+          "387": 0.00262,
+          "392": 0.0029,
+          "240": 0.00282,
+          "315": 0.00232,
+          "178": 0.0027,
+          "225": 0.00278,
+          "327": 0.00274,
+          "69": 0.00272,
+          "233": 0.00274,
+          "397": 0.00254,
+          "355": 0.00288,
+          "212": 0.00258,
+          "370": 0.00266,
+          "220": 0.00252,
+          "396": 0.00232,
+          "128": 0.00302,
+          "25": 0.00286,
+          "385": 0.00294,
+          "112": 0.00224
+        }
+      }
+    },
+    {
+      "id": "69b09cf4b172245f5f4b70241bcafc90",
+      "metric_name": "MissingValueCount(column=weekday)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "weekday"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "0e43db4a6c5054b099a27c607b355549",
+      "metric_name": "UniqueValueCount(column=weekday)",
+      "config": {
+        "type": "evidently:metric_v2:UniqueValueCount",
+        "column": "weekday"
+      },
+      "value": {
+        "counts": {
+          "0": 7166.0,
+          "1": 7395.0,
+          "2": 7479.0,
+          "3": 7470.0,
+          "4": 7414.0,
+          "5": 6561.0,
+          "6": 6515.0
+        },
+        "shares": {
+          "0": 0.14332,
+          "1": 0.1479,
+          "2": 0.14958,
+          "3": 0.1494,
+          "4": 0.14828,
+          "5": 0.13122,
+          "6": 0.1303
+        }
+      }
+    },
+    {
+      "id": "67258b3580c43abfd08eb6d15eafdd66",
+      "metric_name": "MissingValueCount(column=hour)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "hour"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "0ac50445a94d5500605b3b820779aa4a",
+      "metric_name": "UniqueValueCount(column=hour)",
+      "config": {
+        "type": "evidently:metric_v2:UniqueValueCount",
+        "column": "hour"
+      },
+      "value": {
+        "counts": {
+          "0": 2138.0,
+          "1": 2088.0,
+          "2": 2071.0,
+          "3": 2143.0,
+          "4": 2000.0,
+          "5": 2098.0,
+          "6": 2094.0,
+          "7": 2032.0,
+          "8": 2002.0,
+          "9": 1978.0,
+          "10": 2119.0,
+          "11": 2041.0,
+          "12": 2093.0,
+          "13": 2036.0,
+          "14": 2176.0,
+          "15": 2075.0,
+          "16": 2066.0,
+          "17": 2123.0,
+          "18": 2026.0,
+          "19": 2087.0,
+          "20": 2119.0,
+          "21": 2144.0,
+          "22": 2149.0,
+          "23": 2102.0
+        },
+        "shares": {
+          "0": 0.04276,
+          "1": 0.04176,
+          "2": 0.04142,
+          "3": 0.04286,
+          "4": 0.04,
+          "5": 0.04196,
+          "6": 0.04188,
+          "7": 0.04064,
+          "8": 0.04004,
+          "9": 0.03956,
+          "10": 0.04238,
+          "11": 0.04082,
+          "12": 0.04186,
+          "13": 0.04072,
+          "14": 0.04352,
+          "15": 0.0415,
+          "16": 0.04132,
+          "17": 0.04246,
+          "18": 0.04052,
+          "19": 0.04174,
+          "20": 0.04238,
+          "21": 0.04288,
+          "22": 0.04298,
+          "23": 0.04204
+        }
+      }
+    },
+    {
+      "id": "c48a7fe5fb34320c08c10423241fb11b",
+      "metric_name": "MissingValueCount(column=departures)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "departures"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "8a8bd58050189c2226548fad5832421e",
+      "metric_name": "MinValue(column=departures)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "departures"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "dbb53950a372eafe42d12927bec18828",
+      "metric_name": "MaxValue(column=departures)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "departures"
+      },
+      "value": 207.0
+    },
+    {
+      "id": "f2d96dfaf764e96b459ee18ecff78ce4",
+      "metric_name": "MeanValue(column=departures)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "departures"
+      },
+      "value": 1.49136
+    },
+    {
+      "id": "df09e3e8cae2d8db045b4fc8540ddaab",
+      "metric_name": "StdValue(column=departures)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "departures"
+      },
+      "value": 3.0467541752855767
+    },
+    {
+      "id": "c96473f8f52d0165f28e855cdbc993e1",
+      "metric_name": "QuantileValue(column=departures,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures",
+        "quantile": 0.25
+      },
+      "value": 0.0
+    },
+    {
+      "id": "8368f39ed2d0e330c370a448f18ba957",
+      "metric_name": "QuantileValue(column=departures,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures",
+        "quantile": 0.5
+      },
+      "value": 0.0
+    },
+    {
+      "id": "1dc0236250698470c307af538adc9c6a",
+      "metric_name": "QuantileValue(column=departures,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures",
+        "quantile": 0.75
+      },
+      "value": 2.0
+    },
+    {
+      "id": "9d385871d75d06911c418d329613e821",
+      "metric_name": "MissingValueCount(column=departures_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "departures_lag1"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "49a07046f44c97ff0005162d0d8e25df",
+      "metric_name": "MinValue(column=departures_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "departures_lag1"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "16fca902991afe06e9a4be53e9a1d228",
+      "metric_name": "MaxValue(column=departures_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "departures_lag1"
+      },
+      "value": 178.0
+    },
+    {
+      "id": "10653419feab348d69ff23f465212b12",
+      "metric_name": "MeanValue(column=departures_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "departures_lag1"
+      },
+      "value": 1.47826
+    },
+    {
+      "id": "6ae97b77810ede664c2997c65f661ec3",
+      "metric_name": "StdValue(column=departures_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "departures_lag1"
+      },
+      "value": 2.87250629211634
+    },
+    {
+      "id": "a08f3e2600648fec64734b5ce6798ad1",
+      "metric_name": "QuantileValue(column=departures_lag1,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_lag1",
+        "quantile": 0.25
+      },
+      "value": 0.0
+    },
+    {
+      "id": "b40bd783106f920269d90abb4daad681",
+      "metric_name": "QuantileValue(column=departures_lag1,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_lag1",
+        "quantile": 0.5
+      },
+      "value": 0.0
+    },
+    {
+      "id": "357e315f1687ccf820c9967cadf150b2",
+      "metric_name": "QuantileValue(column=departures_lag1,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_lag1",
+        "quantile": 0.75
+      },
+      "value": 2.0
+    },
+    {
+      "id": "b6a44fe30b3f533122e4cff9fceab13e",
+      "metric_name": "MissingValueCount(column=departures_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "departures_lag24"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "4494d47713b53beb2c0ceaf4be00a796",
+      "metric_name": "MinValue(column=departures_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "departures_lag24"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "2afd95c587c48d059cb15ac97ab97f67",
+      "metric_name": "MaxValue(column=departures_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "departures_lag24"
+      },
+      "value": 69.0
+    },
+    {
+      "id": "d102d66ed393f93ea8976e2a1307c67b",
+      "metric_name": "MeanValue(column=departures_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "departures_lag24"
+      },
+      "value": 1.46572
+    },
+    {
+      "id": "e3818e5accb2709e1262ef50d060ff60",
+      "metric_name": "StdValue(column=departures_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "departures_lag24"
+      },
+      "value": 2.6694807368003395
+    },
+    {
+      "id": "8ee18afea93da13a9cba70864523cc39",
+      "metric_name": "QuantileValue(column=departures_lag24,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_lag24",
+        "quantile": 0.25
+      },
+      "value": 0.0
+    },
+    {
+      "id": "7e31a9ec7e5f5ab6262f5c2a285d3130",
+      "metric_name": "QuantileValue(column=departures_lag24,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_lag24",
+        "quantile": 0.5
+      },
+      "value": 0.0
+    },
+    {
+      "id": "fbc64cf315e987a21a021ece76662809",
+      "metric_name": "QuantileValue(column=departures_lag24,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_lag24",
+        "quantile": 0.75
+      },
+      "value": 2.0
+    },
+    {
+      "id": "918acaa726d077843fc137caeb1cc716",
+      "metric_name": "MissingValueCount(column=departures_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "departures_lag168"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "d35dde5610b81317f34785c3419e852a",
+      "metric_name": "MinValue(column=departures_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "departures_lag168"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "983e0d161b40c2e870d1b8ffd9f1bbf3",
+      "metric_name": "MaxValue(column=departures_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "departures_lag168"
+      },
+      "value": 82.0
+    },
+    {
+      "id": "30fdbe98cc3de47fd1fb4113218567ec",
+      "metric_name": "MeanValue(column=departures_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "departures_lag168"
+      },
+      "value": 1.46396
+    },
+    {
+      "id": "624858994dcfa7b1699d215087053441",
+      "metric_name": "StdValue(column=departures_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "departures_lag168"
+      },
+      "value": 2.6781942746730416
+    },
+    {
+      "id": "1a9515d5282184bb6484bcf9ccb0f6d4",
+      "metric_name": "QuantileValue(column=departures_lag168,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_lag168",
+        "quantile": 0.25
+      },
+      "value": 0.0
+    },
+    {
+      "id": "fd6be80d94c121496eea7cb1f0cd7e18",
+      "metric_name": "QuantileValue(column=departures_lag168,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_lag168",
+        "quantile": 0.5
+      },
+      "value": 0.0
+    },
+    {
+      "id": "1c469a22091c73ac5d018120b1fe0abd",
+      "metric_name": "QuantileValue(column=departures_lag168,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_lag168",
+        "quantile": 0.75
+      },
+      "value": 2.0
+    },
+    {
+      "id": "45d465e2d2baeff67e470ac574686769",
+      "metric_name": "MissingValueCount(column=departures_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "departures_mean24"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "55917eed13f788b08361bb5f99e0d79f",
+      "metric_name": "MinValue(column=departures_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "departures_mean24"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "1766f90d69c4d186c257ba2f651a5de8",
+      "metric_name": "MaxValue(column=departures_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "departures_mean24"
+      },
+      "value": 28.583333333333332
+    },
+    {
+      "id": "6c62f697c31362930248a10a64bf2666",
+      "metric_name": "MeanValue(column=departures_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "departures_mean24"
+      },
+      "value": 1.4686683333333335
+    },
+    {
+      "id": "a900e9ad9bf3d44c58563195a44c6286",
+      "metric_name": "StdValue(column=departures_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "departures_mean24"
+      },
+      "value": 1.5125180156102296
+    },
+    {
+      "id": "6fa812d0e6265cea2a057c31ad83557d",
+      "metric_name": "QuantileValue(column=departures_mean24,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_mean24",
+        "quantile": 0.25
+      },
+      "value": 0.5
+    },
+    {
+      "id": "c149610ebaa20cef0b391cb6a70ca965",
+      "metric_name": "QuantileValue(column=departures_mean24,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_mean24",
+        "quantile": 0.5
+      },
+      "value": 1.0416666666666667
+    },
+    {
+      "id": "6e6e89e6dfb1f1680c9144e201e96645",
+      "metric_name": "QuantileValue(column=departures_mean24,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_mean24",
+        "quantile": 0.75
+      },
+      "value": 1.9583333333333333
+    },
+    {
+      "id": "3382909edfe26c830119f46363de37d5",
+      "metric_name": "MissingValueCount(column=departures_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "departures_mean168"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "7ab3064776e4b632b8da86b95d64f4a1",
+      "metric_name": "MinValue(column=departures_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "departures_mean168"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "a366397c19f4255ddce2984016da0839",
+      "metric_name": "MaxValue(column=departures_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "departures_mean168"
+      },
+      "value": 11.625
+    },
+    {
+      "id": "99e25b4fb937bce981e345b50cffe75b",
+      "metric_name": "MeanValue(column=departures_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "departures_mean168"
+      },
+      "value": 1.4527477380952383
+    },
+    {
+      "id": "3948251241b53e367bc28c4c80219741",
+      "metric_name": "StdValue(column=departures_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "departures_mean168"
+      },
+      "value": 1.3947970891542174
+    },
+    {
+      "id": "672acf0261ad5fd0d2ae2876f29302c5",
+      "metric_name": "QuantileValue(column=departures_mean168,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_mean168",
+        "quantile": 0.25
+      },
+      "value": 0.5297619047619048
+    },
+    {
+      "id": "79ccd38676a97641442bba8ab42fe329",
+      "metric_name": "QuantileValue(column=departures_mean168,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_mean168",
+        "quantile": 0.5
+      },
+      "value": 1.0773809523809523
+    },
+    {
+      "id": "4ec251a7d0755c699a58fb21a5dcdd45",
+      "metric_name": "QuantileValue(column=departures_mean168,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "departures_mean168",
+        "quantile": 0.75
+      },
+      "value": 1.9107142857142858
+    },
+    {
+      "id": "3976e5ba8d2ad112639a6a0f95035b57",
+      "metric_name": "MissingValueCount(column=arrivals_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "arrivals_lag1"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "c64728ff9089fbea9e6f7798ace06bf0",
+      "metric_name": "MinValue(column=arrivals_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "arrivals_lag1"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "87a35594f15659415242db65111391b7",
+      "metric_name": "MaxValue(column=arrivals_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "arrivals_lag1"
+      },
+      "value": 181.0
+    },
+    {
+      "id": "e6e3f39f6016fab25e1ee35e62592ded",
+      "metric_name": "MeanValue(column=arrivals_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "arrivals_lag1"
+      },
+      "value": 1.49898
+    },
+    {
+      "id": "5041f4a63d28922d156bb9a50ecc26e3",
+      "metric_name": "StdValue(column=arrivals_lag1)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "arrivals_lag1"
+      },
+      "value": 2.9715072870028667
+    },
+    {
+      "id": "cfa486a9260cfc0e1e92485875121604",
+      "metric_name": "QuantileValue(column=arrivals_lag1,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_lag1",
+        "quantile": 0.25
+      },
+      "value": 0.0
+    },
+    {
+      "id": "dee72ca37559508995836c1d250be182",
+      "metric_name": "QuantileValue(column=arrivals_lag1,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_lag1",
+        "quantile": 0.5
+      },
+      "value": 0.0
+    },
+    {
+      "id": "71c0e6c1831dc06f4ff2136a7d3310fb",
+      "metric_name": "QuantileValue(column=arrivals_lag1,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_lag1",
+        "quantile": 0.75
+      },
+      "value": 2.0
+    },
+    {
+      "id": "28e75f46684cd2f4329c7cd2a25c4e0d",
+      "metric_name": "MissingValueCount(column=arrivals_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "arrivals_lag24"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "a24925d0c757886d6c81b06b7e730dba",
+      "metric_name": "MinValue(column=arrivals_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "arrivals_lag24"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "31ca625f896cb9f5cd9aa5d67721b7f9",
+      "metric_name": "MaxValue(column=arrivals_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "arrivals_lag24"
+      },
+      "value": 84.0
+    },
+    {
+      "id": "ac522533f4dd9d3da89e06593e865e8e",
+      "metric_name": "MeanValue(column=arrivals_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "arrivals_lag24"
+      },
+      "value": 1.4677
+    },
+    {
+      "id": "aa4772b9d2375d20451a1c6ac0e2ae6f",
+      "metric_name": "StdValue(column=arrivals_lag24)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "arrivals_lag24"
+      },
+      "value": 2.805144218517425
+    },
+    {
+      "id": "d88669c41f90597dcdcd909ffdbd648c",
+      "metric_name": "QuantileValue(column=arrivals_lag24,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_lag24",
+        "quantile": 0.25
+      },
+      "value": 0.0
+    },
+    {
+      "id": "4681643e02a476ae6f9b720407b74d92",
+      "metric_name": "QuantileValue(column=arrivals_lag24,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_lag24",
+        "quantile": 0.5
+      },
+      "value": 0.0
+    },
+    {
+      "id": "a55f273cfc64adc5e61a4e50bd5793a8",
+      "metric_name": "QuantileValue(column=arrivals_lag24,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_lag24",
+        "quantile": 0.75
+      },
+      "value": 2.0
+    },
+    {
+      "id": "8bc66833c358e643ae28792434146e42",
+      "metric_name": "MissingValueCount(column=arrivals_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "arrivals_lag168"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "fd5a9b3ace6d3fb75e304fd2295da945",
+      "metric_name": "MinValue(column=arrivals_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "arrivals_lag168"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "72c8ff5ae597f2aeb74242f0e089db7b",
+      "metric_name": "MaxValue(column=arrivals_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "arrivals_lag168"
+      },
+      "value": 96.0
+    },
+    {
+      "id": "1f528bc615f2a71ab7e3ec4a2f856a12",
+      "metric_name": "MeanValue(column=arrivals_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "arrivals_lag168"
+      },
+      "value": 1.46672
+    },
+    {
+      "id": "e9e6792c5ad4436f0494089944f1f5a2",
+      "metric_name": "StdValue(column=arrivals_lag168)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "arrivals_lag168"
+      },
+      "value": 2.7614353065206942
+    },
+    {
+      "id": "94ded28c1a7fe6052511fb29dea2c881",
+      "metric_name": "QuantileValue(column=arrivals_lag168,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_lag168",
+        "quantile": 0.25
+      },
+      "value": 0.0
+    },
+    {
+      "id": "86e009f2132be95cc1aac48fa739be94",
+      "metric_name": "QuantileValue(column=arrivals_lag168,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_lag168",
+        "quantile": 0.5
+      },
+      "value": 0.0
+    },
+    {
+      "id": "60ee2d6ce3c72f2b482ff06eedcc0e50",
+      "metric_name": "QuantileValue(column=arrivals_lag168,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_lag168",
+        "quantile": 0.75
+      },
+      "value": 2.0
+    },
+    {
+      "id": "2357340f8fa0a97f9a5c5f6040b7a80a",
+      "metric_name": "MissingValueCount(column=arrivals_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "arrivals_mean24"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "d07304f1064108317a46c6340276db2d",
+      "metric_name": "MinValue(column=arrivals_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "arrivals_mean24"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "4b5b400ab1dc782e261268ef35e0d506",
+      "metric_name": "MaxValue(column=arrivals_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "arrivals_mean24"
+      },
+      "value": 29.166666666666668
+    },
+    {
+      "id": "9360de1d8931f0230bb3e68556689f10",
+      "metric_name": "MeanValue(column=arrivals_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "arrivals_mean24"
+      },
+      "value": 1.468135
+    },
+    {
+      "id": "304d87d2691384540243b64a7b5b3590",
+      "metric_name": "StdValue(column=arrivals_mean24)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "arrivals_mean24"
+      },
+      "value": 1.5974638210576764
+    },
+    {
+      "id": "fa91575217243aebab4a2a0c0daf5b29",
+      "metric_name": "QuantileValue(column=arrivals_mean24,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_mean24",
+        "quantile": 0.25
+      },
+      "value": 0.4583333333333333
+    },
+    {
+      "id": "765fd33fc6987f54b91a25283841f137",
+      "metric_name": "QuantileValue(column=arrivals_mean24,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_mean24",
+        "quantile": 0.5
+      },
+      "value": 1.0416666666666667
+    },
+    {
+      "id": "6cd5d5cea30e49a88cedd2f49ee97764",
+      "metric_name": "QuantileValue(column=arrivals_mean24,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_mean24",
+        "quantile": 0.75
+      },
+      "value": 1.9583333333333333
+    },
+    {
+      "id": "ad623ca8e3705465c64174ff8824158c",
+      "metric_name": "MissingValueCount(column=arrivals_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "arrivals_mean168"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "1bb532114ade512443a7c5594631347c",
+      "metric_name": "MinValue(column=arrivals_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:MinValue",
+        "column": "arrivals_mean168"
+      },
+      "value": 0.0
+    },
+    {
+      "id": "aa8e87ecd0565df203fbf2dc66b3e365",
+      "metric_name": "MaxValue(column=arrivals_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:MaxValue",
+        "column": "arrivals_mean168"
+      },
+      "value": 14.208333333333334
+    },
+    {
+      "id": "b14ad11d400e0fdf8c91ff0c49564a3c",
+      "metric_name": "MeanValue(column=arrivals_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:MeanValue",
+        "column": "arrivals_mean168"
+      },
+      "value": 1.4509398809523808
+    },
+    {
+      "id": "fa345c0fd69ed3c618146212a2747045",
+      "metric_name": "StdValue(column=arrivals_mean168)",
+      "config": {
+        "type": "evidently:metric_v2:StdValue",
+        "column": "arrivals_mean168"
+      },
+      "value": 1.4691020107265935
+    },
+    {
+      "id": "4244bbfc4db47f266a70806e0a001467",
+      "metric_name": "QuantileValue(column=arrivals_mean168,quantile=0.25)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_mean168",
+        "quantile": 0.25
+      },
+      "value": 0.4880952380952381
+    },
+    {
+      "id": "e477739661b2f8813af9b1ae31ae4887",
+      "metric_name": "QuantileValue(column=arrivals_mean168,quantile=0.5)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_mean168",
+        "quantile": 0.5
+      },
+      "value": 1.0952380952380953
+    },
+    {
+      "id": "91d92e30efc442f5a8971e7f7f95bcfe",
+      "metric_name": "QuantileValue(column=arrivals_mean168,quantile=0.75)",
+      "config": {
+        "type": "evidently:metric_v2:QuantileValue",
+        "column": "arrivals_mean168",
+        "quantile": 0.75
+      },
+      "value": 1.9107142857142858
+    },
+    {
+      "id": "e826d68885b6c18e734f4bcfb48c1e0c",
+      "metric_name": "MissingValueCount(column=month)",
+      "config": {
+        "type": "evidently:metric_v2:MissingValueCount",
+        "column": "month"
+      },
+      "value": {
+        "count": 0.0,
+        "share": 0.0
+      }
+    },
+    {
+      "id": "90657ec6e24cb6e214b707bb963e2a83",
+      "metric_name": "UniqueValueCount(column=month)",
+      "config": {
+        "type": "evidently:metric_v2:UniqueValueCount",
+        "column": "month"
+      },
+      "value": {
+        "counts": {
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 24699.0,
+          "10": 25301.0
+        },
+        "shares": {
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0,
+          "7": 0.0,
+          "8": 0.0,
+          "9": 0.49398,
+          "10": 0.50602
+        }
+      }
+    }
+  ],
+  "tests": []
+}

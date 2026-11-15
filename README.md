@@ -615,3 +615,81 @@ Faltan inventarios históricos y rebalanceos observados; el catálogo de capacid
 - Real Python. (s. f.). *Object-oriented programming in Python*. https://realpython.com/python3-object-oriented-programming/
 
 Las notas técnicas y sus fuentes están en [lecturas_ingesta.md](references/lecturas_ingesta.md) y [lecturas_variables.md](references/lecturas_variables.md).
+
+## Monitoreo de P1 con Evidently
+
+El monitoreo compara la misma cohorte de estaciones y las mismas transformaciones
+usadas al entrenar P1. La referencia abarca enero-agosto de 2025; el periodo
+actual es septiembre-octubre. Noviembre-diciembre queda reservado para comparar
+las versiones del modelo. Es una simulación histórica de monitoreo con datos
+abiertos; no son peticiones reales recibidas por la API.
+
+Se revisan las entradas `station_id`, `weekday` y `hour`, la demanda observada
+`departures` y diez rezagos y medias móviles. `month` se muestra como contexto:
+al comparar meses distintos su cambio es esperado y no basta para decidir un
+reentrenamiento. El objetivo y los rezagos son diagnósticos adicionales;
+HistoricalMean utiliza únicamente las tres entradas de la API.
+
+### Instalación y ejecución
+
+Se utiliza Python 3.11 y un entorno separado para conservar las dependencias del
+modelo y del servicio. No hace falta un contenedor ni un servidor de MLflow para
+generar el reporte. Los datos se reconstruyen con la ingesta documentada arriba;
+se comprueban el manifiesto y las huellas de los Parquet antes del análisis.
+
+macOS o Linux:
+
+```bash
+python3.11 -m venv .venv-monitoring
+.venv-monitoring/bin/python -m pip install -r requirements-monitoring.lock.txt
+.venv-monitoring/bin/python -m mibici_equipo14.monitoring
+.venv-monitoring/bin/python -m pytest tests/test_monitoring.py -q
+```
+
+Windows con PowerShell:
+
+```powershell
+py -3.11 -m venv .venv-monitoring
+.\.venv-monitoring\Scripts\python.exe -m pip install -r requirements-monitoring.lock.txt
+.\.venv-monitoring\Scripts\python.exe -m mibici_equipo14.monitoring
+.\.venv-monitoring\Scripts\python.exe -m pytest tests/test_monitoring.py -q
+```
+
+La generación se ejecuta con un solo comando una vez instalado el entorno y
+reconstruidos los datos. `--sample-size` permite variar el tamaño de muestra y
+`--output` la carpeta de salida. Para reproducir los resultados publicados se
+conservan 50,000 filas por periodo, muestreo sin reemplazo y semilla 42.
+Las fechas y la semilla proceden de `config.py`. El módulo desactiva la
+telemetría de Evidently; no carga datos a un servicio externo.
+
+### Reportes y criterio de alerta
+
+- [Reporte interactivo de Evidently](reports/monitoreo/evidently_drift.html).
+- [Métricas exportadas de Evidently](reports/monitoreo/evidently_metrics.json).
+- [Resumen de calidad, drift y segmentos](reports/monitoreo/resumen_drift.json).
+- [Interpretación y límites del análisis](reports/monitoreo/interpretacion.md).
+- [Distancias por variable](reports/monitoreo/01_drift_variables.png).
+- [Demanda observada por hora y fecha](reports/monitoreo/02_demanda_periodos.png).
+- [Cambios por estación](reports/monitoreo/03_cambios_estaciones.png).
+
+GitHub permite descargar el HTML; para verlo hay que abrirlo en un navegador.
+Se usa la API de Evidently 0.7.20 (`Report`, `DataDriftPreset`,
+`DataSummaryPreset` y `report.run(current, reference)`).
+
+Para variables categóricas se fija la distancia Jensen-Shannon y para las
+numéricas Wasserstein normalizada por la desviación estándar de referencia.
+La alerta por variable es distancia mayor o igual a 0.10. No son p-valores.
+El criterio global de Evidently es al menos 50% de columnas con drift; el
+resumen también separa las entradas del modelo del contexto. Las distancias de
+métodos distintos no deben interpretarse como una escala común de importancia.
+
+Las comprobaciones adicionales de calidad usan todas las filas, no la muestra:
+nulos, valores no finitos, rangos, conteos enteros no negativos y unicidad de
+estación-hora. Los valores repetidos de calendario y demanda son normales;
+los duplicados de filas que muestra Evidently sobre las 15 variables no
+implican duplicados de la clave estación-hora. Las primeras 168 horas se
+excluyen por falta de historia, igual que en el entrenamiento original.
+
+Este análisis no mide concept drift ni demuestra ausencia de degradación.
+La comparación pareada de modelos en el holdout posterior debe evaluar MAE,
+RMSE y WAPE antes de decidir si se conserva o cambia la versión vigente.
