@@ -1,0 +1,97 @@
+{
+  "experiment": "offline_paired_ab_test",
+  "model_name": "mibici-equipo14-p1-demanda",
+  "versions": {
+    "name": "mibici-equipo14-p1-demanda",
+    "champion": {
+      "alias": "champion",
+      "version": "1",
+      "run_id": "964ccfa12f17486e92b11654858be512",
+      "model_uri": "models:/mibici-equipo14-p1-demanda@champion",
+      "tags": {
+        "git_commit": "c4d8a8dcdf13438b5191a7516b0bc3e2530e1753",
+        "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+        "question": "p1",
+        "delivery": "2",
+        "equipo": "14",
+        "validation_status": "passed",
+        "deployment_scope": "academic_local",
+        "lifecycle_scheme": "alias",
+        "source_experiment": "mibici-equipo14"
+      }
+    },
+    "challenger": {
+      "alias": "challenger",
+      "version": "2",
+      "run_id": "2c513618128e4411b52e92d182e08621",
+      "model_uri": "models:/mibici-equipo14-p1-demanda@challenger",
+      "tags": {
+        "git_commit": "7738663b7461fe57557b6588b1e470b0ab19b75b",
+        "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+        "model_family": "historical_mean",
+        "fit_end_exclusive": "2025-11-01",
+        "integrante": "Milton",
+        "validation_status": "contract_passed"
+      }
+    }
+  },
+  "lineage": {
+    "champion": {
+      "run_id": "964ccfa12f17486e92b11654858be512",
+      "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+      "train_end": "2025-09-01",
+      "git_commit": "c4d8a8dcdf13438b5191a7516b0bc3e2530e1753"
+    },
+    "challenger": {
+      "run_id": "2c513618128e4411b52e92d182e08621",
+      "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+      "train_end": "2025-11-01",
+      "git_commit": "7738663b7461fe57557b6588b1e470b0ab19b75b"
+    },
+    "holdout_start": "2025-11-01",
+    "holdout_end": "2026-01-01",
+    "same_data_version": true
+  },
+  "holdout": {
+    "start": "2025-11-01",
+    "end": "2026-01-01",
+    "rows": 540216,
+    "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+    "feature_version": "f22034e82a4cf61982dee450e7d0cf3cfd5e4922380fb7ba1cb9499eeaccc86c",
+    "columns": [
+      "station_id",
+      "weekday",
+      "hour"
+    ]
+  },
+  "comparison": {
+    "rows": 540216,
+    "champion": {
+      "mae": 0.8776294806564072,
+      "rmse": 1.5941786916188003,
+      "wape": 0.662798190338916
+    },
+    "challenger": {
+      "mae": 0.8602646407086646,
+      "rmse": 1.5499143089699892,
+      "wape": 0.6496840177335467
+    },
+    "paired": {
+      "champion_wins": 193832,
+      "challenger_wins": 244964,
+      "ties": 101420,
+      "champion_win_rate": 0.3588046262976291,
+      "challenger_win_rate": 0.453455654775127,
+      "tie_rate": 0.18773971892724392,
+      "mean_error_difference": -0.01736483994774249
+    },
+    "bootstrap": {
+      "iterations": 1000,
+      "seed": 42,
+      "delta_mae": -0.01736483994774249,
+      "ci95_lower": -0.017799234803734586,
+      "ci95_upper": -0.016932678359862785
+    },
+    "statistical_result": "challenger"
+  }
+}

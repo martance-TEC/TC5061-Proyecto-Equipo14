@@ -161,7 +161,7 @@ def run_registry_ab_test(
     holdout, holdout_metadata = load_p1_holdout()
 
     inputs = holdout[P1_COLUMNS].astype({
-        "station_id": "string",
+        "station_id": str,
         "weekday": "int32",
         "hour": "int32",
     })
