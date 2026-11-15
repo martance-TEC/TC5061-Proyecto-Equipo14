@@ -1,6 +1,7 @@
 .venv/
 .venv-tools/
 .venv-quality/
+.venv-monitoring/
 .coverage
 .coverage.*
 htmlcov/
