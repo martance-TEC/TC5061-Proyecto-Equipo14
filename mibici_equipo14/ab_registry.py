@@ -53,7 +53,12 @@ def validate_model_lineage(versions, client=None):
         }
         params = dict(run.data.params)
 
-        if tags.get("question") not in {"p1", "P1"}:
+        question = (
+            tags.get("question")
+            or tags.get("pregunta")
+        )
+
+        if str(question).lower() != "p1":
             raise ValueError(
                 f"{alias} no corresponde a P1"
             )
@@ -76,7 +81,9 @@ def validate_model_lineage(versions, client=None):
 
         train_end = (
             params.get("train_end")
+            or params.get("fit_end_exclusive")
             or tags.get("train_end")
+            or tags.get("fit_end_exclusive")
         )
         if not train_end:
             raise ValueError(

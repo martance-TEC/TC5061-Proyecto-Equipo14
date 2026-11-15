@@ -35,15 +35,30 @@ class FakeClient:
         version = "1" if alias == "champion" else (
             "1" if self.same_version else "2"
         )
+
         run_id = (
             "run-champion"
             if alias == "champion"
             else "run-challenger"
         )
+
         status = (
             "READY"
             if alias == "champion"
             else self.challenger_status
+        )
+
+        data_version = (
+            "different"
+            if alias == "challenger"
+            and self.different_data_version
+            else "data-v1"
+        )
+
+        question_tags = (
+            {"question": "p1"}
+            if alias == "champion"
+            else {"pregunta": "P1"}
         )
 
         return SimpleNamespace(
@@ -51,41 +66,50 @@ class FakeClient:
             run_id=run_id,
             status=status,
             tags={
-                "question": "p1",
-                "data_version": (
-                    "different"
-                    if alias == "challenger"
-                    and self.different_data_version
-                    else "data-v1"
-                ),
+                **question_tags,
+                "data_version": data_version,
             },
         )
 
     def get_run(self, run_id):
+        is_champion = run_id == "run-champion"
+
         train_end = (
             "2025-09-01"
-            if run_id == "run-champion"
+            if is_champion
             else self.challenger_train_end
         )
 
         data_version = (
             "different"
-            if run_id == "run-challenger"
+            if not is_champion
             and self.different_data_version
             else "data-v1"
         )
 
+        tags = {
+            "git_commit": "abc123",
+            "data_version": data_version,
+        }
+
+        if is_champion:
+            tags["question"] = "p1"
+            params = {
+                "train_end": train_end,
+                "data_version": data_version,
+            }
+        else:
+            tags["pregunta"] = "P1"
+            params = {
+                "fit_end_exclusive": train_end,
+                "original_train_end": "2025-09-01",
+                "data_version": data_version,
+            }
+
         return SimpleNamespace(
             data=SimpleNamespace(
-                tags={
-                    "question": "p1",
-                    "data_version": data_version,
-                    "git_commit": "abc123",
-                },
-                params={
-                    "train_end": train_end,
-                    "data_version": data_version,
-                },
+                tags=tags,
+                params=params,
             ),
         )
 
@@ -117,15 +141,20 @@ def test_registry_rejects_same_version_for_both_aliases():
 def test_registry_rejects_non_ready_challenger():
     with pytest.raises(ValueError, match="READY"):
         resolve_p1_versions(
-            FakeClient(challenger_status="PENDING_REGISTRATION")
+            FakeClient(
+                challenger_status="PENDING_REGISTRATION"
+            )
         )
 
 
-def test_lineage_accepts_training_before_holdout():
+def test_lineage_accepts_champion_and_milton_challenger_contracts():
     client = FakeClient()
     versions = resolve_p1_versions(client)
 
-    result = validate_model_lineage(versions, client)
+    result = validate_model_lineage(
+        versions,
+        client,
+    )
 
     assert result["champion"]["train_end"] == "2025-09-01"
     assert result["challenger"]["train_end"] == "2025-11-01"
@@ -141,7 +170,10 @@ def test_lineage_rejects_training_inside_holdout():
     versions = resolve_p1_versions(client)
 
     with pytest.raises(ValueError, match="periodo A/B"):
-        validate_model_lineage(versions, client)
+        validate_model_lineage(
+            versions,
+            client,
+        )
 
 
 def test_lineage_rejects_different_data_versions():
@@ -154,4 +186,7 @@ def test_lineage_rejects_different_data_versions():
         ValueError,
         match="versiones de datos diferentes",
     ):
-        validate_model_lineage(versions, client)
+        validate_model_lineage(
+            versions,
+            client,
+        )
