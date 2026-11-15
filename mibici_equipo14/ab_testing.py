@@ -187,3 +187,86 @@ def validate_ab_holdout(frame, time_column="time"):
         "end": S.end,
         "rows": int(len(frame)),
     }
+
+
+def daily_block_bootstrap(
+    dates,
+    y_true,
+    champion,
+    challenger,
+    *,
+    iterations=1000,
+    seed=None,
+):
+    """Bootstrap pareado por dias completos para respetar dependencia temporal."""
+    y, prediction_champion, prediction_challenger = validate_predictions(
+        y_true,
+        champion,
+        challenger,
+    )
+
+    dates = pd.to_datetime(pd.Series(dates), errors="coerce")
+    if len(dates) != len(y):
+        raise ValueError(
+            "Fechas, target y predicciones deben tener el mismo numero de filas"
+        )
+    if dates.isna().any():
+        raise ValueError("Las fechas contienen valores invalidos")
+    if not isinstance(iterations, int) or iterations < 1:
+        raise ValueError("iterations debe ser un entero positivo")
+
+    errors = pd.DataFrame({
+        "date": dates.dt.date,
+        "champion_error": np.abs(y - prediction_champion),
+        "challenger_error": np.abs(y - prediction_challenger),
+    })
+
+    daily = errors.groupby("date", sort=True).agg(
+        champion_mae=("champion_error", "mean"),
+        challenger_mae=("challenger_error", "mean"),
+    )
+
+    daily["delta_mae"] = (
+        daily["challenger_mae"]
+        - daily["champion_mae"]
+    )
+
+    delta = daily["delta_mae"].to_numpy(dtype=float)
+    generator = np.random.default_rng(
+        S.seed if seed is None else seed
+    )
+    bootstrap = np.empty(iterations, dtype=float)
+
+    for iteration in range(iterations):
+        sample = generator.choice(
+            delta,
+            size=len(delta),
+            replace=True,
+        )
+        bootstrap[iteration] = sample.mean()
+
+    lower, upper = np.percentile(
+        bootstrap,
+        [2.5, 97.5],
+    )
+
+    if upper < 0:
+        statistical_result = "challenger"
+    elif lower > 0:
+        statistical_result = "champion"
+    else:
+        statistical_result = "inconclusive"
+
+    return {
+        "method": "daily_block_bootstrap",
+        "days": int(len(delta)),
+        "iterations": iterations,
+        "seed": S.seed if seed is None else seed,
+        "delta_mae": float(delta.mean()),
+        "ci95_lower": float(lower),
+        "ci95_upper": float(upper),
+        "challenger_better_days": int((delta < 0).sum()),
+        "champion_better_days": int((delta > 0).sum()),
+        "tied_days": int((delta == 0).sum()),
+        "statistical_result": statistical_result,
+    }

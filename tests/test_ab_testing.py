@@ -144,3 +144,99 @@ def test_bootstrap_rejects_invalid_configuration():
 
     with pytest.raises(ValueError):
         bootstrap_delta_mae([1, 2], [1, 2], iterations=0)
+
+
+def test_daily_block_bootstrap_favors_challenger_across_days():
+    from mibici_equipo14.ab_testing import daily_block_bootstrap
+
+    dates = [
+        "2025-11-01 08:00:00",
+        "2025-11-01 09:00:00",
+        "2025-11-02 08:00:00",
+        "2025-11-02 09:00:00",
+        "2025-11-03 08:00:00",
+        "2025-11-03 09:00:00",
+    ]
+    target = [10, 10, 10, 10, 10, 10]
+    champion = [12, 12, 13, 13, 11, 11]
+    challenger = [11, 11, 11, 11, 10, 10]
+
+    result = daily_block_bootstrap(
+        dates,
+        target,
+        champion,
+        challenger,
+        iterations=1000,
+        seed=42,
+    )
+
+    assert result["days"] == 3
+    assert result["iterations"] == 1000
+    assert result["seed"] == 42
+    assert result["challenger_better_days"] == 3
+    assert result["champion_better_days"] == 0
+    assert result["tied_days"] == 0
+    assert result["delta_mae"] < 0
+    assert result["ci95_upper"] < 0
+    assert result["statistical_result"] == "challenger"
+
+
+def test_daily_block_bootstrap_is_reproducible():
+    from mibici_equipo14.ab_testing import daily_block_bootstrap
+
+    dates = [
+        "2025-11-01",
+        "2025-11-01",
+        "2025-11-02",
+        "2025-11-02",
+    ]
+    target = [4, 6, 3, 5]
+    champion = [5, 8, 4, 7]
+    challenger = [4, 7, 3, 6]
+
+    first = daily_block_bootstrap(
+        dates,
+        target,
+        champion,
+        challenger,
+        iterations=500,
+        seed=42,
+    )
+    second = daily_block_bootstrap(
+        dates,
+        target,
+        champion,
+        challenger,
+        iterations=500,
+        seed=42,
+    )
+
+    assert first == second
+
+
+@pytest.mark.parametrize(
+    "dates,target,champion,challenger,iterations",
+    [
+        (["2025-11-01"], [1, 2], [1, 2], [1, 2], 100),
+        (["fecha-invalida"], [1], [1], [1], 100),
+        (["2025-11-01"], [1], [1], [1], 0),
+    ],
+)
+def test_daily_block_bootstrap_rejects_invalid_inputs(
+    dates,
+    target,
+    champion,
+    challenger,
+    iterations,
+):
+    from mibici_equipo14.ab_testing import daily_block_bootstrap
+
+    with pytest.raises(ValueError):
+        daily_block_bootstrap(
+            dates,
+            target,
+            champion,
+            challenger,
+            iterations=iterations,
+            seed=42,
+        )

@@ -8,7 +8,7 @@ import numpy as np
 import pandas as pd
 from mlflow import MlflowClient
 
-from .ab_testing import compare_predictions, validate_ab_holdout
+from .ab_testing import compare_predictions, daily_block_bootstrap, validate_ab_holdout
 from .config import REGISTRY_NAMES, SETTINGS as S
 from .modeling.advanced import prepare
 
@@ -193,6 +193,15 @@ def run_registry_ab_test(
         seed=seed,
     )
 
+    daily_bootstrap = daily_block_bootstrap(
+        holdout["time"],
+        target,
+        champion_prediction,
+        challenger_prediction,
+        iterations=bootstrap_iterations,
+        seed=seed,
+    )
+
     return {
         "experiment": "offline_paired_ab_test",
         "model_name": versions["name"],
@@ -200,6 +209,7 @@ def run_registry_ab_test(
         "lineage": lineage,
         "holdout": holdout_metadata,
         "comparison": comparison,
+        "daily_block_bootstrap": daily_bootstrap,
     }
 
 

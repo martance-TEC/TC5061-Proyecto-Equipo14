@@ -93,5 +93,18 @@
       "ci95_upper": -0.016932678359862785
     },
     "statistical_result": "challenger"
+  },
+  "daily_block_bootstrap": {
+    "method": "daily_block_bootstrap",
+    "days": 61,
+    "iterations": 1000,
+    "seed": 42,
+    "delta_mae": -0.017364839947742492,
+    "ci95_lower": -0.020158108075602685,
+    "ci95_upper": -0.014708412616970645,
+    "challenger_better_days": 57,
+    "champion_better_days": 4,
+    "tied_days": 0,
+    "statistical_result": "challenger"
   }
 }
