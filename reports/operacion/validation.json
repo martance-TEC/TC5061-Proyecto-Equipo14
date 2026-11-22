@@ -1,0 +1,21 @@
+{
+  "health": {
+    "status": "ready",
+    "model_name": "mibici-equipo14-p1-demanda",
+    "model_version": "1"
+  },
+  "predictions": [
+    0.058823529411764705,
+    3.8181818181818183,
+    0.058823529411764705
+  ],
+  "max_absolute_difference": 0.0,
+  "invalid_http_codes": [
+    422,
+    422,
+    422
+  ],
+  "reconstructed_training_rows": 2090016,
+  "reconstructed_example_matches_original": true,
+  "bandit_findings": 0
+}

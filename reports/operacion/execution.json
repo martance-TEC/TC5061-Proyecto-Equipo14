@@ -1,0 +1,30 @@
+{
+  "utc": "2026-11-22T04:18:01.945631+00:00",
+  "engine": "podman",
+  "one_inference_per_request": true,
+  "ramp_included": true,
+  "wait_time_seconds": [
+    0.2,
+    0.8
+  ],
+  "runs": [
+    {
+      "users": 5,
+      "configured_seconds": 90,
+      "elapsed_seconds": 93.91083073616028,
+      "samples": 30
+    },
+    {
+      "users": 20,
+      "configured_seconds": 90,
+      "elapsed_seconds": 90.61466097831726,
+      "samples": 29
+    },
+    {
+      "users": 50,
+      "configured_seconds": 90,
+      "elapsed_seconds": 93.37599611282349,
+      "samples": 30
+    }
+  ]
+}

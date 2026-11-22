@@ -1,0 +1,149 @@
+{
+  "execution_utc": "2026-11-22T04:18:01.945631+00:00",
+  "model": "mibici-equipo14-p1-demanda/1",
+  "price": {
+    "monthly_usd": 24.0,
+    "planning_hours_per_month": 730,
+    "reference": "Lightsail Linux/Unix IPv4, 2 vCPU, 4 GB, 80 GB SSD",
+    "source": "https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-bundles.html",
+    "consulted": "2026-11-21"
+  },
+  "method": "Carga local ARM64. Proyección económica, no benchmark cloud ni factura.",
+  "cpu_method": "Diferencia del tiempo acumulado de CPU / intervalo de muestreo; 100% equivale a un núcleo.",
+  "totals_source": "Estadísticas finales del HTML de Locust. Los CSV de historial son muestras periódicas y pueden terminar antes del cierre.",
+  "runs": [
+    {
+      "users": 5,
+      "requests": 862,
+      "failures": 0,
+      "successes": 862,
+      "error_percent": 0.0,
+      "requests_per_second": 9.658007730690825,
+      "locust_seconds": 89.0,
+      "mean_ms": 8.082101736810618,
+      "p50_ms": 8.0,
+      "p95_ms": 14.0,
+      "p99_ms": 18.0,
+      "resources": {
+        "api": {
+          "mean_cpu_percent_one_core": 6.1797997430903235,
+          "peak_memory_mib": 164.89028930664062
+        },
+        "mlflow": {
+          "mean_cpu_percent_one_core": 2.0518548316446283,
+          "peak_memory_mib": 332.45086669921875
+        }
+      },
+      "peak_combined_memory_mib": 497.0550537109375,
+      "estimated_cost": {
+        "window_usd": 0.0008127853881278538,
+        "per_inference_usd": 9.429064827469301e-07,
+        "per_1000_usd": 0.0009429064827469301
+      }
+    },
+    {
+      "users": 20,
+      "requests": 3444,
+      "failures": 0,
+      "successes": 3444,
+      "error_percent": 0.0,
+      "requests_per_second": 38.30746543269731,
+      "locust_seconds": 90.0,
+      "mean_ms": 6.341488046293284,
+      "p50_ms": 5.0,
+      "p95_ms": 14.0,
+      "p99_ms": 20.0,
+      "resources": {
+        "api": {
+          "mean_cpu_percent_one_core": 13.865389090408852,
+          "peak_memory_mib": 165.74859619140625
+        },
+        "mlflow": {
+          "mean_cpu_percent_one_core": 2.0100669747873323,
+          "peak_memory_mib": 332.7369689941406
+        }
+      },
+      "peak_combined_memory_mib": 498.199462890625,
+      "estimated_cost": {
+        "window_usd": 0.000821917808219178,
+        "per_inference_usd": 2.386520929788554e-07,
+        "per_1000_usd": 0.00023865209297885541
+      }
+    },
+    {
+      "users": 50,
+      "requests": 8681,
+      "failures": 0,
+      "successes": 8681,
+      "error_percent": 0.0,
+      "requests_per_second": 96.57332241517717,
+      "locust_seconds": 90.0,
+      "mean_ms": 4.640265354591918,
+      "p50_ms": 4.0,
+      "p95_ms": 10.0,
+      "p99_ms": 19.0,
+      "resources": {
+        "api": {
+          "mean_cpu_percent_one_core": 20.889827726384617,
+          "peak_memory_mib": 179.57687377929688
+        },
+        "mlflow": {
+          "mean_cpu_percent_one_core": 1.9024837320023222,
+          "peak_memory_mib": 334.930419921875
+        }
+      },
+      "peak_combined_memory_mib": 502.8724670410156,
+      "estimated_cost": {
+        "window_usd": 0.000821917808219178,
+        "per_inference_usd": 9.468008388655432e-08,
+        "per_1000_usd": 9.468008388655433e-05
+      }
+    }
+  ],
+  "monthly_demand_scenarios": [
+    {
+      "inferences_per_month": 10000,
+      "monthly_usd": 24.0,
+      "per_1000_usd": 2.4
+    },
+    {
+      "inferences_per_month": 100000,
+      "monthly_usd": 24.0,
+      "per_1000_usd": 0.24000000000000002
+    },
+    {
+      "inferences_per_month": 1000000,
+      "monthly_usd": 24.0,
+      "per_1000_usd": 0.024
+    }
+  ],
+  "price_sensitivity": [
+    {
+      "monthly_usd": 12,
+      "per_1000_usd_at_largest_local_load": 4.7340041943277164e-05
+    },
+    {
+      "monthly_usd": 24,
+      "per_1000_usd_at_largest_local_load": 9.468008388655433e-05
+    },
+    {
+      "monthly_usd": 44,
+      "per_1000_usd_at_largest_local_load": 0.0001735801537920163
+    }
+  ],
+  "exclusions": [
+    "impuestos",
+    "egreso adicional al paquete",
+    "respaldos y retención extra",
+    "balanceador/TLS",
+    "CI/CD",
+    "operación humana",
+    "entrenamientos futuros"
+  ],
+  "limitations": [
+    "Una repetición breve por carga, sin prueba de saturación ni duración prolongada.",
+    "Los contenedores comparten la VM. Locust corre en el anfitrión.",
+    "La rampa está incluida. No se afirma capacidad equivalente en AWS.",
+    "La carga comienza con los servicios listos y excluye arranque, importación y entrenamiento."
+  ]
+}

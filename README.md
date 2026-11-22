@@ -16,6 +16,7 @@ consultar el servicio, pero no reemplaza a Podman ni a Compose. Desde la raíz:
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
+python -m pip install pip==26.2.2 setuptools==78.1.0 wheel==0.45.1
 python -m pip install -r requirements-operation.lock.txt
 python -m pip install --no-deps --no-build-isolation -e .
 python -m mibici_equipo14.operations up
@@ -122,6 +123,21 @@ diferencia del tiempo acumulado entre muestras, en lugar de promediar las
 instantáneas breves de `stats`. Un 100% equivale a un núcleo. La memoria se convierte
 a MiB. El costo incluye toda la instancia durante el intervalo y divide entre las
 respuestas exitosas, con una inferencia por solicitud.
+
+### Resultados de operación
+
+La ejecución del 21 de noviembre registró 862, 3,444 y 8,681 solicitudes para
+5, 20 y 50 usuarios, respectivamente, sin fallos. Con 50 usuarios se observaron
+96.57 solicitudes/s, p95 de 10 ms y un pico conjunto de 502.87 MiB. Son tres
+pruebas breves locales e incluyen la rampa; no representan capacidad máxima.
+
+El [reporte editable](reports/operacion/TC5061_Operacion_FinOps_Equipo14.docx),
+el [PDF](reports/operacion/TC5061_Operacion_FinOps_Equipo14.pdf) y el
+[resumen reproducible](reports/operacion/summary.json) incluyen metodología,
+gráficas, fuentes y sensibilidad del costo al volumen mensual. La
+[ejecución del código en Actions](https://github.com/martance-TEC/TC5061-Proyecto-Equipo14/actions/runs/44985231746)
+aprobó las pruebas generales, monitoreo, seguridad y despliegue temporal. Su
+identificador y commit se conservan en [pipeline.json](reports/operacion/pipeline.json).
 
 
 ## Pruebas, calidad de datos y seguridad
