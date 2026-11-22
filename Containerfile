@@ -12,7 +12,9 @@ RUN python -m pip install pip==26.2.2 setuptools==78.1.0 wheel==0.45.1 \
 COPY pyproject.toml ./
 COPY mibici_equipo14 ./mibici_equipo14
 RUN python -m pip install --no-deps --no-build-isolation . \
-    && useradd --create-home --uid 10001 appuser
+    && useradd --create-home --uid 10001 appuser \
+    && mkdir -p /state/mlartifacts \
+    && chown -R 10001:10001 /state
 USER 10001:10001
 EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=90s --retries=3 \
