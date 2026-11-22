@@ -16,7 +16,7 @@ consultar el servicio, pero no reemplaza a Podman ni a Compose. Desde la raíz:
 ```bash
 python3.11 -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-operation.txt
+python -m pip install -r requirements-operation.lock.txt
 python -m pip install --no-deps --no-build-isolation -e .
 python -m mibici_equipo14.operations up
 ```
@@ -99,6 +99,8 @@ esperados con fallos bajo carga. El generador de carga corre fuera de los
 contenedores que se miden.
 
 Locust guarda HTML, estadísticas, historial y errores en `reports/operacion/`.
+Los totales del resumen se leen del HTML final. El último CSV periódico puede
+cerrar antes y mostrar menos solicitudes; se conserva como historial sin alterarlo.
 Durante la carga se muestrean CPU y memoria con `podman stats`; los JSON conservan
 la hora y el contenedor. No se incluyen rutas personales ni nombres del equipo.
 Los logs de diagnóstico permanecen excluidos de Git. Los resultados describen
@@ -108,6 +110,18 @@ El análisis FinOps utiliza una tarifa pública documentada y solicitudes exitos
 para estimar costo por inferencia. Es una proyección, no una factura ni una
 medición de desempeño en AWS. Incluye sensibilidad al uso y el costo de mantener
 la instancia encendida cuando hay pocas solicitudes.
+
+Para reconstruir las gráficas y el cálculo a partir de los CSV y JSON guardados:
+
+```bash
+python -m mibici_equipo14.finops
+```
+
+El resumen queda en `reports/operacion/summary.json`. La CPU se calcula con la
+diferencia del tiempo acumulado entre muestras, en lugar de promediar las
+instantáneas breves de `stats`. Un 100% equivale a un núcleo. La memoria se convierte
+a MiB. El costo incluye toda la instancia durante el intervalo y divide entre las
+respuestas exitosas, con una inferencia por solicitud.
 
 
 ## Pruebas, calidad de datos y seguridad

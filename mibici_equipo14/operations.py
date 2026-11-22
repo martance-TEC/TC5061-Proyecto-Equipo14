@@ -5,7 +5,9 @@ import json
 import os
 from pathlib import Path
 import shutil
-import subprocess
+# Ejecutable resuelto y argumentos separados, sin shell.
+import subprocess  # nosec B404
+import tempfile
 import time
 
 import mlflow
@@ -97,7 +99,7 @@ def bootstrap(directory='/bootstrap'):
     directory = Path(directory)
     smoke = os.getenv('BOOTSTRAP_SMOKE', '0') == '1'
     if smoke:
-        directory = Path('/tmp/mibici-smoke')
+        directory = Path(tempfile.mkdtemp(prefix='mibici-smoke-'))
         prepare(directory, smoke=True)
     record = json.loads((directory / 'origin.json').read_text())
     if record['bundle_sha256'] != bundle_hash(directory / 'model'):
@@ -152,7 +154,8 @@ def main():
             command = shutil.which('podman-compose')
             if command is None:
                 raise RuntimeError('Instalar requirements-operation.txt y activar su entorno')
-            subprocess.run([command, '-f', 'docker-compose.yml', 'up', '-d', '--build'], check=True)
+            # command se resuelve con which y los argumentos son fijos.
+            subprocess.run([command, '-f', 'docker-compose.yml', 'up', '-d', '--build'], check=True)  # nosec B603
 
 
 if __name__ == '__main__':

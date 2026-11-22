@@ -5,7 +5,8 @@ import json
 import os
 from pathlib import Path
 import shutil
-import subprocess
+# Solo se ejecutan Locust y el motor local, sin shell ni comandos recibidos por HTTP.
+import subprocess  # nosec B404
 import sys
 import time
 
@@ -23,7 +24,7 @@ def run(output, url, engine, connection, users, seconds):
         started = time.time()
         timestamps = []
         with (output / f'locust_{count}.log').open('w') as log:
-            process = subprocess.Popen([
+            process = subprocess.Popen([  # nosec B603
                 sys.executable, '-m', 'locust', '-f', 'locustfile.py', '--headless',
                 '--host', url, '--users', str(count), '--spawn-rate', str(max(1, count // 5)),
                 '--run-time', f'{seconds}s', '--stop-timeout', '10',
@@ -31,7 +32,7 @@ def run(output, url, engine, connection, users, seconds):
             ], stdout=log, stderr=subprocess.STDOUT)
             try:
                 while process.poll() is None:
-                    sample = subprocess.run(command + [
+                    sample = subprocess.run(command + [  # nosec B603
                         'stats', '--no-stream', '--format=json',
                     ], capture_output=True, text=True, check=True, timeout=20)
                     rows = json.loads(sample.stdout)

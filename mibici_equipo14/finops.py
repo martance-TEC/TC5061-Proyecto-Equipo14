@@ -1,5 +1,6 @@
 """Resumen reproducible de Locust, recursos y costo estimado por inferencia."""
 import argparse
+from datetime import datetime
 import json
 from pathlib import Path
 import re
@@ -11,6 +12,17 @@ import numpy as np
 import pandas as pd
 
 PRICE_SOURCE = 'https://docs.aws.amazon.com/lightsail/latest/userguide/amazon-lightsail-bundles.html'
+
+
+def final_statistics(html):
+    """Lee el cierre de Locust sin ejecutar JavaScript ni usar el último CSV periódico."""
+    content = html.split('window.templateArgs = ', 1)[1]
+    data, _ = json.JSONDecoder().raw_decode(content)
+    row = next(row for row in data['requests_statistics'] if row['name'] == 'Aggregated')
+    if 'start_time' in data and 'end_time' in data:
+        row['window_seconds'] = (datetime.fromisoformat(data['end_time'])
+                                 - datetime.fromisoformat(data['start_time'])).total_seconds()
+    return row
 
 
 def estimate_cost(seconds, successes, monthly_usd=24., planning_hours=730.):
@@ -56,10 +68,10 @@ def summarize(directory, monthly_usd=24.):
     fig_resources, resource_axes = plt.subplots(2, 1, figsize=(10, 6), constrained_layout=True)
     for run in execution['runs']:
         users = run['users']
-        stats = pd.read_csv(directory / f'locust_{users}_stats.csv')
-        row = stats.loc[stats.Name == 'Aggregated'].iloc[0]
-        attempts, failures = int(row['Request Count']), int(row['Failure Count'])
-        duration = attempts / float(row['Requests/s'])
+        row = final_statistics((directory / f'locust_{users}.html').read_text())
+        (directory / f'locust_{users}_final.json').write_text(json.dumps(row, indent=2))
+        attempts, failures = int(row['num_requests']), int(row['num_failures'])
+        duration = row.get('window_seconds', attempts / float(row['total_rps']))
         resources = resource_frame(json.loads((directory / f'resources_{users}.json').read_text()))
         by_service = {}
         for name, group in resources.groupby('service'):
@@ -70,9 +82,10 @@ def summarize(directory, monthly_usd=24.):
         combined = resources.groupby('timestamp').memory_mib.sum()
         result = {'users': users, 'requests': attempts, 'failures': failures,
                   'successes': attempts - failures, 'error_percent': failures / attempts * 100,
-                  'requests_per_second': float(row['Requests/s']), 'locust_seconds': duration,
-                  'mean_ms': float(row['Average Response Time']), 'p50_ms': float(row['50%']),
-                  'p95_ms': float(row['95%']), 'p99_ms': float(row['99%']),
+                  'requests_per_second': float(row['total_rps']), 'locust_seconds': duration,
+                  'mean_ms': float(row['avg_response_time']), 'p50_ms': float(row['median_response_time']),
+                  'p95_ms': float(row['response_time_percentile_0.95']),
+                  'p99_ms': float(row['response_time_percentile_0.99']),
                   'resources': by_service, 'peak_combined_memory_mib': float(combined.max()),
                   'estimated_cost': estimate_cost(duration, attempts - failures, monthly_usd)}
         results.append(result)
@@ -90,8 +103,9 @@ def summarize(directory, monthly_usd=24.):
     for ax, label in zip(axes, ['Peticiones por segundo', 'Latencia p95 (ms)', 'Fallos por segundo']):
         ax.set_ylabel(label)
         ax.grid(alpha=.2)
-        ax.legend(loc='upper left')
+        ax.legend(loc='upper right')
     axes[2].set_xlabel('Segundos desde el inicio de cada escenario (incluye rampa)')
+    axes[2].set_ylim(bottom=0)
     fig.suptitle('Locust: solicitudes válidas a POST /predict')
     fig.savefig(directory / '01_locust.png', dpi=170)
     plt.close(fig)
@@ -109,6 +123,7 @@ def summarize(directory, monthly_usd=24.):
                         'source': PRICE_SOURCE, 'consulted': '2026-11-21'},
               'method': 'Carga local ARM64. Proyección económica, no benchmark cloud ni factura.',
               'cpu_method': 'Diferencia del tiempo acumulado de CPU / intervalo de muestreo; 100% equivale a un núcleo.',
+              'totals_source': 'Estadísticas finales del HTML de Locust. Los CSV de historial son muestras periódicas y pueden terminar antes del cierre.',
               'runs': results,
               'monthly_demand_scenarios': [
                   {'inferences_per_month': count, 'monthly_usd': monthly_usd,
@@ -124,7 +139,7 @@ def summarize(directory, monthly_usd=24.):
               'limitations': ['Una repetición breve por carga, sin prueba de saturación ni duración prolongada.',
                               'Los contenedores comparten la VM. Locust corre en el anfitrión.',
                               'La rampa está incluida. No se afirma capacidad equivalente en AWS.',
-                              'El arranque e importación del modelo se midieron aparte de la carga.']}
+                              'La carga comienza con los servicios listos y excluye arranque, importación y entrenamiento.']}
     (directory / 'summary.json').write_text(json.dumps(output, indent=2, ensure_ascii=False, allow_nan=False))
     return output
 
