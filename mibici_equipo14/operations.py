@@ -69,6 +69,7 @@ def prepare(output, source_uri=None, tracking_uri=None, smoke=False):
         else:
             from .dataset import ingest
             from .modeling.advanced import prepare as prepare_data
+            from .tracking import git_state
             if not (SETTINGS.root / 'data/processed/ingestion_manifest.json').exists():
                 ingest()
             parts, _, manifest = prepare_data('p1')
@@ -76,6 +77,7 @@ def prepare(output, source_uri=None, tracking_uri=None, smoke=False):
                 {'weekday': 'int32', 'hour': 'int32'})
             target = parts['train'].departures.to_numpy()
             origin = {'data_version': manifest['data_version'],
+                      'training_commit': git_state()[0],
                       'train_start': str(parts['train'].time.min()),
                       'train_end_exclusive': SETTINGS.train_end,
                       'training_rows': len(frame)}
