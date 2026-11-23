@@ -1,0 +1,19 @@
+{
+  "host_system": "macOS ARM64",
+  "container_system": "Linux ARM64, rootless Podman 6.1.4",
+  "vm_vcpu": 2,
+  "vm_memory_bytes": 3021438976,
+  "locust": "2.43.3",
+  "podman_compose": "1.5.0",
+  "api_cpu_limit": 1,
+  "mlflow_cpu_limit": 0.5,
+  "api_memory_limit_mib": 768,
+  "mlflow_memory_limit_mib": 768,
+  "bootstrap_memory_limit_mib": 512,
+  "load_image_id": "3ca4ca30b822e5508ffb1092c4f0207921457097e1358bb5801876570d9e0c16",
+  "code_sha256_at_report": {
+    "locustfile.py": "d34859a156d2f3d0115e66d6faeb053703b9ea3364f2d5114b94689d95aa8c60",
+    "mibici_equipo14/serving.py": "2526891209ab3ed9a917c42c56e5177caefdbfe914b1d981d96bcae8560cbeac",
+    "mibici_equipo14/load_test.py": "1ebdb09a30869602d77ec7216f32bfe0ece20ac366e2cbde36ab5d8790a408bb"
+  }
+}

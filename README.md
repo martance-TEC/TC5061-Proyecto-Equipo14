@@ -1,5 +1,145 @@
 # MiBici
 
+## Operación con Compose, CI/CD y FinOps
+
+El entorno de operación levanta MLflow y la API P1 en una red de Compose.
+Un proceso de inicialización importa el modelo al Registry y termina antes de
+arrancar la API. La base SQLite y los artefactos permanecen en el volumen
+`registry-data`. Los puertos publicados se limitan a `127.0.0.1` y los servicios
+se resuelven por nombre dentro de la red `backend`.
+
+### Preparación desde un clon limpio
+
+Requiere Git, Python 3.11 y una máquina de Podman en ejecución. Postman permite
+consultar el servicio, pero no reemplaza a Podman ni a Compose. Desde la raíz:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install pip==26.2.2 setuptools==78.1.0 wheel==0.45.1
+python -m pip install -r requirements-operation.lock.txt
+python -m pip install --no-deps --no-build-isolation -e .
+python -m mibici_equipo14.operations up
+```
+
+`operations up` prepara el promedio histórico P1 con la partición original y
+ejecuta `podman-compose -f docker-compose.yml up -d --build`. Si no hay datos,
+reconstruye la ingesta usando las fuentes y hashes publicados. Esta primera
+preparación requiere internet, varios minutos y memoria suficiente en el equipo
+anfitrión. Los modelos y datos quedan en `data/`, fuera de Git. El contenedor
+recibe únicamente el modelo exportado, sin los viajes.
+
+Si el Registry original sigue disponible, puede exportarse exactamente la
+versión utilizada en la entrega anterior antes de levantar el entorno:
+
+```bash
+python -m mibici_equipo14.operations prepare --source-uri models:/mibici-equipo14-p1-demanda/1 --tracking-uri http://127.0.0.1:5014
+podman-compose -f docker-compose.yml up -d --build
+```
+
+La importación crea la versión 1 en el Registry **local de operación**, separado
+del original. `config/origin.json` conserva el run, URI, commit y versión de datos
+de origen. No cambia `champion` ni el Registry de las entregas anteriores. La
+huella de los archivos impide reutilizar un modelo distinto sobre el mismo
+volumen sin advertirlo. Las siguientes ejecuciones reutilizan la versión importada.
+
+### Consultar y verificar el servicio
+
+```bash
+curl http://127.0.0.1:8014/health
+curl -X POST http://127.0.0.1:8014/predict -H 'Content-Type: application/json' -d '{"instances":[{"station_id":"10","weekday":2,"hour":0}]}'
+python -m mibici_equipo14.operation_check
+podman-compose -f docker-compose.yml ps
+```
+
+La respuesta del modelo original para ese ejemplo es
+`{"predictions":[0.058823529411764705]}`. El chequeo compara tres predicciones
+contra el Registry, comprueba su orden y exige HTTP 422 para entradas inválidas.
+MLflow se consulta en `http://127.0.0.1:5015`. El estado de la API incluye nombre y
+versión. Para cambiar puertos se usan `MIBICI_API_PORT` y `MIBICI_REGISTRY_PORT`.
+
+Para detener los servicios conservando el volumen:
+
+```bash
+podman-compose -f docker-compose.yml down
+```
+
+No añadir `-v` si se quiere conservar el Registry. Redis y RQ se omiten porque la
+predicción es breve y síncrona. Añadir una cola no aporta valor al escenario medido.
+
+### Pipeline de GitHub Actions
+
+El workflow [operacion.yml](.github/workflows/operacion.yml) se ejecuta en cada
+push, Pull Request y ejecución manual. Una matriz separa las pruebas generales
+de las de monitoreo, que necesitan otro entorno. Tras aprobarlas construye la
+imagen, despliega Compose en el runner, espera los healthchecks y verifica HTTP
+y la coincidencia con el Registry. Conserva los XML y el diagnóstico como
+artefactos, utiliza caché de pip y cancela ejecuciones anteriores de la misma rama.
+
+El despliegue de CI es temporal y usa un ejemplo sintético marcado
+`synthetic_ci=true`, sin descargar los viajes. Comprueba el empaquetado y las
+conexiones. Las pruebas de carga locales utilizan el P1 real y no ese ejemplo.
+No hay despliegue público ni un servidor permanente después de terminar el job.
+La imagen se construye con Docker en el runner Linux de GitHub y con Podman en
+macOS. Ambos utilizan el mismo Containerfile. El estado se verifica en la pestaña
+**Actions**, abriendo la ejecución del commit que se quiere entregar.
+
+### Carga y recursos
+
+Con los servicios listos y el entorno activo:
+
+```bash
+python -m mibici_equipo14.load_test --users 5 20 50 --seconds 90
+```
+
+Si se usa una conexión de Podman diferente de la predeterminada, agregar
+`--connection NOMBRE`. Cada usuario envía una predicción válida y espera entre
+0.2 y 0.8 segundos. Los tres escenarios son consecutivos e incluyen la rampa.
+Las solicitudes inválidas se prueban por separado para no confundir rechazos
+esperados con fallos bajo carga. El generador de carga corre fuera de los
+contenedores que se miden.
+
+Locust guarda HTML, estadísticas, historial y errores en `reports/operacion/`.
+Los totales del resumen se leen del HTML final. El último CSV periódico puede
+cerrar antes y mostrar menos solicitudes; se conserva como historial sin alterarlo.
+Durante la carga se muestrean CPU y memoria con `podman stats`; los JSON conservan
+la hora y el contenedor. No se incluyen rutas personales ni nombres del equipo.
+Los logs de diagnóstico permanecen excluidos de Git. Los resultados describen
+esta ejecución local y no certifican capacidad o latencia de una instancia cloud.
+
+El análisis FinOps utiliza una tarifa pública documentada y solicitudes exitosas
+para estimar costo por inferencia. Es una proyección, no una factura ni una
+medición de desempeño en AWS. Incluye sensibilidad al uso y el costo de mantener
+la instancia encendida cuando hay pocas solicitudes.
+
+Para reconstruir las gráficas y el cálculo a partir de los CSV y JSON guardados:
+
+```bash
+python -m mibici_equipo14.finops
+```
+
+El resumen queda en `reports/operacion/summary.json`. La CPU se calcula con la
+diferencia del tiempo acumulado entre muestras, en lugar de promediar las
+instantáneas breves de `stats`. Un 100% equivale a un núcleo. La memoria se convierte
+a MiB. El costo incluye toda la instancia durante el intervalo y divide entre las
+respuestas exitosas, con una inferencia por solicitud.
+
+### Resultados de operación
+
+La ejecución del 21 de noviembre registró 862, 3,444 y 8,681 solicitudes para
+5, 20 y 50 usuarios, respectivamente, sin fallos. Con 50 usuarios se observaron
+96.57 solicitudes/s, p95 de 10 ms y un pico conjunto de 502.87 MiB. Son tres
+pruebas breves locales e incluyen la rampa; no representan capacidad máxima.
+
+El [reporte editable](reports/operacion/TC5061_Operacion_FinOps_Equipo14.docx),
+el [PDF](reports/operacion/TC5061_Operacion_FinOps_Equipo14.pdf) y el
+[resumen reproducible](reports/operacion/summary.json) incluyen metodología,
+gráficas, fuentes y sensibilidad del costo al volumen mensual. La
+[ejecución del código en Actions](https://github.com/martance-TEC/TC5061-Proyecto-Equipo14/actions/runs/44985231746)
+aprobó las pruebas generales, monitoreo, seguridad y despliegue temporal. Su
+identificador y commit se conservan en [pipeline.json](reports/operacion/pipeline.json).
+
+
 ## Pruebas, calidad de datos y seguridad
 
 Los controles comprueban la ingesta, las variables temporales, la capacidad de las

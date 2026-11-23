@@ -1,0 +1,18 @@
+{
+  "avg_content_length": 32.47851629996544,
+  "avg_response_time": 4.640265354591918,
+  "current_fail_per_sec": 0.0,
+  "current_rps": 98.4,
+  "max_response_time": 57.0,
+  "median_response_time": 4,
+  "method": "",
+  "min_response_time": 2.0,
+  "name": "Aggregated",
+  "num_failures": 0,
+  "num_requests": 8681,
+  "response_time_percentile_0.95": 10,
+  "response_time_percentile_0.99": 19,
+  "total_fail_per_sec": 0.0,
+  "total_rps": 96.57332241517717,
+  "window_seconds": 90.0
+}

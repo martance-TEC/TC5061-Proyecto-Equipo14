@@ -1,0 +1,28 @@
+{
+  "url": "https://github.com/martance-TEC/TC5061-Proyecto-Equipo14/actions/runs/44985231746",
+  "headSha": "f1832718909801854703cbc3f9b0f059c0f974b6",
+  "conclusion": "success",
+  "jobs": [
+    {
+      "name": "tests (monitoring)",
+      "conclusion": "success",
+      "url": "https://github.com/martance-TEC/TC5061-Proyecto-Equipo14/actions/runs/44985231746/job/137094372954"
+    },
+    {
+      "name": "tests (unit)",
+      "conclusion": "success",
+      "url": "https://github.com/martance-TEC/TC5061-Proyecto-Equipo14/actions/runs/44985231746/job/137094373169"
+    },
+    {
+      "name": "deploy-check",
+      "conclusion": "success",
+      "url": "https://github.com/martance-TEC/TC5061-Proyecto-Equipo14/actions/runs/44985231746/job/137094770773"
+    }
+  ],
+  "test_counts": {
+    "unit": 145,
+    "monitoring": 7
+  },
+  "ci_model_is_synthetic": true,
+  "real_model_validation": "validation.json"
+}

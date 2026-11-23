@@ -1,0 +1,553 @@
+[
+  {
+    "timestamp": 1795320898.092084,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "7.515576s",
+        "cpu_percent": "4.53%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "8.539218s",
+        "cpu_percent": "5.45%",
+        "mem_usage": "172.7MB / 805.3MB",
+        "mem_percent": "21.44%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320901.2306712,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "7.620889s",
+        "cpu_percent": "4.51%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "8.748148s",
+        "cpu_percent": "5.47%",
+        "mem_usage": "173.3MB / 805.3MB",
+        "mem_percent": "21.52%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320904.39041,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "7.626088s",
+        "cpu_percent": "4.43%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "9.311114s",
+        "cpu_percent": "5.71%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320907.497802,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "7.759137s",
+        "cpu_percent": "4.42%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "9.689612s",
+        "cpu_percent": "5.83%",
+        "mem_usage": "173.5MB / 805.3MB",
+        "mem_percent": "21.55%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320910.593473,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "7.76355s",
+        "cpu_percent": "4.35%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "10.175075s",
+        "cpu_percent": "6.01%",
+        "mem_usage": "173.3MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320913.702244,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "7.878837s",
+        "cpu_percent": "4.34%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "10.548913s",
+        "cpu_percent": "6.12%",
+        "mem_usage": "173.7MB / 805.3MB",
+        "mem_percent": "21.57%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320916.8165371,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "7.883334s",
+        "cpu_percent": "4.27%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "11.082137s",
+        "cpu_percent": "6.32%",
+        "mem_usage": "173.5MB / 805.3MB",
+        "mem_percent": "21.55%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320919.9462159,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "7.989571s",
+        "cpu_percent": "4.25%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "11.529617s",
+        "cpu_percent": "6.46%",
+        "mem_usage": "173.3MB / 805.3MB",
+        "mem_percent": "21.52%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320923.0878642,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "7.994145s",
+        "cpu_percent": "4.19%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "12.05498s",
+        "cpu_percent": "6.63%",
+        "mem_usage": "173.5MB / 805.3MB",
+        "mem_percent": "21.55%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320926.214025,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.108323s",
+        "cpu_percent": "4.18%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "12.422551s",
+        "cpu_percent": "6.72%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320929.33182,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.112736s",
+        "cpu_percent": "4.11%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "12.884926s",
+        "cpu_percent": "6.85%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320932.461279,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.224215s",
+        "cpu_percent": "4.10%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "13.298636s",
+        "cpu_percent": "6.96%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320935.578638,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.285128s",
+        "cpu_percent": "4.07%",
+        "mem_usage": "348.9MB / 805.3MB",
+        "mem_percent": "43.33%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "13.816674s",
+        "cpu_percent": "7.11%",
+        "mem_usage": "173.5MB / 805.3MB",
+        "mem_percent": "21.54%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320938.7073789,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.347946s",
+        "cpu_percent": "4.04%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "14.216237s",
+        "cpu_percent": "7.20%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320941.819016,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.476253s",
+        "cpu_percent": "4.04%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "14.678582s",
+        "cpu_percent": "7.32%",
+        "mem_usage": "173.8MB / 805.3MB",
+        "mem_percent": "21.58%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320944.9510322,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.481009s",
+        "cpu_percent": "3.98%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "15.064692s",
+        "cpu_percent": "7.40%",
+        "mem_usage": "173.5MB / 805.3MB",
+        "mem_percent": "21.54%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320948.086705,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.58787s",
+        "cpu_percent": "3.98%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "15.541664s",
+        "cpu_percent": "7.52%",
+        "mem_usage": "173.8MB / 805.3MB",
+        "mem_percent": "21.58%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320951.215231,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.59264s",
+        "cpu_percent": "3.92%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "15.924869s",
+        "cpu_percent": "7.59%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320954.334154,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.697623s",
+        "cpu_percent": "3.91%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "16.385957s",
+        "cpu_percent": "7.69%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320957.457403,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.702097s",
+        "cpu_percent": "3.86%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "16.800991s",
+        "cpu_percent": "7.77%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320960.5840461,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.806393s",
+        "cpu_percent": "3.85%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "17.275464s",
+        "cpu_percent": "7.88%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320963.6935601,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.810764s",
+        "cpu_percent": "3.80%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "17.79318s",
+        "cpu_percent": "8.00%",
+        "mem_usage": "173.5MB / 805.3MB",
+        "mem_percent": "21.54%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320966.829364,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.92906s",
+        "cpu_percent": "3.80%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "18.187026s",
+        "cpu_percent": "8.07%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320969.9375749,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "8.933238s",
+        "cpu_percent": "3.76%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "18.689227s",
+        "cpu_percent": "8.18%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320973.0637262,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "9.04906s",
+        "cpu_percent": "3.75%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "19.027633s",
+        "cpu_percent": "8.21%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320976.185566,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "9.0526s",
+        "cpu_percent": "3.71%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "19.476398s",
+        "cpu_percent": "8.29%",
+        "mem_usage": "173.5MB / 805.3MB",
+        "mem_percent": "21.54%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320979.304974,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "9.16175s",
+        "cpu_percent": "3.71%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "19.804958s",
+        "cpu_percent": "8.32%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320982.4326458,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "9.166365s",
+        "cpu_percent": "3.66%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "20.302452s",
+        "cpu_percent": "8.42%",
+        "mem_usage": "173.5MB / 805.3MB",
+        "mem_percent": "21.54%"
+      }
+    ]
+  },
+  {
+    "timestamp": 1795320985.5600152,
+    "containers": [
+      {
+        "name": "mibici-operacion_mlflow_1",
+        "cpu_time": "9.27374s",
+        "cpu_percent": "3.66%",
+        "mem_usage": "339MB / 805.3MB",
+        "mem_percent": "42.10%"
+      },
+      {
+        "name": "mibici-operacion_api_1",
+        "cpu_time": "20.666987s",
+        "cpu_percent": "8.46%",
+        "mem_usage": "173.2MB / 805.3MB",
+        "mem_percent": "21.51%"
+      }
+    ]
+  }
+]

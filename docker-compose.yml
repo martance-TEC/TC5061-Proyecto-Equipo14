@@ -1,0 +1,76 @@
+name: mibici-operacion
+
+x-image: &service-image
+  image: ${MIBICI_IMAGE:-localhost/mibici-p1:operacion}
+  build:
+    context: .
+    dockerfile: Containerfile
+
+services:
+  mlflow:
+    <<: *service-image
+    entrypoint: [mlflow]
+    command: [server, --host, 0.0.0.0, --port, '5000', --workers, '1',
+              --backend-store-uri, 'sqlite:////state/mlflow.db', --serve-artifacts,
+              --artifacts-destination, /state/mlartifacts]
+    ports:
+      - '127.0.0.1:${MIBICI_REGISTRY_PORT:-5015}:5000'
+    volumes:
+      - registry-data:/state
+    networks: [backend]
+    mem_limit: 768m
+    cpus: 0.5
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:5000/health', timeout=4)"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  bootstrap:
+    <<: *service-image
+    entrypoint: [python, -m, mibici_equipo14.operations, bootstrap]
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MLFLOW_REGISTRY_URI: http://mlflow:5000
+      BOOTSTRAP_SMOKE: ${BOOTSTRAP_SMOKE:-0}
+    volumes:
+      - ./data/operacion:/bootstrap:ro
+    networks: [backend]
+    depends_on:
+      mlflow:
+        condition: service_healthy
+    mem_limit: 512m
+    restart: 'no'
+    healthcheck:
+      disable: true
+
+  api:
+    <<: *service-image
+    command: [--host, 0.0.0.0, --model-version, '1']
+    environment:
+      MLFLOW_TRACKING_URI: http://mlflow:5000
+      MLFLOW_REGISTRY_URI: http://mlflow:5000
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+    ports:
+      - '127.0.0.1:${MIBICI_API_PORT:-8014}:8000'
+    networks: [backend]
+    depends_on:
+      bootstrap:
+        condition: service_completed_successfully
+    mem_limit: 768m
+    cpus: 1.0
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, python, -c, "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=4)"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+networks:
+  backend: {}
+volumes:
+  registry-data: {}
