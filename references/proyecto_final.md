@@ -118,6 +118,11 @@ JSON sin depender de una terminal. MLflow se abre en `http://127.0.0.1:5015`.
 Para finalizar, `podman-compose -f docker-compose.yml down` conserva el volumen;
 no se añade `-v`.
 
+La [verificación de cierre](../reports/cierre/validacion.json) conserva el commit
+de código comprobado, sus huellas, los conteos de pruebas y las respuestas HTTP.
+La reconstrucción de contenedores se verificó sin borrar el volumen del Registry.
+El estado `healthy` es una condición previa a enviar la petición de la demo.
+
 Las capturas históricas respaldan las mediciones publicadas. La demo de cierre
 debe mostrar una petición real durante la grabación y no una captura presentada
 como ejecución nueva. El video dura entre dos y cinco minutos, es continuo y

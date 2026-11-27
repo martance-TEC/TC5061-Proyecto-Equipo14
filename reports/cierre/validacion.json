@@ -1,0 +1,109 @@
+{
+  "checked_at_utc": "2026-11-27T04:10:18.517024+00:00",
+  "source_commit": "d47d7067e5d949da393449ae00707274f86d83ff",
+  "scope": "academic_local",
+  "model_data": "real_p1",
+  "source_sha256": {
+    "mibici_equipo14/operations.py": "0f51c7fa37841a904760bf7a1808d151e27daa8293b579a90de637ea184f34b0",
+    "mibici_equipo14/serving.py": "2526891209ab3ed9a917c42c56e5177caefdbfe914b1d981d96bcae8560cbeac",
+    "docker-compose.yml": "d1a9bbb1d34949c06ab72d149bb4f8b56bfcb055ad6af44d5b129ff6d02a336d",
+    "Containerfile": "d3d225c3ea13601a63bd8292203ca96a3e1900e14878383edd09f27fff0d434b",
+    "tests/test_operating_lifecycle.py": "6f5ffea1d4f38f23f140fa94863d012ba288104b0e3bed42ac6ce587447de5c8"
+  },
+  "tests": {
+    "unit": {
+      "tests": 156,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 156
+    },
+    "monitoring": {
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 7
+    },
+    "http_in_container": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 5
+    }
+  },
+  "bandit_findings": 0,
+  "http": {
+    "health": {
+      "status": "ready",
+      "model_name": "mibici-equipo14-p1-demanda",
+      "model_version": "1"
+    },
+    "predictions": [
+      0.058823529411764705,
+      3.8181818181818183,
+      0.058823529411764705
+    ],
+    "max_absolute_difference": 0.0,
+    "invalid_http_codes": [
+      422,
+      422,
+      422
+    ]
+  },
+  "registry": {
+    "model_name": "mibici-equipo14-p1-demanda",
+    "version": "1",
+    "alias": "champion",
+    "operation_run_id": "b7e39c62b1934493a7d792e92a78ce0a",
+    "tags": {
+      "bundle_sha256": "cd165f283619d37db316986624bd02b2a1965b765bcc4628af1274fc3ce7aed7",
+      "synthetic_ci": "false",
+      "deployment_scope": "academic_local",
+      "lifecycle_scheme": "alias"
+    }
+  },
+  "origin": {
+    "source_uri": "models:/mibici-equipo14-p1-demanda/1",
+    "source_run_id": "48bc3dd1f2414f4ba31f9f2020226764",
+    "data_version": "97b8d9d898ca5f71ffaffc6ff86b100fbe371abfd5d67837d989e5f81bf9934f",
+    "training_commit": "5373f1e79bb469c3c4e0da2481e59ea275b6789b",
+    "synthetic_ci": false,
+    "model_name": "mibici-equipo14-p1-demanda",
+    "bundle_sha256": "cd165f283619d37db316986624bd02b2a1965b765bcc4628af1274fc3ce7aed7",
+    "example": [
+      {
+        "station_id": "10",
+        "weekday": 2,
+        "hour": 0
+      },
+      {
+        "station_id": "20",
+        "weekday": 0,
+        "hour": 8
+      },
+      {
+        "station_id": "10",
+        "weekday": 2,
+        "hour": 0
+      }
+    ],
+    "predictions": [
+      0.058823529411764705,
+      3.8181818181818183,
+      0.058823529411764705
+    ]
+  },
+  "historical_results": {
+    "load_and_cost": "reports/operacion/summary.json",
+    "drift": "reports/monitoreo/resumen_drift.json",
+    "paired_ab": "reports/ab_testing/p1_ab_victor.json"
+  },
+  "lifecycle": {
+    "served_version": "1",
+    "alternative_version_in_ab_registry": "2",
+    "alternative_promoted": false
+  },
+  "restart_validation": "Compose recreated the services using the existing Registry volume; artifacts remained readable."
+}

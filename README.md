@@ -17,6 +17,8 @@ experimentos, pruebas, despliegue, monitoreo y estimación del costo de inferenc
   [comparación de versiones y política de actualización](reports/ab_testing/continuous_training_recommendation.md).
 - [Carga y FinOps](reports/operacion/summary.json) y
   [workflow de pruebas y despliegue](.github/workflows/operacion.yml).
+- [Verificación de cierre](reports/cierre/validacion.json): commit comprobado,
+  huellas de código, pruebas y comparación HTTP con el Registry real.
 
 La operación medida utiliza **P1 v1**. El A/B histórico favorece a **v2**, que sigue
 siendo un candidato recomendado para promoción; no se presenta como desplegado.
