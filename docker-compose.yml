@@ -16,7 +16,7 @@ services:
     ports:
       - '127.0.0.1:${MIBICI_REGISTRY_PORT:-5015}:5000'
     volumes:
-      - registry-data:/state
+      - registry-data:/state:Z
     networks: [backend]
     mem_limit: 768m
     cpus: 0.5

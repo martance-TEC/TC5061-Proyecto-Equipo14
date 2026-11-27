@@ -31,6 +31,8 @@ Un proceso de inicialización importa el modelo al Registry y termina antes de
 arrancar la API. La base SQLite y los artefactos permanecen en el volumen
 `registry-data`. Los puertos publicados se limitan a `127.0.0.1` y los servicios
 se resuelven por nombre dentro de la red `backend`.
+La opción `:Z` del volumen conserva una etiqueta SELinux privada para MLflow
+al recrear su contenedor en Podman; no modifica los archivos del modelo.
 
 ### Preparación desde un clon limpio
 
