@@ -1,5 +1,29 @@
 # MiBici
 
+Proyecto académico de MLOps con datos abiertos de MiBici. Estudia demanda por
+estación (P1), presión aproximada sobre la capacidad (P2) y perfiles de uso (P3).
+P1 se expone como API local. El repositorio reúne datos versionados por manifiesto,
+experimentos, pruebas, despliegue, monitoreo y estimación del costo de inferencia.
+
+## Proyecto final
+
+- [Recorrido de extremo a extremo y decisiones](references/proyecto_final.md).
+- [Arquitectura completa](references/architecture.md).
+- [Model Card de P1](MODEL_CARD.md): propósito, métricas, límites y gobernanza.
+- [Datos y partición](references/data_dictionary.md),
+  [ML Canvas](references/ml_canvas.md) y [MLflow Project](MLproject).
+- [Comparación de experimentos y Registry](references/segunda_entrega.md).
+- [Drift de Evidently](reports/monitoreo/interpretacion.md) y
+  [comparación de versiones y política de actualización](reports/ab_testing/continuous_training_recommendation.md).
+- [Carga y FinOps](reports/operacion/summary.json) y
+  [workflow de pruebas y despliegue](.github/workflows/operacion.yml).
+
+La operación medida utiliza **P1 v1**. El A/B histórico favorece a **v2**, que sigue
+siendo un candidato recomendado para promoción; no se presenta como desplegado.
+Los números de versión pertenecen a cada Registry. El origen se comprueba con
+run, commit, versión de datos y huella del modelo, no solo con el número `1`.
+El alcance de producción es académico y local; no hay un servicio público.
+
 ## Operación con Compose, CI/CD y FinOps
 
 El entorno de operación levanta MLflow y la API P1 en una red de Compose.
@@ -42,6 +66,10 @@ del original. `config/origin.json` conserva el run, URI, commit y versión de da
 de origen. No cambia `champion` ni el Registry de las entregas anteriores. La
 huella de los archivos impide reutilizar un modelo distinto sobre el mismo
 volumen sin advertirlo. Las siguientes ejecuciones reutilizan la versión importada.
+En ese Registry, el modelo real se identifica con `champion` y la etiqueta
+`deployment_scope=academic_local`. Si el alias ya apunta a otra versión, el
+arranque se detiene para exigir revisión. El ejemplo sintético de CI no recibe
+ese alias. La API sigue fijada a la versión numérica 1.
 
 ### Consultar y verificar el servicio
 
@@ -144,7 +172,8 @@ identificador y commit se conservan en [pipeline.json](reports/operacion/pipelin
 
 Los controles comprueban la ingesta, las variables temporales, la capacidad de las
 estaciones y la repetibilidad del entrenamiento. Se ejecutan localmente con Python
-3.11.9. No requieren Docker, un servidor de MLflow ni acceso a credenciales.
+3.11.9. Las pruebas unitarias no requieren contenedores ni un servidor de MLflow;
+las pruebas HTTP de integración sí necesitan la API y su Registry disponibles.
 
 ### Instalar las herramientas
 
@@ -180,8 +209,12 @@ su alcance se explica más adelante.
 Las pruebas usan ejemplos pequeños y no necesitan descargar datos:
 
 ```text
-python -m mibici_equipo14.quality tests
+python -m pytest tests -q --ignore=tests/test_service_integration.py --ignore=tests/test_monitoring.py
 ```
+
+El entorno separado de monitoreo y las pruebas HTTP se ejecutan con los comandos
+de sus secciones. Con todos los servicios y entornos requeridos preparados,
+`python -m mibici_equipo14.quality tests` ejecuta la suite general completa.
 
 Comprueban casos normales y límite, fuga temporal, integridad de archivos,
 predicciones después de cargar un modelo y dos entrenamientos nuevos con la misma

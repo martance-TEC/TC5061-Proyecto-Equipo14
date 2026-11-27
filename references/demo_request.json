@@ -1,0 +1,7 @@
+{
+  "instances": [
+    {"station_id": "10", "weekday": 2, "hour": 0},
+    {"station_id": "20", "weekday": 0, "hour": 8},
+    {"station_id": "10", "weekday": 2, "hour": 0}
+  ]
+}
