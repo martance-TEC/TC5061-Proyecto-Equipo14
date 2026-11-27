@@ -173,7 +173,7 @@ def main():
             if command is None:
                 raise RuntimeError('Instalar requirements-operation.txt y activar su entorno')
             # command se resuelve con which y los argumentos son fijos.
-            subprocess.run([command, '-f', 'docker-compose.yml', 'up', '-d', '--build'], check=True)  # nosec B603
+            subprocess.run([command, '-f', 'docker-compose.yml', 'up', '-d', '--build', '--force-recreate'], check=True)  # nosec B603
 
 
 if __name__ == '__main__':

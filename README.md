@@ -47,7 +47,9 @@ python -m mibici_equipo14.operations up
 ```
 
 `operations up` prepara el promedio histórico P1 con la partición original y
-ejecuta `podman-compose -f docker-compose.yml up -d --build`. Si no hay datos,
+ejecuta `podman-compose -f docker-compose.yml up -d --build --force-recreate`.
+Recrea los contenedores para utilizar el código nuevo y conserva el volumen.
+Si no hay datos,
 reconstruye la ingesta usando las fuentes y hashes publicados. Esta primera
 preparación requiere internet, varios minutos y memoria suficiente en el equipo
 anfitrión. Los modelos y datos quedan en `data/`, fuera de Git. El contenedor
@@ -58,7 +60,7 @@ versión utilizada en la entrega anterior antes de levantar el entorno:
 
 ```bash
 python -m mibici_equipo14.operations prepare --source-uri models:/mibici-equipo14-p1-demanda/1 --tracking-uri http://127.0.0.1:5014
-podman-compose -f docker-compose.yml up -d --build
+podman-compose -f docker-compose.yml up -d --build --force-recreate
 ```
 
 La importación crea la versión 1 en el Registry **local de operación**, separado
