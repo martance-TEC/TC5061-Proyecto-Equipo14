@@ -24,6 +24,7 @@ def test_bootstrap_reuses_matching_version_and_rejects_conflict(tmp_path, monkey
         'bundle_sha256': digest, 'synthetic_ci': False,
     }))
     client = Mock()
+    client.get_registered_model.return_value.aliases = {}
     version = Mock(version='1', tags={'bundle_sha256': digest})
     client.search_model_versions.return_value = [version]
     with patch('mibici_equipo14.operations.MlflowClient', return_value=client):

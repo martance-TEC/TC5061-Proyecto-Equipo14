@@ -96,6 +96,20 @@ def prepare(output, source_uri=None, tracking_uri=None, smoke=False):
     return result
 
 
+def define_operating_version(client, version, record):
+    """Identifica la versión operativa local sin sustituir otra ya aprobada."""
+    if record['synthetic_ci']:
+        return
+    aliases = client.get_registered_model(MODEL_NAME).aliases
+    current = aliases.get('champion')
+    if current is not None and str(current) != str(version):
+        raise ValueError('champion apunta a otra versión; se requiere revisar la promoción')
+    client.set_model_version_tag(MODEL_NAME, str(version), 'deployment_scope', 'academic_local')
+    client.set_model_version_tag(MODEL_NAME, str(version), 'lifecycle_scheme', 'alias')
+    if current is None:
+        client.set_registered_model_alias(MODEL_NAME, 'champion', str(version))
+
+
 def bootstrap(directory='/bootstrap'):
     """Importa una copia trazable al Registry del entorno, sin alterar el origen."""
     directory = Path(directory)
@@ -121,6 +135,7 @@ def bootstrap(directory='/bootstrap'):
     if versions:
         if len(versions) != 1 or versions[0].tags.get('bundle_sha256') != record['bundle_sha256']:
             raise ValueError('El Registry de operación ya contiene otro modelo. Conservar el volumen e investigar.')
+        define_operating_version(client, versions[0].version, record)
         print(json.dumps({'model_version': versions[0].version, 'reused': True}), flush=True)
         return
     mlflow.set_experiment('mibici-operacion-ci' if smoke else SETTINGS.experiment)
@@ -136,6 +151,7 @@ def bootstrap(directory='/bootstrap'):
         version = mlflow.register_model(f'runs:/{run.info.run_id}/model', MODEL_NAME)
         client.set_model_version_tag(MODEL_NAME, version.version, 'bundle_sha256', record['bundle_sha256'])
         client.set_model_version_tag(MODEL_NAME, version.version, 'synthetic_ci', str(smoke).lower())
+        define_operating_version(client, version.version, record)
     print(json.dumps({'model_version': version.version, 'run_id': run.info.run_id,
                       'synthetic_ci': smoke}), flush=True)
 
@@ -157,7 +173,7 @@ def main():
             if command is None:
                 raise RuntimeError('Instalar requirements-operation.txt y activar su entorno')
             # command se resuelve con which y los argumentos son fijos.
-            subprocess.run([command, '-f', 'docker-compose.yml', 'up', '-d', '--build'], check=True)  # nosec B603
+            subprocess.run([command, '-f', 'docker-compose.yml', 'up', '-d', '--build', '--force-recreate'], check=True)  # nosec B603
 
 
 if __name__ == '__main__':
